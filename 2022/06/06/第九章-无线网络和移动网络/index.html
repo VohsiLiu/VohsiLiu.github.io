@@ -26,7 +26,119 @@
     KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/favicon.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
   </script>
-<meta name="generator" content="Hexo 6.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -190,7 +302,7 @@
             <h1 id="第九章-无线网络和移动网络"><a href="#第九章-无线网络和移动网络" class="headerlink" title="第九章 无线网络和移动网络"></a>第九章 无线网络和移动网络</h1><h2 id="9-1-无线局域网WLAN"><a href="#9-1-无线局域网WLAN" class="headerlink" title="9.1 无线局域网WLAN"></a>9.1 无线局域网WLAN</h2><h3 id="9-1-1-无线局域网的组成"><a href="#9-1-1-无线局域网的组成" class="headerlink" title="9.1.1 无线局域网的组成"></a>9.1.1 无线局域网的组成</h3><p>无线局域网可分为<strong>有固定基础设施的</strong>和<strong>无固定基础设施的</strong>两大类。“固定基础设施”是指预先建立起来的、能够覆盖一定地理范围的一批固定基站</p>
 <h4 id="1-IEEE-802-11"><a href="#1-IEEE-802-11" class="headerlink" title="1. IEEE 802.11"></a>1. IEEE 802.11</h4><ul>
 <li>对于第一类有固定基础设施的无线局域网，1997 年 IEEE 制定出无线局域网的协议标准 802.11[W-IEEE802.11]系列标准</li>
-<li>802.11 是无线以太网的标准，它使用星形拓扑，其中心叫做<strong>接入点 AP</strong>（Access Point），在 MAC 层使用 <strong>CSMA&#x2F;CA 协议</strong></li>
+<li>802.11 是无线以太网的标准，它使用星形拓扑，其中心叫做<strong>接入点 AP</strong>（Access Point），在 MAC 层使用 <strong>CSMA/CA 协议</strong></li>
 <li>凡使用 802.11 系列协议的局域网又称为 <strong>Wi-Fi</strong>（Wireless-Fidelity，意思是“无线保真度”）</li>
 <li>现在 Wi-Fi 实际上已经成为了无线局域网 WLAN 的代名词，但无线局域网和“保真度”实在没有什么关系</li>
 <li>802.11 标准规定无线局域网的最小构件是<strong>基本服务集 BSS</strong>（Basic Service Set）<ul>
@@ -198,7 +310,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="9-1-2-802-11-局域网的物理层"><a href="#9-1-2-802-11-局域网的物理层" class="headerlink" title="9.1.2 802.11 局域网的物理层"></a>9.1.2 802.11 局域网的物理层</h3><h3 id="9-1-3-802-11-局域网的MAC层"><a href="#9-1-3-802-11-局域网的MAC层" class="headerlink" title="9.1.3 802.11 局域网的MAC层"></a>9.1.3 802.11 局域网的MAC层</h3><h4 id="1-CSMA-x2F-CA-协议"><a href="#1-CSMA-x2F-CA-协议" class="headerlink" title="1. CSMA&#x2F;CA 协议"></a>1. CSMA&#x2F;CA 协议</h4><ul>
+<h3 id="9-1-2-802-11-局域网的物理层"><a href="#9-1-2-802-11-局域网的物理层" class="headerlink" title="9.1.2 802.11 局域网的物理层"></a>9.1.2 802.11 局域网的物理层</h3><h3 id="9-1-3-802-11-局域网的MAC层"><a href="#9-1-3-802-11-局域网的MAC层" class="headerlink" title="9.1.3 802.11 局域网的MAC层"></a>9.1.3 802.11 局域网的MAC层</h3><h4 id="1-CSMA-x2F-CA-协议"><a href="#1-CSMA-x2F-CA-协议" class="headerlink" title="1. CSMA/CA 协议"></a>1. CSMA/CA 协议</h4><ul>
 <li><strong>在无线局域网中，仍然可以使用载波监听多址接入 CSMA</strong> , 即在发送帧之前先对传输媒体进行载波监听。若发现有其他站在发送帧，就推迟发送以免发生碰撞</li>
 <li><strong>在无线局域网中，不能使用碰撞检测CD</strong> ，原因如下：<ul>
 <li>由于无线信道的传输条件特殊，其信号强度的动态范围非常大，无线网卡上接收到的信号强度往往会远远小于发送信号的强度（可能相差百万倍）。<strong>如果要在无线网卡上实现碰撞检测CD ，对硬件的要求非常高</strong></li>
@@ -208,16 +320,16 @@
 </ul>
 <p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220223160858.png" alt="3.4.3.1"></p>
 <ul>
-<li><p><strong>802.11 无线局域网</strong>使用 CSMA&#x2F;CA 协议，在 CSMA 的基础上增加了一个<strong>碰撞避免 CA</strong> 功能，而不再实现碰撞检测功能</p>
+<li><p><strong>802.11 无线局域网</strong>使用 CSMA/CA 协议，在 CSMA 的基础上增加了一个<strong>碰撞避免 CA</strong> 功能，而不再实现碰撞检测功能</p>
 </li>
 <li><p>由于<strong>不可能避免所有的碰撞</strong>，并且<strong>无线信道误码率较高</strong>， 802.11 标准还使用了<strong>数据链路层确认机制（停止-等待协议）</strong> 来保证数据被正确接收</p>
 </li>
 <li><p>802.11 的 MAC 层标准定义了两种不同的媒体接入控制方式：</p>
 <ul>
-<li><p><strong>分布式协调功能 DCF</strong>（Distributed Coordination Function）。在 DCF 方式下，没有中心控制站点，每个站点使用 CSMA&#x2F;CA 协议通过争用信道来获取发送权，这是802.11 定义的默认方式</p>
+<li><p><strong>分布式协调功能 DCF</strong>（Distributed Coordination Function）。在 DCF 方式下，没有中心控制站点，每个站点使用 CSMA/CA 协议通过争用信道来获取发送权，这是802.11 定义的默认方式</p>
 </li>
 <li><p><strong>点协调功能 PCF</strong>（Point Coordination Function）。PCF 方式使用集中控制的接入算法（一般在接入点AP 实现集中控制），是802.11 定义的可选方式，在实际中较少使用</p>
-<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220223161435.png" alt="3.4.3.2" style="zoom:40%;" /></li>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220223161435.png" alt="3.4.3.2" style="zoom:40%;"></li>
 </ul>
 </li>
 <li><p>802.11 标准规定，所有的<strong>站点必须在持续检测到信道空闲一段指定时间后才能发送帧</strong>，这段时间称为帧间间隔IFS（InterFrame Space）</p>
@@ -230,12 +342,12 @@
 </li>
 <li><p>常用的两种帧间间隔如下：</p>
 <ul>
-<li><strong>短帧间间隔 SIFS</strong>（$28\mathrm{\mu s}$），是最短的帧间间隔，用来分隔开属于一次对话的各帧。一个站点应当能够在这段时间内从发送方式切换到接收方式。使用 SIFS 的帧类型有 ACK 帧、CTS 帧、由过长的 MAC 帧分片后的数据帧、以及所有回答 AP 探询的帧和在 PCF 方式中接入点 AP 发送出的任何帧</li>
-<li><strong>DCF 帧间间隔 DIFS</strong>（$128\mathrm{\mu s}$），它比短帧间间隔 SIFS 要长得多，在 DCF 方式中用来发送数据帧和管理帧</li>
+<li><strong>短帧间间隔 SIFS</strong>（<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.489ex;" xmlns="http://www.w3.org/2000/svg" width="4.518ex" height="1.995ex" role="img" focusable="false" viewBox="0 -666 1997 882"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(500,0)"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(1000,0)"><g data-mml-node="mi"><path data-c="1D707" d="M58 -216Q44 -216 34 -208T23 -186Q23 -176 96 116T173 414Q186 442 219 442Q231 441 239 435T249 423T251 413Q251 401 220 279T187 142Q185 131 185 107V99Q185 26 252 26Q261 26 270 27T287 31T302 38T315 45T327 55T338 65T348 77T356 88T365 100L372 110L408 253Q444 395 448 404Q461 431 491 431Q504 431 512 424T523 412T525 402L449 84Q448 79 448 68Q448 43 455 35T476 26Q485 27 496 35Q517 55 537 131Q543 151 547 152Q549 153 557 153H561Q580 153 580 144Q580 138 575 117T555 63T523 13Q510 0 491 -8Q483 -10 467 -10Q446 -10 429 -4T402 11T385 29T376 44T374 51L368 45Q362 39 350 30T324 12T288 -4T246 -11Q199 -11 153 12L129 -85Q108 -167 104 -180T92 -202Q76 -216 58 -216Z"></path></g><g data-mml-node="mi" transform="translate(603,0)"><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"></path></g></g></g></g></svg></mjx-container>），是最短的帧间间隔，用来分隔开属于一次对话的各帧。一个站点应当能够在这段时间内从发送方式切换到接收方式。使用 SIFS 的帧类型有 ACK 帧、CTS 帧、由过长的 MAC 帧分片后的数据帧、以及所有回答 AP 探询的帧和在 PCF 方式中接入点 AP 发送出的任何帧</li>
+<li><strong>DCF 帧间间隔 DIFS</strong>（<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.489ex;" xmlns="http://www.w3.org/2000/svg" width="5.649ex" height="1.995ex" role="img" focusable="false" viewBox="0 -666 2497 882"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1000,0)"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(1500,0)"><g data-mml-node="mi"><path data-c="1D707" d="M58 -216Q44 -216 34 -208T23 -186Q23 -176 96 116T173 414Q186 442 219 442Q231 441 239 435T249 423T251 413Q251 401 220 279T187 142Q185 131 185 107V99Q185 26 252 26Q261 26 270 27T287 31T302 38T315 45T327 55T338 65T348 77T356 88T365 100L372 110L408 253Q444 395 448 404Q461 431 491 431Q504 431 512 424T523 412T525 402L449 84Q448 79 448 68Q448 43 455 35T476 26Q485 27 496 35Q517 55 537 131Q543 151 547 152Q549 153 557 153H561Q580 153 580 144Q580 138 575 117T555 63T523 13Q510 0 491 -8Q483 -10 467 -10Q446 -10 429 -4T402 11T385 29T376 44T374 51L368 45Q362 39 350 30T324 12T288 -4T246 -11Q199 -11 153 12L129 -85Q108 -167 104 -180T92 -202Q76 -216 58 -216Z"></path></g><g data-mml-node="mi" transform="translate(603,0)"><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"></path></g></g></g></g></svg></mjx-container>），它比短帧间间隔 SIFS 要长得多，在 DCF 方式中用来发送数据帧和管理帧</li>
 </ul>
 </li>
 </ul>
-<p><strong>CSMA&#x2F;CA 协议工作原理：</strong></p>
+<p><strong>CSMA/CA 协议工作原理：</strong></p>
 <p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220223164109.png" alt="3.4.3.3"></p>
 <ul>
 <li>当站点检测到信道是空闲的，并且所发送的数据帧不是成功发送完上一个数据帧之后立即连续发送的数据帧，<br>则不使用退避算法</li>
@@ -250,7 +362,7 @@
 <li>当退避计时器的时间还未减小到零时而信道又转变为忙状态，这时就冻结退避计时器的数值，重新等待信道变为空闲，再经过时间 DIFS 后，继续启动退避计时器</li>
 </ul>
 </li>
-<li>在进行第$i$次退避时，退避时间在时隙编号${1,2,\cdots, 2^{2+i}-1}$中随机选择一个，然后乘以基本退避时间（也就是一个时隙的长度）就可以得到随机的退避时间。这样做是为了使不同站点选择相同退避时间的概率减少.当时隙编号达到255时（对应于第6次退避）就不再增加了</li>
+<li>在进行第<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container>次退避时，退避时间在时隙编号<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="16.122ex" height="2.326ex" role="img" focusable="false" viewBox="0 -833.9 7125.7 1027.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(944.7,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mo" transform="translate(1444.7,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(1889.3,0)"><path data-c="22EF" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250ZM525 250Q525 274 542 292T585 310Q609 310 627 294T646 251Q646 226 629 208T586 190T543 207T525 250ZM972 250Q972 274 989 292T1032 310Q1056 310 1074 294T1093 251Q1093 226 1076 208T1033 190T990 207T972 250Z"></path></g><g data-mml-node="mo" transform="translate(3228,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msup" transform="translate(3672.7,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(1278,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g><g data-mml-node="mo" transform="translate(5625.5,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(6625.7,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></g></svg></mjx-container>中随机选择一个，然后乘以基本退避时间（也就是一个时隙的长度）就可以得到随机的退避时间。这样做是为了使不同站点选择相同退避时间的概率减少.当时隙编号达到255时（对应于第6次退避）就不再增加了</li>
 </ul>
 <p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220223164319.png" alt="3.4.3.4"></p>
 <h4 id="2-对信道进行预约"><a href="#2-对信道进行预约" class="headerlink" title="2. 对信道进行预约"></a>2. 对信道进行预约</h4><ul>
@@ -266,7 +378,7 @@
 </ol>
 </li>
 </ul>
-<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220223183406.png" alt="3.4.3.5" style="zoom:33%;" />
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220223183406.png" alt="3.4.3.5" style="zoom:33%;">
 
 <ul>
 <li><p>除源站和目的站以外的<strong>其他各站</strong>，<strong>在收到 CTS 帧（或数据帧）后就推迟接入到无线局域网中</strong>。这样就保证了源站和目的站之间的通信不会受到其他站的干扰</p>
@@ -285,8 +397,8 @@
 <li><p>由于利用虚拟载波监听机制， <strong>站点只要监听到 RTS 帧、CTS 帧或数据帧中的任何一个，就能知道信道被占用的持续时间</strong>，而不需要真正监听到信道上的信号，因此<strong>虚拟载波监听机制能减少隐蔽站带来的碰撞问题</strong></p>
 </li>
 </ul>
-<p><strong>CSMA&#x2F;CA的基本流程图：</strong></p>
-<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220223184008.png" alt="3.4.3.6" style="zoom:45%;" />
+<p><strong>CSMA/CA的基本流程图：</strong></p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220223184008.png" alt="3.4.3.6" style="zoom:45%;">
 
 
 

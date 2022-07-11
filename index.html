@@ -24,7 +24,119 @@
     KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/favicon.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
   </script>
-<meta name="generator" content="Hexo 6.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -149,6 +261,48 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2022/07/11/TypeScript%E5%AE%89%E8%A3%85/">
+                        TypeScript安装
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        TypeScript安装建议采用局部安装，即只安装到项目目录下，不建议全局安装，尤其是在用nvm管理nodejs版本的情况下更不建议了。
+MacOS和Linux所有操作都是在项目目录下进行的
+1sudo npm install typescript ...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Jul 11 2022 21:39:39 GMT+0800">2022-07-11</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">编程环境安装和配置</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+    </div>
+
+    <a href="/2022/07/11/TypeScript%E5%AE%89%E8%A3%85/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2022/06/06/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF/">
                         第十章 数据库恢复技术
                     </a>
@@ -246,12 +400,16 @@
                     
                         第六章 关系数据理论6.1 关系模式及范式
 关系模式由五部分组成，是一个五元组：
-$$R&#x3D;(U,D,DOM,F)$$
 
-关系名 $R$ 是符号化的元组语义
-$U$ 为一组属性
-$D$ 为属性组 $U$ 中的属性所来自的域
-$DOM$ 为属性...
+
+关系名  是符号化的元组语义
+ 为一组属性
+ 为属性组  中的属性所来自的域
+ 为属性到域的映射
+ 为属性组  上的一组数据依赖
+
+
+由于 、 与模式设计关系不大，...
                     
                 </div>
 
@@ -426,7 +584,10 @@ $DOM$ 为属性...
                         第二章 关系数据库2.1 关系数据结构及形式化定义2.1.1 关系
 域：域是一组具有相同数据类型的值的集合
 
-笛卡尔积：给定一组域 $D_1,D_2,\cdots, D_n$，允许其中某些域是相同的，$D_1,D_2,\cdots, D_n$​的笛卡...
+笛卡尔积：给定一组域 ，允许其中某些域是相同的，​的笛卡尔积为
+
+其中，每一个元素叫作一个  元组，或简称元组
+元素中的每一个值  叫做一个...
                     
                 </div>
 
@@ -537,54 +698,6 @@ $DOM$ 为属性...
     </div>
 
     <a href="/2022/06/06/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E5%92%8C%E7%A7%BB%E5%8A%A8%E7%BD%91%E7%BB%9C/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/06/06/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%BA%94%E7%94%A8%E5%B1%82/">
-                        第六章 应用层
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        第六章 应用层
-应用层协议应当定义：
-
-应用进程交换的报文类型，如请求报文和响应报文
-各种报文类型的语法，如报文中的各个字段及其详细描述
-字段的语义，即包含在字段中的信息的含义
-进程何时、如何发送报文，以及对报文进行响应的规则
-
-应用层的许多协议都是...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Jun 06 2022 11:29:00 GMT+0800">2022-06-06</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-    </div>
-
-    <a href="/2022/06/06/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%BA%94%E7%94%A8%E5%B1%82/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
