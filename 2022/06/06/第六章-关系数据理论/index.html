@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="拔丝地瓜">
+    
+    <title>
+        
+            第六章 关系数据理论 |
+        
+        拔丝地瓜
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/favicon.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                拔丝地瓜
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">第六章 关系数据理论</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拔丝地瓜</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-06 11:48:01</span>
+        <span class="mobile">2022-06-06 11:48</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="第六章-关系数据理论"><a href="#第六章-关系数据理论" class="headerlink" title="第六章 关系数据理论"></a>第六章 关系数据理论</h1><h2 id="6-1-关系模式及范式"><a href="#6-1-关系模式及范式" class="headerlink" title="6.1 关系模式及范式"></a>6.1 关系模式及范式</h2><ul>
+<li><p>关系模式由五部分组成，是一个五元组：</p>
+<p>$$<br>R&#x3D;(U,D,DOM,F)<br>$$</p>
+<ul>
+<li>关系名 $R$ 是符号化的元组语义</li>
+<li>$U$ 为一组属性</li>
+<li>$D$ 为属性组 $U$ 中的属性所来自的域</li>
+<li>$DOM$ 为属性到域的映射</li>
+<li>$F$ 为属性组 $U$ 上的一组数据依赖</li>
+</ul>
+</li>
+<li><p>由于 $D$、$DOM$ 与模式设计关系不大，因此可以把关系模式看作一个三元组：$R&lt;U,F&gt;$</p>
+<ul>
+<li>当且仅当 $U$ 上的一个关系 $r$ 满足 $F$ 时，$r$ 称为关系模式 $R&lt;U,F&gt;$ 的一个关系</li>
+<li>作为二维表，关系要符合一个最基本的条件：每个分量必须是不可分开的数据项。满足了这个条件的关系模式就属于<strong>第一范式</strong>（1NF）</li>
+</ul>
+</li>
+<li><p>数据依赖</p>
+<ul>
+<li><p>是一个关系内部属性与属性之间的一种约束关系</p>
+<ul>
+<li>通过属性间值的相等与否体现出来的数据间相关联系</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>是现实世界属性间相互联系的抽象</p>
+<ul>
+<li>是数据内在的性质</li>
+</ul>
+</li>
+<li><p>是语义的体现</p>
+</li>
+<li><p>数据依赖的主要类型</p>
+<ul>
+<li>函数依赖（Functional Dependency，简记为 FD）</li>
+<li>多值依赖（Multi-Valued Dependency，简记为 MVD）</li>
+</ul>
+</li>
+<li><p>第一范式的问题有</p>
+<ul>
+<li>数据冗余</li>
+<li>更新异常</li>
+<li>插入异常</li>
+<li>删除异常</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-2-规范化"><a href="#6-2-规范化" class="headerlink" title="6.2 规范化"></a>6.2 规范化</h2><h3 id="6-2-1-函数依赖"><a href="#6-2-1-函数依赖" class="headerlink" title="6.2.1 函数依赖"></a>6.2.1 函数依赖</h3><p>设 $R(U)$ 是一个属性集 $U$ 上的关系模式，$X$ 和 $Y$ 是 $U$ 的子集。若对于 $R(U)$ 的任意一个可能的关系 $r$，$r$ 中不可能存在两个元组在 $X$ 上的属性值相等，而在 $Y$ 上的属性值不等， 则称“$X$ 函数确定 $Y$“或“$Y$ 函数依赖于 $X$”，记作 $X\to Y$，$X$ 称为这个函数依赖的决定因素</p>
+<ul>
+<li><p>函数依赖不是指关系模式 $R$ 的某个或某些关系实例满足的约束条件，而是指 $R$ 的所有关系实例均要满足的约束条件</p>
+</li>
+<li><p>函数依赖是语义范畴的概念。只能根据数据的语义来确定函数依赖</p>
+</li>
+<li><p>数据库设计者可以对现实世界作强制的规定</p>
+</li>
+</ul>
+<p>在关系模式 $R(U)$ 中，对于 $U$ 的子集 $X$ 和 $Y$，</p>
+<ul>
+<li><p>$X\to Y$，但 $Y\not\subseteq X$，则称 $X \to Y$ 是非平凡的函数依赖</p>
+</li>
+<li><p>$X\to Y$，但 $Y\subseteq X$，则称 $X \to Y$ 是平凡的函数依赖</p>
+</li>
+<li><p>对于任一关系模式，平凡函数依赖都是必然成立的，它不反映新的语义。因此若不特别声明，我们总是讨论非平凡函数依赖。</p>
+</li>
+</ul>
+<p>在 $R(U)$ 中，如果 $X \to Y$，并且对于 $X$ 的任何一个真子集 $X ^\prime$，都有 $X^\prime \not\to Y$, 则称 $Y$ 对 $X$ 完全函数依赖，记作 $X \stackrel{F}{\longrightarrow} Y$</p>
+<ul>
+<li>若 $X \to Y$，但 $Y$ 不完全函数依赖于 $X$，则称 $Y$ 对 $X$ 部分函数依赖，记作 $X \stackrel{P}{\longrightarrow} Y$</li>
+</ul>
+<p>在 $R(U)$ 中，如果 $X \to Y(Y\not\subseteq X )$，$Y\not\to X$，$Y\to Z$，$Z\not\subseteq Y$, 则称 $Z$ 对 $X$ 传递函数依赖，记为：$X\stackrel{\mbox{传递}}{\longrightarrow} Z$</p>
+<ul>
+<li>如果 $Y\to X$, 即 $X\leftarrow \to Y$，则 $Z$ 直接依赖于 $X$，而不是传递函数依赖</li>
+</ul>
+<h3 id="6-2-2-码"><a href="#6-2-2-码" class="headerlink" title="6.2.2 码"></a>6.2.2 码</h3><p>设 $K$ 为 $R&lt;U,F&gt;$ 中的属性或属性组合。若 $K \stackrel{F}{\longrightarrow} U$，则 $K$ 称为 $R$ 的一个候选码</p>
+<ul>
+<li><p>如果 $U$ 部分函数依赖于 $K$，即 $K \stackrel{P}{\longrightarrow} U$，则 $K$ 称为超码</p>
+<ul>
+<li>候选码的超集是超码，候选码的真子集一定不是超码</li>
+</ul>
+</li>
+<li><p>若关系模式 $R$ 有多个候选码，则选定其中的一个做为主码</p>
+</li>
+<li><p>主属性与非主属性</p>
+<ul>
+<li>包含在任何一个候选码中的属性 ，称为主属性</li>
+<li>不包含在任何码中的属性称为非主属性或非码属性</li>
+</ul>
+</li>
+<li><p>全码：整个属性组是码，称为全码</p>
+</li>
+</ul>
+<p>关系模式 $R$ 中属性或属性组 $X$ 并非 $R$ 的码，但 $X$ 是另一个关系模式的码，则称 $X$ 是 $R$ 的外部码也称外码</p>
+<p>主码与外部码一起提供了表示关系间联系的手段</p>
+<h3 id="6-2-3-范式"><a href="#6-2-3-范式" class="headerlink" title="6.2.3 范式"></a>6.2.3 范式</h3><ul>
+<li>范式是符合某一种级别的关系模式的集合</li>
+<li>关系数据库中的关系必须满足一定的要求。满足不同程度要求的为不同范式</li>
+<li>一个低一级范式的关系模式，通过模式分解可以转换为若干个高一级范式的关系模式的集合，这种过程就叫规范化</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204132029438.png" alt="6.2.3" style="zoom:17%;" />
+
+<h3 id="6-2-4-2NF"><a href="#6-2-4-2NF" class="headerlink" title="6.2.4 2NF"></a>6.2.4 2NF</h3><p>若关系模式 $R\in 1\mathrm{NF}$，并且每一个非主属性都完全函数依赖于任何一个候选码，则 $R\in 2\mathrm{NF}$</p>
+<h3 id="6-2-5-3NF"><a href="#6-2-5-3NF" class="headerlink" title="6.2.5 3NF"></a>6.2.5 3NF</h3><p>设关系模式 $R&lt;U,F&gt; \in 1\mathrm{NF}$，若 $R$ 中不存在这样的码 $X$、属性组 $Y$ 及非主属性 $Z(Z\not \subseteq Y)$，使得 $X\to Y$，$Y\to Z$ 成立，$Y \not \to X$ 不成立，则称 $R&lt;U,F&gt; \in 3\mathrm{NF}$</p>
+<h3 id="6-2-6-BCNF"><a href="#6-2-6-BCNF" class="headerlink" title="6.2.6 BCNF"></a>6.2.6 BCNF</h3><ul>
+<li><p>BCNF 由 Boyce 和 Codd 提出，比 3NF更进了一步。通常认为 BCNF 是修正的第三范式，有时也称为扩充的第三范式</p>
+</li>
+<li><p>设关系模式 $R&lt;U,F&gt; \in 1\mathrm{NF}$，若 $X\to Y$ 且 $Y\not \subseteq X$时 $X$ 必含有码，则 $R&lt;U,F&gt; \in \mathrm{BCNF}$</p>
+</li>
+<li><p>换言之，在关系模式 $R&lt;U,F&gt;$ 中，如果每一个决定属性集都包含候选码，则 $R\in \mathrm{BCNF}$</p>
+</li>
+<li><p>BCNF 的关系模式所具有的性质</p>
+<ul>
+<li>所有非主属性都完全函数依赖于每个候选码</li>
+<li>所有主属性都完全函数依赖于每个不包含它的候选码</li>
+<li>没有任何属性完全函数依赖于非码的任何一组属性</li>
+</ul>
+</li>
+<li><p>如果一个关系数据库中的所有关系模式都属于 BCNF，那么在函数依赖范畴内，它已实现了模式的彻底分解，达到了最高的规范化程度，消除了插入异常和删除异常</p>
+</li>
+</ul>
+<h3 id="6-2-7-多值依赖"><a href="#6-2-7-多值依赖" class="headerlink" title="6.2.7 多值依赖"></a>6.2.7 多值依赖</h3><p>设 $R(U)$ 是属性集 $U$ 上的一个关系模式。$X,Y,Z$ 是 $U$ 的子集，并且 $Z&#x3D;U-X-Y$。关系模式 $R(U)$ 中多值依赖 $X\to \to Y$ 成立，当且仅当对 $R(U)$ 的任一关系 $r$，给定的一对 $(x,z)$ 值，有一组 $Y$ 的值，这组值仅仅决定于 $x$ 值而与 $z$ 值无关</p>
+<ul>
+<li>平凡多值依赖和非平凡的多值依赖<ul>
+<li>若 $X\to \to Y$，而 $Z &#x3D; \emptyset$，即 $Z$ 为空，则称 $X\to \to Y$ 为平凡的多值依赖</li>
+<li>否则称 $X\to \to Y$ 为非平凡的多值依赖</li>
+</ul>
+</li>
+</ul>
+<p>多值依赖的另一个等价的定义：在 $R(U)$ 的任一关系 $r$ 中，如果存在元组 $t,s$ 使得 $t[X] &#x3D; s[X]$，那么就必然存在元组 $w,v \in r$，（$w,v$ 可以与 $s,t$ 相同），使得 $w[X] &#x3D; v[X] &#x3D; t[X]$，而 $W[Y] &#x3D; t[Y],w[Z] &#x3D; s[Z],$$v[Y]&#x3D;s[Y],v[Z]&#x3D;t[Z]$（即交换 $s,t$ 元组的 $Y$ 值所得的两个新元组必在 $r$ 中，则 $Y$ 多值依赖于 $X$，记为 $X\to\to Y$。这里 $X,Y$ 是 $U$ 的子集，$Z &#x3D; U-X-Y$</p>
+<p>多值依赖的性质：</p>
+<ul>
+<li>多值依赖具有对称性。即若 $X\to\to Y$，则 $X\to\to Z$，其中 $Z&#x3D;U-X-Y$</li>
+<li>多值依赖具有传递性。即若 $X\to\to Y$，$Y\to\to Z$， 则 $X\to\to Z-Y$</li>
+<li>函数依赖是多值依赖的特殊情况。即若 $X\to Y$，则 $X\to \to Y$</li>
+<li>若 $X\to\to Y$，$X\to\to Z$，则 $X\to \to YZ$</li>
+<li>若 $X\to\to Y$，$X\to\to Z$，则 $X\to \to Y \cap Z$</li>
+<li>若 $X\to\to Y$，$X\to\to Z$，则 $X\to \to Y-Z,X\to \to Z-Y$</li>
+</ul>
+<p>多值依赖与函数依赖的区别</p>
+<ul>
+<li><p>多值依赖的有效性与属性集的范围有关，函数依赖X→Y的有效性仅决定于X、Y这两个属性集的值</p>
+<ul>
+<li><p>若 $X\to\to Y$ 在 $U$上成立，则在 $W(XY \subseteq W \subseteq U)$ 上一定成立；反之则不然，即 $X\to\to Y$ 在 $W(W\subset U)$上成立，在 $U$ 上并不一定成立。</p>
+</li>
+<li><p>原因：多值依赖的定义中不仅涉及属性组 $X$ 和 $Y$，而且涉及 $U$ 中其余属性 $Z$</p>
+</li>
+<li><p>一般地，在 $R(U)$ 上若有 $X\to\to Y$ 在 $W(W\subset U)$ 上成立，则称 $X\to\to Y$ 为 $R(U)$ 的嵌入型多值依赖</p>
+</li>
+</ul>
+</li>
+<li><p>若函数依赖 $X\to\to Y$ 在 $R(U)$ 上成立，则对于任何 $Y^\prime \subset Y$ 均有 $X\to Y^\prime$ 成立。多值依赖 $X\to\to Y$若在 $R(U)$ 上成立，不能断言对于任何 $Y^\prime Y$ 有 $X\to \to Y^\prime$ 成立</p>
+</li>
+</ul>
+<h3 id="6-2-8-4NF"><a href="#6-2-8-4NF" class="headerlink" title="6.2.8 4NF"></a>6.2.8 4NF</h3><p>关系模式 $R&lt;U,F&gt; \in 1\mathrm{NF}$，如果对于R的每个非平凡多值依赖$X\to \to Y(Y \not \subseteq X)$，$X$ 都含有码，则 $R&lt;U,F&gt; \in 4\mathrm{NF}$</p>
+<p>4NF 就是限制关系模式的属性之间不允许有非平凡且非函数依赖的多值依赖。4NF 所允许的非平凡多值依赖实际上是函数依赖</p>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/06/06/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第七章 数据库设计</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/06/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第五章 数据库完整性</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拔丝地瓜</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA"><span class="nav-text">第六章 关系数据理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E5%8F%8A%E8%8C%83%E5%BC%8F"><span class="nav-text">6.1 关系模式及范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E8%A7%84%E8%8C%83%E5%8C%96"><span class="nav-text">6.2 规范化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-1-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="nav-text">6.2.1 函数依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-2-%E7%A0%81"><span class="nav-text">6.2.2 码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-3-%E8%8C%83%E5%BC%8F"><span class="nav-text">6.2.3 范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-4-2NF"><span class="nav-text">6.2.4 2NF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-5-3NF"><span class="nav-text">6.2.5 3NF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-6-BCNF"><span class="nav-text">6.2.6 BCNF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-7-%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96"><span class="nav-text">6.2.7 多值依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-8-4NF"><span class="nav-text">6.2.8 4NF</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

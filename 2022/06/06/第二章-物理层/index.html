@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="拔丝地瓜">
+    
+    <title>
+        
+            第二章 物理层 |
+        
+        拔丝地瓜
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/favicon.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                拔丝地瓜
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">第二章 物理层</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拔丝地瓜</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-06 11:28:12</span>
+        <span class="mobile">2022-06-06 11:28</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="第二章-物理层"><a href="#第二章-物理层" class="headerlink" title="第二章 物理层"></a>第二章 物理层</h1><h2 id="2-1-物理层的基本概念"><a href="#2-1-物理层的基本概念" class="headerlink" title="2.1 物理层的基本概念"></a>2.1 物理层的基本概念</h2><ul>
+<li><p>物理层考虑的是<strong>怎样才能在连接各种计算机的传输媒体上传输数据比特流</strong>，而不是指具体的传输媒体</p>
+</li>
+<li><p>用于物理层的协议也常称为物理层<strong>规程</strong>（procedure）</p>
+</li>
+<li><p>可以将物理层的主要任务描述为确定与传输媒体的接口有关的一些特性，即:</p>
+<ul>
+<li><p><strong>机械特性：</strong>指明接口所用接线器的形状和尺寸、引脚数目和排列、固定和锁定装置等。平时常见的各种规格的接插件都有严格的标准化的规定</p>
+</li>
+<li><p><strong>电气特性：</strong>指明在接口电缆的各条线上出现的电压的范围</p>
+</li>
+<li><p><strong>功能特性：</strong>指明某条线上出现的某一电平的电压的意义</p>
+</li>
+<li><p><strong>过程特性：</strong>指明对于不同功能的各种可能事件的出现顺序</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2-数据通信的基础知识"><a href="#2-2-数据通信的基础知识" class="headerlink" title="2.2 数据通信的基础知识"></a>2.2 数据通信的基础知识</h2><h3 id="2-2-1-数据通信系统的模型"><a href="#2-2-1-数据通信系统的模型" class="headerlink" title="2.2.1 数据通信系统的模型"></a>2.2.1 数据通信系统的模型</h3><p>一个数据通信系统可划分为三大部分，即<strong>源系统</strong>（或发送端、发送方）、<strong>传输系统</strong>（或传输网络）和<strong>目的系统</strong>（或接收端、接收方）</p>
+<ul>
+<li><p>源系统一般包括以下两个部分：</p>
+<ul>
+<li><strong>源点</strong>（source）<strong>：</strong>源点设备产生要传输的数据，又称为<strong>源站</strong>或<strong>信源</strong></li>
+<li><strong>发送器：</strong>通常源点生成的数字比特流要通过发送器编码后才能够在传输系统中进行传输。典型的发送器就是调制器。现在很多计算机使用内置的调制解调器（包含调制器和解调器）</li>
+</ul>
+</li>
+<li><p>目的系统一般也包括以下两个部分：</p>
+<ul>
+<li><strong>接收器：</strong>接收传输系统传送过来的信号，并把它转换为能够被目的设备处理的信息。典型的接收器就是<strong>解调器</strong>，它把来自传输线路上的模拟信号进行解调，提取出 在发送端置入的消息，还原出发送端产生的数字比特流</li>
+<li><strong>终点</strong>（destination）<strong>：</strong>终点设备从接收器获取传送来的数字比特流，然后把信息输出，又称为<strong>目的站</strong>或<strong>信宿</strong></li>
+</ul>
+</li>
+<li><p>在源系统和目的系统之间的传输系统可以是简单的传输线，也可以是连接在源系统和目的系统之间的复杂网络系统</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220127111058.png" style="zoom:40%;" />
+
+<h3 id="2-2-2-有关信道的几个基本概念"><a href="#2-2-2-有关信道的几个基本概念" class="headerlink" title="2.2.2 有关信道的几个基本概念"></a>2.2.2 有关信道的几个基本概念</h3><ul>
+<li><p><strong>信道</strong>一般用来表示向某一个方向传送信息的媒体。因此，一条通信电路往往包含一条发送信道和一条接收信道</p>
+</li>
+<li><p>从通信的双方信息交互的方式来看，可以有以下三种基本方式：</p>
+<ul>
+<li><p><strong>单向通信</strong>，又称为<strong>单工通信</strong>，即只能有一个方向的通信而没有反方向的交互</p>
+</li>
+<li><p><strong>双向交替通信</strong>，又称为<strong>半双工通信</strong>，即通信的双方都可以发送信息，但不能双方同时发送（接收）</p>
+</li>
+<li><p><strong>双向同时通信</strong>，又称为<strong>全双工通信</strong>，即通信的双方可以同时发送和接收信息</p>
+</li>
+</ul>
+</li>
+<li><p>来自信源的信号常称为<strong>基带信号</strong>（即基本频带信号）</p>
+</li>
+<li><p>由于基带信号往往包含有较多的低频成分，甚至有直流成分，而许多信道并不能传输这种低频分量或直流分量，所以必须对基带信号进行<strong>调制</strong>（modulation）</p>
+<ul>
+<li><strong>基带调制：</strong>仅仅对基带信号的波形进行变换，使它能够与信道特性相适应。变换后的信号仍然是基带信号。由于这种基带调制是把数字信号转换为另一种形式的数字信号，因此大家更愿意把这种过程称为<strong>编码</strong>（coding）</li>
+<li><strong>带通调制：</strong>使用<strong>载波</strong>（carrier）进行调制，把基带信号的频率范围搬移到较高的频段，并转换为模拟信号，这样就能够更好地在模拟信道中传输</li>
+</ul>
+</li>
+</ul>
+<p><strong>（1）常用编码方式</strong></p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220127111119.png" style="zoom:33%;" />
+
+<ul>
+<li><strong>不归零制：</strong>正电平代表 1，负电平代表 0</li>
+<li><strong>归零制：</strong>正脉冲代表 1，负脉冲代表 0</li>
+<li><strong>曼彻斯特编码：</strong>位周期中心的向上跳变代表 0，位周期中心的向下跳变代表 1。也可反过来定义。</li>
+<li><strong>差分曼彻斯特编码：</strong>在每一位的中心处始终都有跳变。位开始边界有跳变代表 0，而位开始边界没有跳变代表 1。</li>
+</ul>
+<p><strong>（2）基本的带通调制方法</strong></p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220127111131.png" style="zoom:33%;" />
+
+<p>为了达到更高的信息传输速率，必须采用技术上更为复杂的多元制的振幅相位混合调制方法。例如，<strong>正交振幅调制 QAM</strong> （Quadrature Amplitude Modulation）</p>
+<h3 id="2-2-3-信道的极限容量"><a href="#2-2-3-信道的极限容量" class="headerlink" title="2.2.3 信道的极限容量"></a>2.2.3 信道的极限容量</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220127111143.png" style="zoom:33%;" />
+
+<p>从概念上讲，限制码元在信道上的传输速率的因素有：</p>
+<ul>
+<li><p>信道能够通过的频率范围</p>
+</li>
+<li><p>信噪比</p>
+</li>
+</ul>
+<h4 id="1-奈氏准则"><a href="#1-奈氏准则" class="headerlink" title="1.奈氏准则"></a>1.奈氏准则</h4><ul>
+<li><p>在假定的理想条件下，<strong>为了避免码间串扰，码元传输速率是有上限的</strong></p>
+</li>
+<li><p>用$W$表示信号带宽（单位为Hz）， $\mathrm{Baud}$为波特，即码元&#x2F;秒，则有：</p>
+</li>
+</ul>
+<p>$$<br>\mbox{理想低通信道的最高码元传输速率}&#x3D;2W\ \mathrm{Baud}&#x3D;2W\ \mbox{码元&#x2F;秒} \<br>\mbox{理想带通信道的最高码元传输速率}&#x3D;W\ \mathrm{Baud}&#x3D;W\ \mbox{码元&#x2F;秒}<br>$$</p>
+<ul>
+<li><p>码元传输速率又称为波特率、调制频率、波形频率或符号频率。它与比特率有一定关系：</p>
+<ul>
+<li>当1个码元只携带1比特的信息量时，则波特率（码元&#x2F;秒）与比特率（比特&#x2F;秒）在数值上是相等的</li>
+<li>当1个码元携带$n$比特的信息量时，则波特率转换成比特率时，数值要乘以$n$</li>
+</ul>
+</li>
+<li><p>要提高信息传输速率（比特率），就必须设法使每一个码元能携带更多个比特的信息量。这需要采用多元制</p>
+</li>
+<li><p>实际的信道所能传输的最高码元速率，要明显低于奈氏准则给出的上限数值</p>
+</li>
+</ul>
+<h4 id="2-香农公式"><a href="#2-香农公式" class="headerlink" title="2.香农公式"></a>2.香农公式</h4><ul>
+<li><p>香农公式描述的是带宽受限且有高斯白噪声干扰的信道的极限信息传输速率</p>
+</li>
+<li><p>用$W$​表示信道带宽（单位Hz），$S$​表示信道内所传信号的平均功率，$N$​表示信道内的高斯噪声功率，$S&#x2F;N$​​表示信噪比，使用分贝（dB）作为度量单位，且有<br>$$<br>\mbox{信噪比}\ \mathrm{(dB)}&#x3D;10\times \log_{10} \frac{S}{N}\ \mathrm{(dB)}<br>$$<br>则信道的极限信息传输速率$c$​表示为（单位b&#x2F;s）<br>$$<br>c&#x3D;W\times \log_2\left(1+\frac{S}{N}\right)<br>$$</p>
+</li>
+</ul>
+<h2 id="2-3-物理层下面的传输媒体"><a href="#2-3-物理层下面的传输媒体" class="headerlink" title="2.3 物理层下面的传输媒体"></a>2.3 物理层下面的传输媒体</h2><ul>
+<li><p>传输媒体是数据传输系统中在发送器和接收器之间的物理通路，也称为传输介质或传输媒介</p>
+</li>
+<li><p>传输媒体可分为两大类：<strong>导引型传输媒体</strong>和<strong>非导引型传输媒体</strong></p>
+<ul>
+<li><p>在导引型传输媒体中，电磁波被导引沿着固体媒体（铜线或光纤）传播，</p>
+</li>
+<li><p>非导引型传输媒体就是指自由空间，在非导引型传输媒体中电磁波的传输常称为无线传输</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220128171853.png"></p>
+<h3 id="2-3-1-导引型传输媒体"><a href="#2-3-1-导引型传输媒体" class="headerlink" title="2.3.1 导引型传输媒体"></a>2.3.1 导引型传输媒体</h3><h4 id="1-双绞线"><a href="#1-双绞线" class="headerlink" title="1.双绞线"></a>1.双绞线</h4><ul>
+<li>把两根互相绝缘的铜导线并排放在一起，然后用规则的方法<strong>绞合</strong>起来就构成了双绞线</li>
+<li>绞合可减少相邻导线的电磁干扰，也可抵御部分来自外界的电磁波干扰</li>
+<li>为了提高双绞线抗电磁干扰的能力，可以在双绞线的外面再加上一层用金属丝编织成的屏蔽层。这就是<strong>屏蔽双绞线</strong>，简称为 STP</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220128171905.png" style="zoom:30%;" />
+
+<h4 id="2-同轴电缆"><a href="#2-同轴电缆" class="headerlink" title="2.同轴电缆"></a>2.同轴电缆</h4><p>同轴电缆由内导体铜质芯线（单股实心线或多股绞合线）、绝缘层、网状编织的外导体屏蔽层（也可以是单股的）以及保护塑料外层所组成</p>
+<p>由于外导体屏蔽层的作用，同轴电缆具有很好的抗干扰特性，被广泛用于传输较高速率的数据</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220128171923.png" style="zoom:33%;" />
+
+<h4 id="3-光纤"><a href="#3-光纤" class="headerlink" title="3.光纤"></a>3.光纤</h4><ul>
+<li><p><strong>光纤</strong>是光纤通信的传输媒体。在发送端有光源，可以采用发光二极管或半导体激光器，它们在电脉冲的作用下能产生出光脉冲。在接收端利用光电二极管做成光检测器，在检测到光脉冲时可还原出电脉冲</p>
+</li>
+<li><p>光纤通常由非常透明的石英玻璃拉成细丝，主要由纤芯和包层构成双层通信圆柱体</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220128171933.png" style="zoom:33%;" />
+
+<ul>
+<li><p>可以存在多条不同角度入射的光线在一条光纤中传输，这种光纤就称为<strong>多模光纤</strong>。光脉冲在多模光纤中传输时会逐渐展宽，造成失真。因此多模光纤只适合于近距离传输</p>
+</li>
+<li><p>若光纤的直径减小到只有一个光的波长，则光纤就像一根波导那样，它可使光线一直向前传播，而不会产生多次反射，这样的光纤称为<strong>单模光纤</strong></p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220128171947.png" style="zoom:33%;" />
+
+<ul>
+<li>由于光纤非常细，因此必须将光纤做成很结实的光缆</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220128171957.png" style="zoom:33%;" />
+
+<ul>
+<li>光纤的优点<ul>
+<li>传输损耗小，中继距离长，对远距离传输特别经济</li>
+<li>抗雷电和电磁干扰性能好，这在有大电流脉冲干扰的环境下尤为重要</li>
+<li>无串音干扰，保密性好，也不易被窃听或截取数据</li>
+<li>体积小，重量轻</li>
+</ul>
+</li>
+<li>光纤的缺点<ul>
+<li>割接需要专用设备</li>
+<li>光电接口价格较贵</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-2-非导引型传输媒体"><a href="#2-3-2-非导引型传输媒体" class="headerlink" title="2.3.2 非导引型传输媒体"></a>2.3.2 非导引型传输媒体</h3><p><strong>短波通信</strong>主要是靠电离层的反射。但电离层的不稳定所产生的衰落现象和电离层反射所产生的<strong>多径效应</strong>，使得短波信道的通信质量较差，因此，当必须使用短波无线电台传送数据时，一般都是低速传输</p>
+<p><strong>无线电微波通信</strong>主要使用 2～40 GHz 的频率范围。微波在空间主要是直线传播。由于微波会穿透电离层而进入宇宙空间，因此它不像短波那样可以经电离层反射传播到地面上很远的地方。传统的微波通信主要有两种方式，即<strong>地面微波接力通信</strong>和<strong>卫星通信</strong></p>
+<p><strong>卫星通信</strong>的最大特点是通信距离远，且通信费用与通信距离无关，但具有<strong>较大的传播时延</strong></p>
+<h2 id="2-4-信道复用技术"><a href="#2-4-信道复用技术" class="headerlink" title="2.4 信道复用技术"></a>2.4 信道复用技术</h2><h3 id="2-4-1-频分复用、时分复用和统计时分复用"><a href="#2-4-1-频分复用、时分复用和统计时分复用" class="headerlink" title="2.4.1 频分复用、时分复用和统计时分复用"></a>2.4.1 频分复用、时分复用和统计时分复用</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202202357.png" style="zoom:38%;" />
+
+<p>最基本的复用就是<strong>频分复用 FDM</strong>（Frequency Division Multiplexing）和<strong>时分复用 TDM</strong>（Time Division Multiplexing）</p>
+<ul>
+<li><strong>频分复用：</strong>用户在分配到一定的频带后，在通信过程中自始至终都占用这个频带。<strong>频分复用的所有用户在同样的时间占用不同的带宽资源</strong>（请注意，这里的“带宽”是频率带宽而不是数据的发送速率）</li>
+<li><strong>时分复用：</strong>将时间划分为一段段等长的时分复用帧（TDM 帧）。每一个时分复用的用户在每一个 TDM 帧中占用固定序号的时隙。<strong>时分复用的所有用户是在不同的时间占用同样的频带宽度</strong></li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202202416.png" style="zoom:36%;" />
+
+<ul>
+<li><strong>统计时分复用STDM</strong> （Statistic TDM）是一种改进的时分复用，它能明显地提高信道的利用率。集中器（concentrator）常使用这种统计时分复用</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202202429.png" style="zoom:36%;" />
+
+<h3 id="2-4-2-波分复用"><a href="#2-4-2-波分复用" class="headerlink" title="2.4.2 波分复用"></a>2.4.2 波分复用</h3><p><strong>波分复用 WDM</strong>（Wavelength Division Multiplexing）就是光的频分复用</p>
+<p>由于光信号一段距离后就会衰减，因此对衰减了的光信号必须进行放大才能继续传输。采用<strong>掺铒光纤放大器 EDFA</strong>  能使两个放大器之间的光缆线路长度达到 120 km</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202202441.png" style="zoom:36%;" />
+
+<h3 id="2-4-3-码分复用"><a href="#2-4-3-码分复用" class="headerlink" title="2.4.3 码分复用"></a>2.4.3 码分复用</h3><ul>
+<li>码分复用 CDM 是另一种共享信道的方法。实际上，由于该技术主要用于多址接入，人们更常用的名词是码分多址 CDMA</li>
+<li>CDM 的每一个用户可以<strong>在同样的时间使用同样的频带进行通信</strong></li>
+<li>由于<strong>各用户使用经过特殊挑选的不同码型</strong>，因此各用户之间<strong>不会造成干扰</strong></li>
+<li>CDM 最初是用于军事通信的，因为这种系统所发送的信号有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现</li>
+<li>随着技术的进步，CDMA 设备的价格和体积都大幅下降，因而现在已广泛用于民用的移动通信中</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202202458.png" style="zoom:40%;" />
+
+<ul>
+<li><p>在CDMA中，每一个比特时间再划分为 $m$ 个短的间隔，称为<strong>码片</strong>（chip）。通常 $m$ 的值是64或128</p>
+</li>
+<li><p>使用 CDMA 的每一个站被指派一个唯一的 <strong>$m \ \mathrm{bit}$ 码片序列</strong></p>
+<ul>
+<li>一个站如果要<strong>发送比特1</strong>，则发送它自己的 <strong>$m \ \mathrm{bit}$ 码片序列</strong></li>
+<li>一个站如果要<strong>发送比特0</strong>，则发送它自己的 <strong>$m \ \mathrm{bit}$ 码片序列的二进制反码</strong></li>
+</ul>
+</li>
+<li><p>码片序列的挑选原则为：</p>
+<ul>
+<li>分配给每个站的<strong>码片序列必须各不相同</strong>，实际常采用伪随机码序列</li>
+<li>分配给每个站的<strong>码片序列必须互相正交</strong>，即规格化内积为0</li>
+</ul>
+</li>
+<li><p>令向量 $\boldsymbol{S}$ 表示站 $S$ 的码片序列，向量 $\boldsymbol{T}$ 表示其他任何站的码片序列，则有：</p>
+</li>
+</ul>
+<p>$$<br>\boldsymbol{S}\cdot \boldsymbol{T}&#x3D;\frac{1}{m}\sum_{i&#x3D;1}^m S_iT_i&#x3D;0   \\<br>\boldsymbol{S}\cdot \overline{\boldsymbol{T}}&#x3D;0\quad\quad\quad\quad<br>\boldsymbol{S}\cdot \boldsymbol{S}&#x3D;1\quad\quad\quad\quad<br>\boldsymbol{S}\cdot \overline{\boldsymbol{S}}&#x3D;-1<br>$$</p>
+<blockquote>
+<p>例：站点 A、B、C 通过 CDMA 共享链路，A、B、C 的码片序列分别是$(1,1,1,1)$、$(1,-1,1,-1)$和$(1,1,-1,-1)$。若 C 从链路上收到的序列是$(2,0,2,0,0,-2,0,-2,0,2,0,2)$，则 C 收到 A 发送的数据是 <u>101</u></p>
+</blockquote>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/06/06/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第三章 数据链路层</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/06/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E8%BF%B0/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第一章 概述</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拔丝地瓜</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82"><span class="nav-text">第二章 物理层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E7%89%A9%E7%90%86%E5%B1%82%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">2.1 物理层的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">2.2 数据通信的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="nav-text">2.2.1 数据通信系统的模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-%E6%9C%89%E5%85%B3%E4%BF%A1%E9%81%93%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">2.2.2 有关信道的几个基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-%E4%BF%A1%E9%81%93%E7%9A%84%E6%9E%81%E9%99%90%E5%AE%B9%E9%87%8F"><span class="nav-text">2.2.3 信道的极限容量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%A5%88%E6%B0%8F%E5%87%86%E5%88%99"><span class="nav-text">1.奈氏准则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%A6%99%E5%86%9C%E5%85%AC%E5%BC%8F"><span class="nav-text">2.香农公式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E7%89%A9%E7%90%86%E5%B1%82%E4%B8%8B%E9%9D%A2%E7%9A%84%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93"><span class="nav-text">2.3 物理层下面的传输媒体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-%E5%AF%BC%E5%BC%95%E5%9E%8B%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93"><span class="nav-text">2.3.1 导引型传输媒体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%8C%E7%BB%9E%E7%BA%BF"><span class="nav-text">1.双绞线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%90%8C%E8%BD%B4%E7%94%B5%E7%BC%86"><span class="nav-text">2.同轴电缆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%85%89%E7%BA%A4"><span class="nav-text">3.光纤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-%E9%9D%9E%E5%AF%BC%E5%BC%95%E5%9E%8B%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93"><span class="nav-text">2.3.2 非导引型传输媒体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="nav-text">2.4 信道复用技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-%E9%A2%91%E5%88%86%E5%A4%8D%E7%94%A8%E3%80%81%E6%97%B6%E5%88%86%E5%A4%8D%E7%94%A8%E5%92%8C%E7%BB%9F%E8%AE%A1%E6%97%B6%E5%88%86%E5%A4%8D%E7%94%A8"><span class="nav-text">2.4.1 频分复用、时分复用和统计时分复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-%E6%B3%A2%E5%88%86%E5%A4%8D%E7%94%A8"><span class="nav-text">2.4.2 波分复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-3-%E7%A0%81%E5%88%86%E5%A4%8D%E7%94%A8"><span class="nav-text">2.4.3 码分复用</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

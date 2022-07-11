@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="拔丝地瓜">
+    
+    <title>
+        
+            第五章 运输层 |
+        
+        拔丝地瓜
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/favicon.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                拔丝地瓜
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">第五章 运输层</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拔丝地瓜</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-06 11:28:49</span>
+        <span class="mobile">2022-06-06 11:28</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="第五章-运输层"><a href="#第五章-运输层" class="headerlink" title="第五章 运输层"></a>第五章 运输层</h1><h2 id="5-1-运输层协议概述"><a href="#5-1-运输层协议概述" class="headerlink" title="5.1 运输层协议概述"></a>5.1 运输层协议概述</h2><h3 id="5-1-1-进程之间的通信"><a href="#5-1-1-进程之间的通信" class="headerlink" title="5.1.1 进程之间的通信"></a>5.1.1 进程之间的通信</h3><ul>
+<li>物理层、数据链路层以及网络层共同解决了将主机通过异构网络互联起来所面临的问题，实现了<strong>主机到主机的通信</strong></li>
+<li>但实际上在计算机网络中进行<strong>通信的真正实体是位于通信两端主机中的进程</strong></li>
+<li><strong>如何为运行在不同主机上的应用进程提供直接的通信服务是运输层的任务</strong>，运输层协议又称为端到端协议</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204080943839.png" alt="5.1" style="zoom:48%;" />
+
+<ul>
+<li>运输层有一个很重要的功能——<strong>复用</strong>（multiplexing）和<strong>分用</strong>（demultiplexing）<ul>
+<li>“复用“是指在发送方不同的应用进程都可以使用同一个运输层协议传送数据</li>
+<li>“分用”是指接收方的运输层在剥去报文的首部后能够把这些数据正确交付目的应用进程</li>
+</ul>
+</li>
+<li>运输层向高层用户屏蔽了下面网络核心的细节，它使应用进程看见的就是好像在两个运输层实体之间有一条端到端的逻辑通信信道</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204080947517.png" alt="5.2" style="zoom:33%;" />
+
+<h3 id="5-1-2-运输层的两个主要协议"><a href="#5-1-2-运输层的两个主要协议" class="headerlink" title="5.1.2 运输层的两个主要协议"></a>5.1.2 运输层的两个主要协议</h3><p>TCP&#x2F;IP 运输层的两个主要协议都是互联网的正式标准，即</p>
+<ul>
+<li><strong>用户数据报协议 UDP</strong>（User Datagram Protocol）<ul>
+<li>UDP 在传送数据之前<strong>不需要先建立连接</strong></li>
+<li>远地主机的运输层在收到 UDP 报文后，不需要给出任何确认</li>
+<li>虽然 UDP 不提供可靠交付，但在某些情况下 UDP 却是一种最有效的工作方式。</li>
+</ul>
+</li>
+<li><strong>传输控制协议 TCP</strong>（Transmission Control Protocol）<ul>
+<li>TCP 则提供<strong>面向连接</strong>的服务，在传送数据之前必须先建立连接，数据传送结束后要释放连接</li>
+<li>TCP 不提供广播或多播服务</li>
+<li>由于 TCP 要提供可靠的、面向连接的运输服务，因此不可避免地增加了许多的开销，如确认、流量控制、计时器以及连接管理等。这不仅使协议数据单元的首部增大很多，还要占用许多的处理机资源</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204080949556.png" alt="5.3" style="zoom:33%;" />
+
+<p>使用 UDP 和 TCP 协议的各种应用和应用层协议</p>
+<table>
+<thead>
+<tr>
+<th>应用</th>
+<th>应用层协议</th>
+<th>运输层协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>名字转换</td>
+<td>DNS（域名系统）</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>文件传送</td>
+<td>TFTP（简单文件传送协议）</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>路由选择协议</td>
+<td>RIP（路由信息协议）</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>IP 地址配置</td>
+<td>DHCP（动态主机配置协议）</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>网络管理</td>
+<td>SNMP（简单网络管理协议）</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>远程文件服务器</td>
+<td>NFS（网络文件系统）</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>IP 电话</td>
+<td>专用协议</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>流式多媒体通信</td>
+<td>专用协议</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>多播</td>
+<td>IGMP（网际组管理协议）</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>电子邮件</td>
+<td>SMTP（简单邮件传送协议）</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>远程终端接入</td>
+<td>TELNET（远程终端协议）</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>万维网</td>
+<td>HTTP（超文本传送协议）</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>文件传送</td>
+<td>FTP（文件传送协议）</td>
+<td>TCP</td>
+</tr>
+</tbody></table>
+<h3 id="5-1-3-运输层的端口"><a href="#5-1-3-运输层的端口" class="headerlink" title="5.1.3 运输层的端口"></a>5.1.3 运输层的端口</h3><ul>
+<li>在单个计算机中的进程是用<strong>进程标识符 PID</strong> 来标志的</li>
+<li>因为在互联网上使用的计算机的操作系统种类很多，而不同的操作系统又使用<strong>不同格式的进程标识符</strong></li>
+<li>为了使运行不同操作系统的计算机的应用进程能够互 相通信，就必须<strong>用统一的方法对 TCP&#x2F;IP 体系的应用进程进行标志</strong></li>
+<li>TCP&#x2F;IP 体系的运输层使用<strong>端口号</strong>来区分应用层的不同应用进程<ul>
+<li>端口号用16比特表示，取值范围为 $0 \sim 65535$<ul>
+<li>熟知端口号：数值为 $0\sim 1023$，IANA 把这些端口号指派给了 TCP&#x2F;IP 体系中最重要的一些应用程序</li>
+<li>登记端口号：数值为 $1024 \sim 49151$，为没有熟知端口号的应用程序使用，使用这类端口号必须在 IANA 按照规定的手续登记，以防止重复</li>
+<li>短暂端口号：数值为 $49152 \sim 65535$，留给客户进程选择暂时使用。当服务器进程收到客户进程的报文时，就知道了客户进程所使用的端口号，因而可以把数据发送给客户进程。通信结束后，刚才已使用过的客户端口号就不复存在，这个端口号就可以供其他客户进程使用</li>
+</ul>
+</li>
+<li><strong>端口号只具有本地意义</strong>，即端口号只是为了<strong>标识本计算机应用层中的各进程</strong>，在因特网中，<strong>不同计算机中的相同端口号是没有联系的</strong></li>
+</ul>
+</li>
+</ul>
+<p>常用的熟知端口号：</p>
+<table>
+<thead>
+<tr>
+<th>应用程序</th>
+<th>FTP</th>
+<th>TELNET</th>
+<th>SMTP</th>
+<th>DNS</th>
+<th>TFTP</th>
+<th>HTTP</th>
+<th>SNMP</th>
+<th>SNMP（trap）</th>
+<th>HTTPS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>端口号</td>
+<td>21</td>
+<td>23</td>
+<td>25</td>
+<td>53</td>
+<td>69</td>
+<td>80</td>
+<td>161</td>
+<td>162</td>
+<td>443</td>
+</tr>
+</tbody></table>
+<h2 id="5-2-用户数据报协议UDP"><a href="#5-2-用户数据报协议UDP" class="headerlink" title="5.2 用户数据报协议UDP"></a>5.2 用户数据报协议UDP</h2><h3 id="5-2-1-UDP概述"><a href="#5-2-1-UDP概述" class="headerlink" title="5.2.1 UDP概述"></a>5.2.1 UDP概述</h3><p>UDP 的主要特点是：</p>
+<ul>
+<li>UDP 是<strong>无连接的</strong>，即发送数据之前不需要建立连接，因此减少了开销和发送数据之前的时延</li>
+<li>UDP 使用<strong>尽最大努力交付</strong>，即不保证可靠交付，因此主机不需要维持复杂的连接状态表</li>
+<li>UDP 是<strong>面向报文的</strong>。发送方的 UDP 对应用程序交下来的报文，在添加首部后就向下交付 IP 层，这就是说，应用层交给 UDP 多长的报文，UDP 就照样发送，即一次发送一个报文</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204081038906.png" alt="5.4" style="zoom:33%;" />
+
+<ul>
+<li>UDP <strong>没有拥塞控制</strong>，因此网络出现的拥塞不会使源主机的发送速率降低。这对某些实时应用是很重要的</li>
+<li>UDP <strong>支持一对一、一对多、多对一和多对多的交互通信</strong></li>
+<li>UDP 的<strong>首部开销小</strong>，只有 8 个字节，比 TCP 的 20 个字节的首部要短</li>
+</ul>
+<h3 id="5-2-2-UDP的首部格式"><a href="#5-2-2-UDP的首部格式" class="headerlink" title="5.2.2 UDP的首部格式"></a>5.2.2 UDP的首部格式</h3><p>用户数据报 UDP 有两个字段：数据字段和首部字段。首部字段很简单，只有 8 个字节，由四个字段组成，每个字段的长度都是两个字节。各字段意义如下：</p>
+<ul>
+<li><strong>源端口</strong>：源端口号。在需要对方回信时选用。不需要时可用全0</li>
+<li><strong>目的端口</strong>：目的端口号。这在终点交付报文时必须使用</li>
+<li><strong>长度</strong>：UDP用户数据报的长度，其最小值是8（仅有首部）</li>
+<li><strong>检验和</strong>：检测UDP用户数据报在传输中是否有错。有错就丢弃</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204081041005.png" alt="5.5" style="zoom:43%;" />
+
+<p>UDP 用户数据报首部中检验和的计算方法</p>
+<ul>
+<li><p>在计算检验和时，要在 UDP 用户数据报之前增加 12 个字节的<strong>伪首部</strong></p>
+</li>
+<li><p>所谓“伪首部”是因为这种伪首部并不是 UDP 用户数据报真正的首部。只是在计算检验和时，临时添加在 UDP 用户数据报前面，得到一个临时的 UDP 用户数据报</p>
+</li>
+<li><p>检验和就是按照这个临时的 UDP 用户数据报来计算的</p>
+</li>
+<li><p><strong>伪首部既不向下传送也不向上递交</strong>，而仅仅是为了计算检验和</p>
+</li>
+<li><p>UDP 计算检验和的方法和计算 IP 数据报首部检验和的方法相似。但不同的是：IP 数据报的检验和只检验 IP 数据报的首部，但 UDP 的检验和是<strong>把首部和数据部分一起都检验</strong></p>
+</li>
+</ul>
+<h2 id="5-3-传输控制协议TCP概述"><a href="#5-3-传输控制协议TCP概述" class="headerlink" title="5.3 传输控制协议TCP概述"></a>5.3 传输控制协议TCP概述</h2><h3 id="5-3-1-TCP最主要的特点"><a href="#5-3-1-TCP最主要的特点" class="headerlink" title="5.3.1 TCP最主要的特点"></a>5.3.1 TCP最主要的特点</h3><ul>
+<li>TCP 是<strong>面向连接的运输层协议</strong>。这就是说，应用程序在使用TCP协议之前，必须先建立 TCP 连接。在传送数据完毕后，必须释放已经建立的 TCP 连接</li>
+<li>每一条 TCP 连接只能有两个<strong>端点</strong>（endpoint），每一条 TCP 连接只能是<strong>点对点</strong>的</li>
+<li>TCP 提供<strong>可靠交付</strong>的服务。通过 TCP 连接传送的数据，无差错、不丢失、不重复，并且按序到达</li>
+<li>TCP 提供<strong>全双工通信</strong>。TCP 允许通信双方的应用进程在任何时候都能发送数据。TCP 连接的两端都设有发送缓存和接收缓存，用来临时存放双向通信的数据</li>
+<li><strong>面向字节流</strong>。虽然应用程序和 TCP 的交互是一次一个数据块，但 TCP 把应用程序交下来的数据仅仅看成是一连串的<strong>无结构的字节流</strong>。TCP 并不知道所传送的字节流的含义。TCP 不保证接收方应用程序所收到的数据块和发送方应用程序所发出的数据块具有对应大小的关系。但<strong>接收方应用程序收到的字节流必须和发送方应用程序发出的字节流完全一样</strong></li>
+</ul>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204081050502.png" alt="5.8"></p>
+<h3 id="5-3-2-TCP的链接"><a href="#5-3-2-TCP的链接" class="headerlink" title="5.3.2 TCP的链接"></a>5.3.2 TCP的链接</h3><ul>
+<li>TCP 把<strong>连接</strong>作为<strong>最基本的抽象</strong></li>
+<li>TCP 连接的端点叫做<strong>套接字</strong>（socket）或<strong>插口</strong>。根据 RFC 793 的定义：端口号<strong>拼接到</strong>（concatenated with)）IP 地址即构成了套接字，即</li>
+</ul>
+<p>$$<br>\mbox{套接字}\  \mathrm{socket} &#x3D;(\small\mathrm{IP} \normalsize 地址\  \mbox{:\ 端口号})<br>$$</p>
+<ul>
+<li><strong>每一条 TCP 连接唯一地被通信两端的两个端点（即两个套接字）所确定</strong>。即：</li>
+</ul>
+<p>$$<br>\small \mathrm{TCP} \normalsize \mbox{连接} \small ::&#x3D; \ {\mathrm{socket_1,socket_2}} &#x3D; {\mathrm{(IP_1:port_1),(IP_2:port_2)}}<br>$$</p>
+<h2 id="5-4-TCP报文段的首部格式"><a href="#5-4-TCP报文段的首部格式" class="headerlink" title="5.4 TCP报文段的首部格式"></a>5.4 TCP报文段的首部格式</h2><p>TCP 报文段首部的前 20 个字节是固定的，后面有 $4n$ 字节是根据需要而增加的选项，因此 TCP 首部的最小长度是 20 字节</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204081617604.png" alt="5.14"></p>
+<p>首部固定部分各字段的意义如下：</p>
+<p><strong>（1）源端口和目的端口</strong></p>
+<p>各占 2 字节（16 位），分别写入<strong>源端口号</strong>和<strong>目的端口号</strong></p>
+<p><strong>（2）序号</strong></p>
+<ul>
+<li>占 4 字节，取值范围是 $[0,2^{32} - 1]$，序号增加到 $2^{32}-1$ 后，下一个序号就又回到 0</li>
+<li>用来<strong>指出本 TCP 报文段数据载荷的第一个字节的序号</strong></li>
+</ul>
+<p><strong>（3）确认号</strong></p>
+<ul>
+<li>占 4 字节，取值范围是 $[0,2^{32} - 1]$，确认号增加到 $2^{32}-1$ 后，下一个确认号就又回到 0，</li>
+<li>用来<strong>指出期望收到对方下一个 TCP 报文段的数据载荷的第一个字节的序号，同时也是对之前收到的所有数据的确认</strong>。</li>
+<li><strong>若确认号$&#x3D;N$，则表明到序号 $N-1$ 为止的所有数据都已正确接收，期望接收序号为 $N$ 的数据</strong></li>
+</ul>
+<p><strong>（4）数据偏移</strong></p>
+<ul>
+<li>占 4 位，并且以 4 字节为单位</li>
+<li>用来<strong>指出 TCP 报文段的数据载荷部分的起始处距离 TCP 报文段的起始处有多远</strong></li>
+<li>这个字段实际上是指出了 TCP 报文段的首部长度<ul>
+<li>首部固定长度为 20 字节，因此数据偏移字段的最小值为 $(0101)_2$</li>
+<li>首部最大长度为 60 字节，因此数据偏移字段的最大值为 $(1111)_2$</li>
+</ul>
+</li>
+</ul>
+<p><strong>（5）保留</strong></p>
+<p>占 6 位，保留为今后使用，但目前应置为 0</p>
+<p><strong>（6）紧急 URG（urgent）</strong></p>
+<ul>
+<li><p>当 URG &#x3D; 1 时，表明紧急指针字段有效</p>
+</li>
+<li><p>它告诉系统此报文段中有紧急数据，应尽快传送，而不要按原来的排队顺序来传送</p>
+</li>
+</ul>
+<p><strong>（7）确认 ACK（acknowledge）</strong></p>
+<ul>
+<li><p>仅当 ACK &#x3D; 1 时确认号字段才有效；当 ACK &#x3D; 0 时，确认号无效</p>
+</li>
+<li><p>TCP 规定，在连接建立后所有传送的报文段都必须把 ACK 置 1</p>
+</li>
+</ul>
+<p><strong>（8）推送 PSH（push）</strong></p>
+<p>接收方 TCP 收到 PSH &#x3D; 1 的报文段，就<strong>尽快地交付接收应用进程</strong>，而不再等到整个缓存都填满了后再向上交付</p>
+<p><strong>（9）复位 RST（reset）</strong></p>
+<ul>
+<li>当 RST &#x3D; 1 时，表明 TCP 连接中出现严重差错（如由于主机崩溃或其他原因），必须释放连接，然后再重新建立运输连接</li>
+<li>RST 置 1 还用来拒绝一个非法的报文段或拒绝打开一个连接</li>
+</ul>
+<p><strong>（10）同步 SYN（synchronization）</strong></p>
+<p>在 TCP 连接建立时用来同步序号</p>
+<p><strong>（11）终止 FIN（finish）</strong></p>
+<p>用来释放 TCP 连接</p>
+<p><strong>（12）窗口</strong></p>
+<ul>
+<li>占 2 字节，以字节为单位，指出<strong>发送本报文的一方的接受窗口</strong></li>
+<li>窗口值作为接收方让发送方设置其发送窗口的依据</li>
+<li>这是以接收方的接收能力来控制发送方的发送能力，称为流量控制</li>
+</ul>
+<p><strong>（13）检验和</strong></p>
+<ul>
+<li>占 2 字节，检查范围包括 TCP 报文段的首部和数据载荷两部分</li>
+<li>在计算检验和前，要在 TCP 报文段的首部加上 12 字节的伪首部</li>
+</ul>
+<p><strong>（14）紧急指针</strong></p>
+<p>占 2 字节。紧急指针仅在 URG &#x3D; 1 时才有意义，它指出本报文段中的紧急数据的字节数</p>
+<p><strong>（15）选项</strong></p>
+<p>长度可变，最长可达 40 字节。</p>
+<h2 id="5-5-TCP可靠传输的实现"><a href="#5-5-TCP可靠传输的实现" class="headerlink" title="5.5 TCP可靠传输的实现"></a>5.5 TCP可靠传输的实现</h2><h3 id="5-5-1-以字节为单位的滑动窗口"><a href="#5-5-1-以字节为单位的滑动窗口" class="headerlink" title="5.5.1 以字节为单位的滑动窗口"></a>5.5.1 以字节为单位的滑动窗口</h3><p>假定现在 A 收到了 B 发来的确认报文段，其中窗口是 20 字节，确认号是 31，根据这两个数据，A 构造出自己的发送窗口如下</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204081914651.png" alt="5.15" style="zoom:50%;" />
+
+<p>发送窗口表示：在没有收到 B 的确认的情况下，A 可以连续<strong>把窗口内的数据都发送出去</strong>。凡是已经发送过的数据，在未收到确认之前都必须暂时保留，以便在超时重传时使用</p>
+<p>现在假定 A 发送了序号为 $31\sim 41$ 的数据。这时，发送窗口位置并未改变， 但发送窗口内靠后面有 11 个字节（灰色小方框表示）表示已发送但未收到确认。而发送窗口内靠前面的 9 个字节是允许发送但尚未发送的</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204081920660.png" alt="5.16.1"></p>
+<p>假设 B 收到了序号为 32 和 33 的数据。这些数据没有按序到达，因为序号为 31 的数据没有收到（也许丢失了，也许滞留在网络中的某处），因此 B 向 A 发送确认号为 31 的确认报文段</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204081922432.png" alt="5.16.2"></p>
+<p>现在假定 B 收到了序号为 31 的数据，并把序号为 $31\sim 33$ 的数据交付主机，然后 B 删除这些数据。接着把接收窗口向前移动 3 个序号，同时给 A 发送确认，其中窗口值仍为 20，但确认号是 34</p>
+<p>A 收到 B 的确认后，就可以把发送窗口向前滑动 3 个序号</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204081923288.png" alt="5.17.1"></p>
+<p>A在继续发送完序号 $42\sim 53$ 的数据后，发送窗口内的序号都已用完，但还没有再收到确认，由于 A 的发送窗口已满，可用窗口已减小到零，因此必须停止发送</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204081926236.png" alt="5.18"></p>
+<p>A 在经过一段时间后（由超时计时器控制）重传这部分数据，重新设置超时计时器，直到收到 B 的确认为止。如果 A 收到确认号落在发送窗口内，那么 A 就可以使发送窗口继续向前滑动，并发送新的数据</p>
+<p>根据上面所讨论的例子，还有以下三点需要注意：</p>
+<ul>
+<li>虽然 A 的发送窗口是根据 B 的接收窗口设置的，但在同一时刻，A 的发送窗口并不总是和 B 的接收窗口一样大<ul>
+<li>这是因为通过网络传送窗口值需要经历一定的时间滞后</li>
+<li>另外发送方 A 还可能根据网络当时的拥塞情况适当减小自己的发送窗口数值</li>
+</ul>
+</li>
+<li>对于不按序到达的数据应如何处理，TCP 标准并无明确规定<ul>
+<li>如果接收方把不按序到达的数据一律丢弃，那么接收窗口的管理将会比较简单，但这样做对网络资源的利用不利</li>
+<li>因此 TCP 通常对不按序到达的数据是先临时存放在接收窗口中，等到字节流中所缺少的字节收到后，再按序交付上层的应用进程</li>
+</ul>
+</li>
+<li>TCP 要求接收方必须有累积确认的功能，这样可以减小传输开销。接收方可以在合适的时候发送确认，也可以在自己有数据要发送时把确认信息顺便捎带上<ul>
+<li>接收方不应过分推迟发送确认，否则会导致发送方不必要的重传，这反而浪费了网络的资源<ul>
+<li>TCP 标准规定，确认推迟的时间不应超过 0.5 秒</li>
+<li>若收到一连串具有最大长度的报文段，则必须每隔一个报文段就发送一个确认</li>
+</ul>
+</li>
+<li>捎带确认实际上并不经常发生，因为大多数应用程序很少同时在两个方向上发送数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-5-2-超时重传时间的选择"><a href="#5-5-2-超时重传时间的选择" class="headerlink" title="5.5.2 超时重传时间的选择"></a>5.5.2 超时重传时间的选择</h3><ul>
+<li>TCP 采用了一种自适应算法，它记录一个报文段发出的时间，以及收到相应的确认的时间。这两个时间之差就是<strong>报文段的往返时间 RTT</strong> </li>
+<li>TCP 保留了 RTT 的一个<strong>加权平均往返时间 $\mathrm{RTT_S}$</strong></li>
+<li>每当第一次测量到 RTT 样本时，$\mathrm{RTT_S}$ 值就取为所测量到的 RTT 样本值。但以后每测量到一个新的 RTT 样本，就按下式重新计算一次 $\mathrm{RTT_S}$：</li>
+</ul>
+<p>$$<br>\mbox{新的}, \small \mathrm{RTT_S}  &#x3D; (1-\alpha) \times ( \normalsize \mbox{旧的},  \small \mathrm{RTT_S}) +\alpha \times ( \normalsize \mbox{新的},  \small \mathrm{RTT} \normalsize , \mbox{样本})<br>$$</p>
+<ul>
+<li>RFC 6298 推荐 $\alpha$ 的取值为 0.125</li>
+<li>显然，超时计时器设置的<strong>超时重传时间 RTO</strong> 应略大于上面得出的加权平均往返时间 $\mathrm{RTT_S}$。RFC 6298 建议使用下式计算 RTO：</li>
+</ul>
+<p>$$<br>\mathrm{RTO &#x3D; RTT_S + 4\times RTT_D}<br>$$</p>
+<ul>
+<li>$\mathrm{RTT_D}$ 是 RTT 的偏差的加权平均值，它与 $\mathrm{RTT_S}$ 和新的 RTT 样本之差有关。RFC 6298 建议计算 $\mathrm{RTT_D}$：当第一次测量时，$\mathrm{RTT_D}$ 值取为测量到的 RTT 样本值的一半，在以后的测量中，则使用下式计算加权平均的 $\mathrm{RTT_D}$（其中 $\beta$ 的建议取值为 0.25）：</li>
+</ul>
+<p>$$<br>\mbox{新的},  \small \mathrm{RTT_D} &#x3D; (1-\beta) \times (\normalsize \mbox{旧的},  \small \mathrm{RTT_D} ) + \beta \times |\mathrm{RTT_S} - \normalsize 新的, \small \mathrm{RTT}, \normalsize \mbox{样本} \small|<br>$$</p>
+<p>对于上面的算法若发生超时重传则会出现问题，如何判定此确认报文段是对先发送的报文段的确认，还是对后来重传的报文段的确认？</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204082030427.png" alt="5.20" style="zoom:40%;" />
+
+<ul>
+<li>若收到的确认是对重传报文段的确认，但却被源主机当成是对原来的报文段的确认， 则这样计算出的 $\mathrm{RTT_S}$ 和超时重传时间 RTO 就会偏大</li>
+<li>若收到的确认是对原来的报文段的确认，但被当成是对重传报文段的确认，则 由此计算出的 $\mathrm{RTT_S}$和 RTO 都会偏小</li>
+</ul>
+<p>对此，Karn 提出了一个算法：在计算加权平均 $\mathrm{RTT_S}$ 时，只要报文段重传了，就不采用其往返时间样本。这样得出的加权平均 $\mathrm{RTT_S}$ 和 RTO 就较准确</p>
+<p>但是，这又引起新的问题。设想出现这样的情况：报文段的时延突然增大了很多。因此在原来得出的重传时间内，不会收到确认报文段。于是就重传报文段。但根据 Karn 算法，不考虑重传的报文段的往返时间样本。这样，超时重传时间就无法更新</p>
+<p>因此要对 Karn 算法进行修正。方法是：报文段每重传一次，就把超时重传时间 RTO 增大一些。典型的做法是取新的重传时间为旧的重传时间的 2 倍。当不再发生报文段的重传时，才根据上面的式子计算超时重传时间</p>
+<h2 id="5-6-TCP的流量控制"><a href="#5-6-TCP的流量控制" class="headerlink" title="5.6 TCP的流量控制"></a>5.6 TCP的流量控制</h2><p>流量控制（flow control）就是让发送方的发送速率不要太快，要让接收方来得及接收</p>
+<blockquote>
+<p>注：下图中起始时 B 的接收窗口为 400 字节，图中未直接画出</p>
+</blockquote>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204082036777.png" alt="5.22"></p>
+<p>现在考虑这样一种情况，上图中 B 向 A 发送了零窗口的报文段后不久，B 的接收缓存又有了一些存储空间。于是 B 向 A 发送了 rwnd &#x3D; 400 的报文段。然而这个报文段在传送过程中丢失了。A 一直等待收到 B 发送的非零窗口的通知，而 B 也一直等待 A 发送的数据。如果没有其他措施，这种互相等待的死锁局面将一直延续下去</p>
+<p>为了解决这个问题，TCP 为每一个连接设有一个<strong>持续计时器</strong>（persistence timer）。只要 TCP 连接的一方收到对方的零窗口通知，就启动持续计时器。若持续计时器设置的时间到期，就发送一个零窗口探测报文段（仅携带 1 字节的数据），而对方就在确认这个探测报文段时给出了现在的窗口值。如果窗口仍然是零，那么收到这个报文段的一方就重新设置持续计时器。如果窗口不是零，那么死锁的僵局就可以打破了。</p>
+<h2 id="5-7-TCP的拥塞控制"><a href="#5-7-TCP的拥塞控制" class="headerlink" title="5.7 TCP的拥塞控制"></a>5.7 TCP的拥塞控制</h2><ul>
+<li><p>在某段时间，<strong>若对网络中某一资源的需求超过了该资源所能提供的可用部分，网络的性能就要变坏</strong>。这种情况就叫做<strong>拥塞</strong>（congestion）</p>
+</li>
+<li><p>若出现拥塞而不进行控制，整个网络的吞吐量将随输入负荷的增大而下降</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220409150535.png" alt="5.23" style="zoom:33%;" />
+
+<p>TCP 进行拥塞控制的算法有四种， 即<strong>慢开始</strong>（slow-start） 、<strong>拥塞避免</strong>（congestion<br>avoidance）、<strong>快重传</strong>（fast retransmit）和<strong>快恢复</strong>（fast recovery）</p>
+<p>为了集中精力讨论拥塞控制，下面假定：</p>
+<ol>
+<li>数据是单方向传送的，对方只传送确认报文</li>
+<li>接收方总是有足够大的缓存空间，因而发送窗口的大小由网络的拥塞程度来决定</li>
+</ol>
+<h3 id="1-慢开始和拥塞避免"><a href="#1-慢开始和拥塞避免" class="headerlink" title="1. 慢开始和拥塞避免"></a>1. 慢开始和拥塞避免</h3><ul>
+<li>发送方维护一个叫做<strong>拥塞窗口 cwnd</strong> 的状态变量，其值<strong>取决于网络的拥塞程度</strong>，并且<strong>动态变化</strong><ul>
+<li>拥塞窗口 <strong>cwnd 的维护原则</strong>：只要网络<strong>没有出现拥塞</strong>，<strong>拥塞窗口</strong>就再<strong>增大</strong>一些；但只要网络<strong>出现拥塞</strong>，<strong>拥塞窗口就减小</strong>一些</li>
+<li>判断发生<strong>网络拥塞的依据</strong>：没有按时收到应当到达的确认报文（即<strong>发生超时重传</strong>）</li>
+</ul>
+</li>
+<li>发送方将拥塞窗口作为发送窗口 swnd，即 swnd &#x3D; cwnd</li>
+<li>维护一个<strong>慢开始门限 ssthresh</strong> 状态变量：<ul>
+<li>当 cwnd &lt; ssthresh 时，使用慢开始算法</li>
+<li>当 cwnd &gt; ssthresh 时，停止使用慢开始算法，而改用拥塞避免算法</li>
+<li>当 cwnd &#x3D; ssthresh 时，既可以使用慢开始算法，也可以使用拥塞避免算法</li>
+</ul>
+</li>
+</ul>
+<p><strong>慢开始</strong>算法的思路是：当主机开始发送数据时，由于并不清楚网络的负荷情况，较好的方法是先探测一下，即<strong>由小到大逐渐增大发送窗口</strong>，也就是说，<strong>由小到大逐渐增大拥塞窗口数值</strong></p>
+<p>慢开始规定，在每收到一个对新报文段的确认后，可以把拥塞窗口增加最多一个 SMSS（发送方最大报文段）的数值，如下面例子所示</p>
+<blockquote>
+<p>注：下图中以报文段的个数作为窗口大小的单位，以传输轮次作为时间单位。一个传输轮次所经历的时间是往返时间 RTT，使用“传输轮次”是为了强调把拥塞窗口 cwnd 所允许发送的报文段都连续发送出去，并收到了对已发送的最后一个字节的确认</p>
+</blockquote>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204100941573.png" alt="5.24" style="zoom:43%;" />
+
+<p><strong>拥塞避免</strong>算法的思路是让拥塞窗口 cwnd 缓慢增大，即每经过一个往返时间 RTT 就把发送方的拥塞窗口 cwnd 加1，而不是像慢开始阶段那样加倍增长</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220409153004.png" alt="5.25"></p>
+<h3 id="2-快重传和快恢复"><a href="#2-快重传和快恢复" class="headerlink" title="2. 快重传和快恢复"></a>2. 快重传和快恢复</h3><ul>
+<li><p>慢开始和拥塞避免算法是 1988 年提出的 TCP 拥塞控制算法（TCP Tahoe 版本）</p>
+</li>
+<li><p>1990 年又增加了两个新的拥塞控制算法（改进 TCP 的性能），这就是快重传和快恢复（TCP Reno 版本）</p>
+<ul>
+<li>有时，<strong>个别报文段</strong>会在网络中<strong>丢失</strong>，但实际上网络<strong>并未发生拥塞</strong><ul>
+<li>这将导致<strong>发送方</strong>超时重传，并<strong>误认为</strong>网络发生了<strong>拥塞</strong></li>
+<li><strong>发送方把拥塞窗口 cwnd 又设置为最小值 1</strong>，并错误地启动慢开始算法，因而<strong>降低了传输效率</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>采用快重传算法就可以<strong>让发送方尽早知道发生了个别报文段的丢失</strong></p>
+</li>
+</ul>
+<p>所谓快重传，就是使发送方<strong>尽快进行重传</strong>，而<strong>不是等超时重传计时器超时</strong>再重传</p>
+<ul>
+<li>要求接收方不要等待自己发送数据时才进行捎带确认，而是要<strong>立即发送确认</strong></li>
+<li>即使收到了失序的报文段也要立即发出对已收到的报文段的<strong>重复确认</strong></li>
+<li>发送方一旦<strong>收到 3 个连续的重复确认</strong>，就将相应的报文段<strong>立即重传</strong>，而不是等该报文段的超时重传计时器超时再重传</li>
+<li>对于个别丢失的报文段，发送方不会出现超时重传，也就不会误认为出现了拥塞（进而降低拥塞窗口 cwnd 为1）。使用快重传可以使整个网络的吞吐量提高约 20%</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204101015946.png" alt="5.26" style="zoom:40%;" />
+
+<p>发送方一旦<strong>收到 3 个重复确认</strong>，就知道现在只是丢失了个别的报文段。于是不启动慢开始算法，而<strong>执行快恢复算法</strong></p>
+<ul>
+<li><strong>发送方将慢开始门限 ssthresh 值和拥塞窗口 cwnd 值调整为当前窗口的一半，开始执行拥塞避免算法</strong></li>
+<li>也有的快恢复实现是把快恢复开始时的拥塞窗口 cwnd 值再增大一些，即等于新的 ssthresh + 3<ul>
+<li>既然发送方收到 3 个重复的确认，就表明有 3 个数据报文段已经离开了网络</li>
+<li>这 3 个报文段不再消耗网络资源而是停留在接收方的接收缓存中</li>
+<li>可见现在网络中不是堆积了报文段而是减少了 3 个报文段，因此可以适当把拥塞窗口扩大些</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-8-TCP的运输连接管理"><a href="#5-8-TCP的运输连接管理" class="headerlink" title="5.8 TCP的运输连接管理"></a>5.8 TCP的运输连接管理</h2><p>在 TCP 连接建立过程中要解决以下三个问题：</p>
+<ol>
+<li>要使每一方能够确知对方的存在。</li>
+<li>要允许双方协商一些参数（如最大窗口值、是否使用窗口扩大选项和时间戳选项以及服务质量等）</li>
+<li>能够对运输实体资源（如缓存大小、连接表中的项目等）进行分配</li>
+</ol>
+<p>TCP 连接的建立采用客户服务器方式。主动发起连接建立的应用进程叫做<strong>客户</strong>（client），而被动等待连接建立的应用进程叫做<strong>服务器</strong>（server）</p>
+<h3 id="5-8-1-TCP的连接建立"><a href="#5-8-1-TCP的连接建立" class="headerlink" title="5.8.1 TCP的连接建立"></a>5.8.1 TCP的连接建立</h3><p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204101029323.png" alt="5.28"></p>
+<p>开始时，B 的 TCP 服务器进程先创建<strong>传输控制块 TCB</strong>，准备接受客户进程的连接请求。然后服务器进程就处于 LISTEN（收听）状态，等待客户的连接请求。如有，即作出响应。</p>
+<p>A 的 TCP 客户进程也是首先创建<strong>传输控制模块 TCB</strong>。然后，在打算建立 TCP 连接时，向 B 发出<strong>连接请求报文段</strong>，这时首部中的同步位 <strong>SYN &#x3D; 1</strong>，同时选择一个<strong>初始序号 seq &#x3D; x</strong>。TCP 规定，SYN 报文段（即 SYN &#x3D; 1 的报文段）不能携带数据，但要<strong>消耗掉一个序号</strong>。这时，TCP 客户进程进入 <strong>SYN-SENT（同步已发送）状态</strong></p>
+<p>B 收到连接请求报文段后，如同意建立连接，则向 A 发送确认。在确认报文段中应把 <strong>SYN 位和 ACK 位都置 1</strong>，确认号是 <strong>ack &#x3D; x + 1</strong>，同时也为自己选择一个<strong>初始序号 seq &#x3D; y</strong>。请注意，这个报文段也不能携带数据，但同样要<strong>消耗掉一个序号</strong>。这时 TCP 服务器进程进入 <strong>SYN-RCVD（同步收到）状态</strong></p>
+<p>TCP 客户进程收到 B 的确认后，还要向 B 给出确认。确认报文段的 <strong>ACK 置 1</strong>，确认号 <strong>ack &#x3D; y + 1</strong>，而自己的序号 <strong>seq &#x3D; x + 1</strong>。TCP 的标准规定，ACK 报文段可以携带数据。但<strong>如果不携带数据则不消耗序号</strong>，在这种情况下，下一个数据报文段的序号仍是 seq &#x3D; x + 1。这时，TCP 连接已经建立，A 进入 <strong>ESTABLISHED（已建立连接）状态</strong></p>
+<p>当 B 收到 A 的确认后，也进入 ESTABLISHED 状态</p>
+<p>A 最后还要发送一次确认的原因：主要为了防止已失效的连接请求报文段突然又传送到了 B，因而产生错误，即下图所示情况</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204101432293.png" alt="5.8.1"></p>
+<h3 id="5-8-2-TCP的连接释放"><a href="#5-8-2-TCP的连接释放" class="headerlink" title="5.8.2 TCP的连接释放"></a>5.8.2 TCP的连接释放</h3><p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204101059989.png" alt="5.29"></p>
+<p>数据传输结束后，通信的双方都可释放连接。现在 A 和 B 都处于 ESTABLISHED 状态</p>
+<p>A 的应用进程先向其 TCP 发出<strong>连接释放报文段</strong>，并停止再发送数据，主动关闭 TCP连接。A把连接释放报文段首部的<strong>终止控制位 FIN 置1</strong>，其序号 <strong>seq &#x3D; u</strong>，它等于<strong>前面已传送过的数据的最后一个字节的序号加 1</strong>。这时 A 进入 <strong>FIN-WAIT-1（终止等待 1）状态</strong>，等待 B 的确认。请注意，TCP 规定，FIN 报文段即使不携带数据，它也<strong>消耗掉一个序号</strong></p>
+<p>B 收到连接释放报文段后即发出确认，确认号是 <strong>ack &#x3D; u + 1</strong>，而这个报文段自己的<strong>序号是 v</strong>，等于 B <strong>前面已传送过的数据的最后一个字节的序号加 1</strong>。然后 B 就进入 <strong>CLOSE- WAIT（关闭等待）状态</strong>。</p>
+<p>TCP 服务器进程这时应通知高层应用进程，因而从 A 到 B 这个方向的连接就释放了，这时的 TCP 连接处于<strong>半关闭</strong>（half-close）状态，即 <strong>A 已经没有数据要发送了，但 B 若发送数据，A 仍要接收</strong>。也就是说，从 B 到 A 这个方向的连接并未关闭，这个状态可能会持续一段时间</p>
+<p>A 收到来自 B 的确认后，就进入 <strong>FIN-WAIT-2（终止等待 2）状态</strong>，等待 B 发出的连接释放报文段</p>
+<p>若 B 已经没有要向 A 发送的数据，其应用进程就通知 TCP 释放连接。这时 B 发出的连接释放报文段必须使 <strong>FIN &#x3D; 1</strong>。现假定 B 的<strong>序号为 w</strong> （在半关闭状态B可能又发送了一些数据）。B还必须重复上次已发送过的确认号 <strong>ack &#x3D; u + 1</strong>。这时 B 就进入**LAST-ACK(最后确认)**状态，等待 A 的确认</p>
+<p>A 在收到 B 的连接释放报文段后，必须对此发出确认。在确认报文段中把 <strong>ACK 置 1</strong>，<strong>确认号 ack &#x3D; w + 1</strong>，而自己的序号是 <strong>seq &#x3D; u + 1</strong>，然后进入到 <strong>TIME-WAIT（时间等待）状态</strong></p>
+<p>现在 TCP 连接<strong>还没有释放掉</strong>。必须经过<strong>时间等待计时器</strong>（TIME-WAIT timer）设置的时间 <strong>2MSL</strong> 后，A 才进入到 CLOSED 状态</p>
+<blockquote>
+<p>时间 MSL 叫做<strong>最长报文段寿命</strong>（Maximum Segment Lifetime），RFC 793 建议设为 2 分钟。但这完全是从工程上来考虑的，对于现在的网络，MSL &#x3D; 2 分钟可能太长了一些。因此 TCP 允许不同的实现可根据具体情况使用更小的 MSL 值</p>
+</blockquote>
+<p>B 只要收到了 A 发出的确认，就进入 CLOSED 状态</p>
+<p>A 在 TIME-WAIT 状态必须等待 2MSL 时间的原因：</p>
+<ul>
+<li>防止下图所示情况的出现</li>
+</ul>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204101445124.png" alt="5.8.2"></p>
+<ul>
+<li>防止“已失效的连接请求报文段”出现在本连接中。A 在发送完最后一个 ACK 报文段后，再经过时间 2MSL，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失。这样就可以使下一个新的连接中不会出现旧的连接请求报文段</li>
+</ul>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204101502435.png" alt="5.8.2.2"></p>
+<ul>
+<li>TCP 服务器进程每收到一次 TCP 客户进程的数据，就重新设置并启动<strong>保活计时器</strong>（2小时定时）</li>
+<li>若保活计时器定时周期内未收到 TCP 客户进程发来的数据，则当保活计时器到时后，TCP 服务器进程就向 TCP 客户进程发送一个探测报文段，以后则每隔 75 秒钟发送一次。若一连发送 10 个探测报文段仍无 TCP 客户进程的相应，TCP 服务器进程就认为 TCP 客户进程所在主机出了故障，接着就关闭这个连接</li>
+</ul>
+<h3 id="5-8-3-TCP的有限状态机"><a href="#5-8-3-TCP的有限状态机" class="headerlink" title="5.8.3 TCP的有限状态机"></a>5.8.3 TCP的有限状态机</h3><p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204101059576.png" alt="5.30"></p>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/06/06/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%BA%94%E7%94%A8%E5%B1%82/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第六章 应用层</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/06/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%B1%82/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第四章 网络层</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拔丝地瓜</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BF%90%E8%BE%93%E5%B1%82"><span class="nav-text">第五章 运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E8%BF%90%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0"><span class="nav-text">5.1 运输层协议概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-%E8%BF%9B%E7%A8%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1"><span class="nav-text">5.1.1 进程之间的通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-%E8%BF%90%E8%BE%93%E5%B1%82%E7%9A%84%E4%B8%A4%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%8D%8F%E8%AE%AE"><span class="nav-text">5.1.2 运输层的两个主要协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-3-%E8%BF%90%E8%BE%93%E5%B1%82%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="nav-text">5.1.3 运输层的端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AEUDP"><span class="nav-text">5.2 用户数据报协议UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-UDP%E6%A6%82%E8%BF%B0"><span class="nav-text">5.2.1 UDP概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-UDP%E7%9A%84%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="nav-text">5.2.2 UDP的首部格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AETCP%E6%A6%82%E8%BF%B0"><span class="nav-text">5.3 传输控制协议TCP概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-1-TCP%E6%9C%80%E4%B8%BB%E8%A6%81%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">5.3.1 TCP最主要的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-2-TCP%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="nav-text">5.3.2 TCP的链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-TCP%E6%8A%A5%E6%96%87%E6%AE%B5%E7%9A%84%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="nav-text">5.4 TCP报文段的首部格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-TCP%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">5.5 TCP可靠传输的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-%E4%BB%A5%E5%AD%97%E8%8A%82%E4%B8%BA%E5%8D%95%E4%BD%8D%E7%9A%84%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="nav-text">5.5.1 以字节为单位的滑动窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-2-%E8%B6%85%E6%97%B6%E9%87%8D%E4%BC%A0%E6%97%B6%E9%97%B4%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-text">5.5.2 超时重传时间的选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-TCP%E7%9A%84%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-text">5.6 TCP的流量控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-7-TCP%E7%9A%84%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-text">5.7 TCP的拥塞控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%85%A2%E5%BC%80%E5%A7%8B%E5%92%8C%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D"><span class="nav-text">1. 慢开始和拥塞避免</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BF%AB%E9%87%8D%E4%BC%A0%E5%92%8C%E5%BF%AB%E6%81%A2%E5%A4%8D"><span class="nav-text">2. 快重传和快恢复</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-8-TCP%E7%9A%84%E8%BF%90%E8%BE%93%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="nav-text">5.8 TCP的运输连接管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-8-1-TCP%E7%9A%84%E8%BF%9E%E6%8E%A5%E5%BB%BA%E7%AB%8B"><span class="nav-text">5.8.1 TCP的连接建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-8-2-TCP%E7%9A%84%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE"><span class="nav-text">5.8.2 TCP的连接释放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-8-3-TCP%E7%9A%84%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="nav-text">5.8.3 TCP的有限状态机</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

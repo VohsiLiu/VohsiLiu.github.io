@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="拔丝地瓜">
+    
+    <title>
+        
+            第三章 数据链路层 |
+        
+        拔丝地瓜
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/favicon.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                拔丝地瓜
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">第三章 数据链路层</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拔丝地瓜</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-06 11:28:26</span>
+        <span class="mobile">2022-06-06 11:28</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="第三章-数据链路层"><a href="#第三章-数据链路层" class="headerlink" title="第三章 数据链路层"></a>第三章 数据链路层</h1><p>数据链路层使用的信道主要有以下两种类型：</p>
+<ul>
+<li><strong>点对点信道：</strong>使用一对一的点对点通信方式</li>
+<li><strong>广播信道：</strong>使用一对多的广播通信方式，因此过程比较复杂。广播信道上连接的主机很多，因此必须使用专用的共享信道协议来协调这些主机的数据发送</li>
+</ul>
+<p>下图表示两台主机通过互联网进行通信时数据链路层所处的地位</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220129112602.png" style="zoom:48%;" />
+
+<h2 id="3-1-使用点对点信道的数据链路层"><a href="#3-1-使用点对点信道的数据链路层" class="headerlink" title="3.1 使用点对点信道的数据链路层"></a>3.1 使用点对点信道的数据链路层</h2><h3 id="3-1-1-数据链路和帧"><a href="#3-1-1-数据链路和帧" class="headerlink" title="3.1.1 数据链路和帧"></a>3.1.1 数据链路和帧</h3><ul>
+<li><strong>链路</strong>（link）就是从一个结点到相邻结点的一段物理线路（有线或无线），而中间没有任何其他的交换结点</li>
+<li><strong>数据链路</strong>（data link）是把实现通信协议的硬件和软件加到链路上，就构成了数据链路</li>
+<li>数据链路层以<strong>帧</strong>为单位传输和处理数据</li>
+<li>点对点信道的数据链路层在进行通信时的主要步骤如下：<ol>
+<li>结点 A 的数据链路层把网络层交下来的 IP 数据报添加首部和尾部封装成帧</li>
+<li>结点 A 把封装好的帧发送给结点 B 的数据链路层</li>
+<li>若结点 B 的数据链路层收到的帧无差错，则从收到的帧中提取出 IP 数据报交给上面的网络层；否则丢弃这个帧</li>
+</ol>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220129112625.png" style="zoom:40%;" />
+
+<h3 id="3-1-2-三个基本问题"><a href="#3-1-2-三个基本问题" class="headerlink" title="3.1.2 三个基本问题"></a>3.1.2 三个基本问题</h3><p>数据链路层协议有许多种，但有三个基本问题则是共同的：<strong>封装成帧</strong>、<strong>透明传输</strong>和<strong>差错检测</strong></p>
+<h4 id="1-封装成帧"><a href="#1-封装成帧" class="headerlink" title="1.封装成帧"></a>1.封装成帧</h4><ul>
+<li><strong>封装成帧</strong>（framing）就是在一段数据的前后分别添加首部和尾部，这样就构成了一个帧。</li>
+<li>接收端在收到物理层上交的比特流后，就能根据首部和尾部的标记，从收到的比特流中识别帧的开始和结束</li>
+<li>首部和尾部的一个重要作用就是进行<strong>帧定界</strong>（即确定帧的界限），此外，首部和尾部还包括许多必要的控制信息</li>
+<li>为了提高帧的传输效率，应当使帧的数据部分长度尽可能地大于首部和尾部的长度</li>
+<li>每一种链路层协议都规定了所能传送的帧的数据部分长度上限—<strong>最大传送单元 MTU</strong> （Maximum Transfer Unit）</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220129112652.png" style="zoom:33%;" />
+
+<ul>
+<li>当数据是由可打印的 ASCII 码组成的文本文件时，帧定界可以使用特殊的<strong>帧定界符</strong>，图中 SOH 和 EOT 都是控制字符的名称</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220129112702.png" style="zoom:33%;" />
+
+<ul>
+<li>当数据在传输中出现差错时，帧定界符的作用更加明显<ul>
+<li>假定发送端在尚未发送完一个帧时突然出故障，中断了发送。但随后很快又恢复正常，于是重新从头开始发送刚才未发送完的帧</li>
+<li>由于使用了帧定界符，接收端就知道前面收到的数据是个不完整的帧，必须丢弃</li>
+<li>而后面收到的数据有明确的帧定界符，因此这是一个完整的帧，应当收下</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-透明传输"><a href="#2-透明传输" class="headerlink" title="2.透明传输"></a>2.透明传输</h4><ul>
+<li><p>透明传输是指<strong>数据链路层对上层交付的传输数据没有任何限制</strong>，就好像数据链路层不存在一样</p>
+</li>
+<li><p>当传送的帧是用文本文件组成的帧时（文本文件中的字符都是从键盘上输入的），其数据部分显然不会出现像 SOH 或 EOT 这样的帧定界控制字符。可见<strong>不管从键盘上输入什么字符都可以放在这样的帧中传输过去</strong>，因此这样的传输就是透明传输</p>
+</li>
+<li><p>当数据部分是非 ASCII 码的文本文件时（如二进制代码的计算机程序或图像等），如果数据中的某个字节的二进制代码恰好和 SOH 或 EOT 这种控制字符一样，数据链路层就会<strong>错误地“找到帧的边界”</strong>，把部分帧收下，而把剩下的那部分数据丢弃</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220129112716.png" style="zoom:33%;" />
+
+<ul>
+<li><p>面向字节的物理链路<strong>使用字节填充的方法实现透明传输：</strong>在 EOT 、 SOH 和 ESC 前添加转义字符 ESC</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220129112728.png" style="zoom:33%;" />
+</li>
+<li><p>面向比特的物理链路<strong>使用比特填充的方式实现透明传输：</strong>每 5 个连续的比特 1 后面插入一个比特 0</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220129114052.png" style="zoom:30%;" /></li>
+</ul>
+<h4 id="3-差错检测"><a href="#3-差错检测" class="headerlink" title="3.差错检测"></a>3.差错检测</h4><ul>
+<li>实际的通信链路都不是理想的，比特在传输过程中可能会产生差错：1 可能会变成 0，而 0 也可能变成 1，这称为<strong>比特差错</strong></li>
+<li>在一段时间内，传输错误的比特所占传输比特总数的比率称为<strong>误码率 BER</strong>（bit error rate）</li>
+<li>使用<strong>差错检测码</strong>来检查数据在传输过程中是否产生了比特差错，是数据链路层所要解决的重要问题之一</li>
+<li><strong>检错码</strong>只能检测出帧在传输过程中出现了差错，但不能定位错误，因此无法纠正错误</li>
+<li>要想纠正传输中的差错，可以使用冗余信息更多的<strong>纠错码</strong>进行<strong>前向纠错</strong>，但纠错码的开销比较大，<strong>在计算机网络中较少使用</strong></li>
+<li>循环冗余校验 <strong>CRC</strong> 有很好的检错能力（<strong>漏检率非常低</strong>），虽然计算比较复杂，但非常<strong>易于用硬件实现</strong>，因此被<strong>广泛应用于数据链路层</strong></li>
+<li>在计算机网络中通常采用<strong>检错重传方式来纠正传输中的差错，或者仅仅是丢弃检测到差错的帧</strong>，这取决于数据链路层向其上层提供的是<strong>可靠传输服务还是不可靠传输服务</strong></li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220129112803.png" style="zoom:30%;" />
+
+<h2 id="3-2-可靠传输"><a href="#3-2-可靠传输" class="headerlink" title="3.2 可靠传输"></a>3.2 可靠传输</h2><h3 id="3-2-1-可靠传输的基本概念"><a href="#3-2-1-可靠传输的基本概念" class="headerlink" title="3.2.1 可靠传输的基本概念"></a>3.2.1 可靠传输的基本概念</h3><ul>
+<li>使用<strong>差错检测技术</strong>（例如循环冗余校验 CRC），接收方的数据链路层就可检测出帧在传输过程中是否产生了<strong>误码</strong>（比特错误）</li>
+<li>数据链路层向上层提供的服务类型<ul>
+<li><strong>不可靠传输服务：仅仅丢弃有误码的帧</strong>，其他什么也不做</li>
+<li><strong>可靠传输服务：</strong>想办法实现<strong>发送端发送什么， 接收端就收到什么</strong></li>
+</ul>
+</li>
+<li>一般情况下， <strong>有线链路</strong>的误码率比较低，为了减小开销，并<strong>不要求数据链路层</strong>向上提供<strong>可靠</strong>传输服务。即使出现了误码，可靠传输的问题由其上层处理</li>
+<li><strong>无线链路</strong>易受干扰，误码率比较高，因此<strong>要求数据链路层</strong>必须向上层提供<strong>可靠</strong>传输服务</li>
+<li><strong>比特差错</strong>只是传输差错中的一种</li>
+<li>从整个计算机网络体系结构来看，传输差错还包括<strong>分组丢失</strong>、<strong>分组失序</strong>以及<strong>分组重复</strong></li>
+<li>分组丢失、分组失序以及分组重复这些传输差错，一般不会出现在数据链路层，而会出现在其上层</li>
+<li><strong>可靠传输服务并不仅局限于数据链路层</strong>，其他各层均可选择实现可靠传输</li>
+<li>可靠传输的实现比较复杂，开销也比较大，是否使用可靠传输取决于应用需求</li>
+</ul>
+<h3 id="3-2-2-停止-等待协议SW"><a href="#3-2-2-停止-等待协议SW" class="headerlink" title="3.2.2 停止-等待协议SW"></a>3.2.2 停止-等待协议SW</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220130201253.png" style="zoom:33%;" />
+
+<ul>
+<li>接收端检测到数据分组有误码时，将其丢弃并等待发送方的超时重传。但对于误码率较高的点对点链路，为使发送方<strong>尽早重传</strong>，也可<strong>给发送方发送 NAK 分组</strong></li>
+<li>为了让接收方能够判断所收到的数据分组是否是重复的，需要给<strong>数据分组编号</strong></li>
+<li>为了让发送方能够判断所收到的 ACK 分组是否是重复的，<strong>需要给 ACK 分组编号</strong>，所用比特数量<strong>与数据分组编所用比特数量一样</strong>。数据链路层一般不会出现 ACK 分组迟到的情况，因此<strong>在数据链路层实现停止-等待协议可以不用给 ACK 分组编号</strong></li>
+<li>超时计时器设置的<strong>重传时间</strong>应仔细选择。一般可将重传时间选为<strong>略大于“从发送方到接收方的平均往返时间”</strong><ul>
+<li>在数据链路层点对点的往返时间比较确定，重传时间比较好设定</li>
+<li>然而在运输层，由于端到端往返时间非常不确定，设置合适的重传时间有时并不容易</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220130201834.png" style="zoom:33%;" />
+
+<p>令 $T_D$​​​​ 表示 A 发送分组需要的时间，$T_A$​​​ ​表示 B 发送确认分组所需要的时间，$\mathrm{RTT}$​​ ​​​​表示往返时间，则停止-等待协议的信道利用率 $U$​​​​ 为<br>$$<br>U&#x3D;\frac{T_D}{T_D+\mathrm{RTT}+T_A}<br>$$<br>为了提高传输效率，发送方可以不使用低效率的停止-等待协议，而是采用<strong>流水线传输</strong></p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220130202431.png" style="zoom:28%;" />
+
+<h3 id="3-2-3-回退N帧协议GBN"><a href="#3-2-3-回退N帧协议GBN" class="headerlink" title="3.2.3 回退N帧协议GBN"></a>3.2.3 回退N帧协议GBN</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220131093643.png" style="zoom:43%;" />
+
+<p><strong>发送方：</strong></p>
+<ul>
+<li>发送窗口尺寸 $W_T$ 的取值范围是 $1&lt;W_T\leq2^n-1$，其中，$n$​​ 是构成分组序号的比特数量<ul>
+<li>当 $W_T&#x3D;1$ 时，即为停止-等待协议</li>
+<li>当 $W_T&gt;2^n-1$ 时，接收方无法分辨新、旧数据分组</li>
+</ul>
+</li>
+<li>发送方可在未收到接收方确认分组的情况下，将序号落在发送窗口内的多个数据分组全部发送出去</li>
+<li>发送方只有收到对已发送数据分组的确认时，发送窗口才能向前相应滑动</li>
+<li>发送方收到多个重复确认时，可在重传计时器超时前尽早开始重传，由具体实现决定</li>
+<li>发送方发送窗口内某个已发送的数据分组产生超时重发时，其后续在发送窗口内且已发送的数据分组也必须全部重传，这就是回退N帧协议名称的由来</li>
+</ul>
+<p><strong>接收方：</strong></p>
+<ul>
+<li>接收方的接收窗口尺寸 $W_R$ 的取值范围是 $W_R&#x3D;1$​​，因此接收方只能按序接收数据分组</li>
+<li>接收方只接收序号落在接收窗口内且无误码的数据分组，并且将接收窗口向前滑动一个位置，与此同时给发送方发回相应的确认分组。为了减少开销，接收方不一定每收到一个按序到达且无误码的数据分组就给发送方发回一个确认分组<ul>
+<li>而是可以在连续收到好几个按序到达且无误码的数据分组后（由具体实现决定），才针对最后一个数据分组发送确认分组，这称为累积确认</li>
+<li>或者可以在自己有数据分组要发送时才对之前按序接收且无误码的数据分组进行捎带确认</li>
+</ul>
+</li>
+<li>接收方收到未按序到达的数据分组，除丢弃外，还要对最近按序接收的数据分组进行确认</li>
+</ul>
+<p>回退N帧协议在流水线传输的基础上利用发送窗口来限制发送方连续发送数据分组的数量，是一种连续 ARQ 协议</p>
+<ul>
+<li>在协议的工作过程中，发送窗口和接受窗口不断向前滑动，因此这类协议又称为滑动窗口协议</li>
+<li>由于回退N帧协议的特性，当通信线路质量不好时，其信道利用率并不比停止-等待协议高</li>
+</ul>
+<h3 id="3-2-4-选择重传协议SR"><a href="#3-2-4-选择重传协议SR" class="headerlink" title="3.2.4 选择重传协议SR"></a>3.2.4 选择重传协议SR</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220131094619.png" style="zoom:40%;" />
+
+<p><strong>发送方：</strong></p>
+<ul>
+<li><p>发送窗口尺寸 $W_T$ 的取值范围是 $1&lt;W_T \leq 2^{n-1}$，其中，$n$​ 是构成分组序号的比特数量</p>
+<ul>
+<li>当 $W_T&#x3D;1$ 时，即为停止-等待协议</li>
+<li>当 $W_T&gt;2^{n-1}$ 时，接收方无法分辨新、旧数据分组</li>
+</ul>
+</li>
+<li><p>发送方可在未收到接收方确认分组的情况下，将序号落在发送窗口内的多个数据分组全部发送出去</p>
+</li>
+<li><p>发送方只有按序收到对已发送数据分组的确认时，发送窗口才能向前相应滑动；若收到未按序到达的确认分组时，对其进行记录，以防止其相应数据分组的超时重发，但发送窗口不能向前滑动</p>
+</li>
+</ul>
+<p><strong>接收方：</strong></p>
+<ul>
+<li>接收窗口尺寸 $W_R$​​ 的取值范围是 $1&lt;W_R\leq W_T$<ul>
+<li>当 $W_R&#x3D;1$ 时，即为回退N帧协议</li>
+<li>当$W_R &gt; W_T$ 时，无意义</li>
+</ul>
+</li>
+<li>接收方可接收未按序到达但没有误码并且序号落在接收窗口内的数据分组<ul>
+<li>为了使发送方仅重传出现差错的分组，接收方不能再采用累积确认，而需要对每个正确接收到的数据分组进行逐一确认</li>
+</ul>
+</li>
+<li>接收方只有在按序接收数据分组后，接收窗口才能向前相应滑动</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220131095240.png" style="zoom:40%;" />
+
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220131095248.png" style="zoom:45%;" />
+
+<h2 id="3-3-点对点协议PPP"><a href="#3-3-点对点协议PPP" class="headerlink" title="3.3 点对点协议PPP"></a>3.3 点对点协议PPP</h2><p><strong>点对点协议 PPP</strong> （Point-to-Point Protocol）是目前使用得最广泛的数据链路层协议</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202140404.png" style="zoom:25%;" />
+
+<h3 id="3-3-1-PPP协议的特点"><a href="#3-3-1-PPP协议的特点" class="headerlink" title="3.3.1 PPP协议的特点"></a>3.3.1 PPP协议的特点</h3><h4 id="1-PPP协议应满足的要求"><a href="#1-PPP协议应满足的要求" class="headerlink" title="1.PPP协议应满足的要求"></a>1.PPP协议应满足的要求</h4><ol>
+<li>简单</li>
+<li>封装成帧</li>
+<li>透明性</li>
+<li>多种网络层协议</li>
+<li>多种类型链路</li>
+<li>差错检测</li>
+<li>检测连接状态</li>
+<li>最大传输单元</li>
+<li>网络层地址协商</li>
+<li>数据压缩协商</li>
+</ol>
+<h4 id="2-PPP协议的组成"><a href="#2-PPP协议的组成" class="headerlink" title="2.PPP协议的组成"></a>2.PPP协议的组成</h4><ul>
+<li><strong>封装成帧：</strong>对各种协议数据报的封装方法</li>
+<li><strong>链路控制协议 LCP：</strong>用于建立、配置以及测试数据链路的连接</li>
+<li><strong>一套网络控制协议NCPs：</strong>其中的每一个协议支持不同的网络层协议</li>
+</ul>
+<h3 id="3-3-2-PPP协议的帧格式"><a href="#3-3-2-PPP协议的帧格式" class="headerlink" title="3.3.2 PPP协议的帧格式"></a>3.3.2 PPP协议的帧格式</h3><h4 id="1-各字段的意义"><a href="#1-各字段的意义" class="headerlink" title="1.各字段的意义"></a>1.各字段的意义</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202140430.png" style="zoom:33%;" />
+
+<ul>
+<li>标志（Flag）字段：PPP 帧的定界符，取值为<code>0x7E</code></li>
+<li>地址（Address）字段：取值为<code>0xFF</code>，预留（目前没有什么作用）</li>
+<li>控制（Control）字段：取值为<code>0x03</code>，预留（目前没有什么作用）</li>
+<li>协议（Protocol）字段：指明帧的数据部分送交给哪个协议处理<ul>
+<li>取值为<code>0x0021</code>表示：帧的数据部分为 IP 数据报</li>
+<li>取值为<code>0xC021</code>表示：帧的数据部分为 LCP 分组</li>
+<li>取值为<code>0x8021</code>表示：帧的数据部分为 NCP 分组</li>
+</ul>
+</li>
+<li>帧检验序列（Frame Check Sequence）字段：CRC 计算出的校验位</li>
+</ul>
+<h4 id="2-字节填充"><a href="#2-字节填充" class="headerlink" title="2.字节填充"></a>2.字节填充</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202140459.png" style="zoom:33%;" />
+
+
+
+<p>发送方的处理：</p>
+<ul>
+<li>出现的每一个<code>7E</code>（PPP 帧定界符）字节转变成2字节序列：<code>7D5E</code></li>
+<li>出现的每一个<code>7D</code>（转义字符）字节转变成2字节序列：<code>7D5D</code></li>
+<li>出现的每一个 ASCII 码控制字符（数值小于<code>0x20</code>的字符）则在该字符前插入一个<code>7D</code>字节，同时将该字符的编码加上<code>0x20</code></li>
+</ul>
+<h4 id="3-零比特填充"><a href="#3-零比特填充" class="headerlink" title="3.零比特填充"></a>3.零比特填充</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202140441.png" style="zoom:33%;" />
+
+<h3 id="3-3-3-PPP协议的工作状态"><a href="#3-3-3-PPP协议的工作状态" class="headerlink" title="3.3.3 PPP协议的工作状态"></a>3.3.3 PPP协议的工作状态</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202140539.png" style="zoom:33%;" />
+
+<ul>
+<li><p>PPP 链路的起始和终止状态永远是“<strong>链路静止</strong>”（Link Dead）状态，这时在用户个人电脑和 ISP 的路由器之间并不存在物理层的连接</p>
+</li>
+<li><p>当用户个人电脑通过调制解调器呼叫路由器时，路由器就能够检测到调制解调器发出的载波信号。在双方建立了物理层连接后， PPP 就进入“<strong>链路建立</strong>”（Link Establish）状态，其目的是建立链路层的 LCP 连接</p>
+</li>
+<li><p>这时 LCP 开始协商一些配置选项，即发送 LCP 的<strong>配置请求帧</strong>（Configure-Request）。这是 个 PPP 帧，其协议字段置为 LCP 对应的代码，而信息字段包含特定的配置请求。链路的另一端可以发送以下几种响应中的一种：</p>
+<ul>
+<li><strong>配置确认帧</strong>（Configure-Ack）：所有选项都接受</li>
+<li><strong>配置否认帧</strong>（Configure-Nak）：所有选项都理解但不能接受</li>
+<li><strong>配置拒绝帧</strong>（Configure-Reject）：选项有的无法识别或不能接受，需要协商</li>
+</ul>
+</li>
+<li><p>LCP 配置选项包括链路上的最大帧长、所使用的<strong>鉴别协议</strong>（authentication protocol）的规约，以及不使用 PPP 帧中的地址和控制字段</p>
+</li>
+<li><p>协商结束后双方就建立了 LCP 链路，接着就进入“<strong>鉴别</strong>”（Authenticate）状态。在这一状态，只允许传送 LCP 协议的分组、鉴别协议的分组以及监测链路质量的分组</p>
+<ul>
+<li>若使用<strong>口令鉴别协议 PAP</strong> （Password Authentication Protocol），则需要发起通信的一方发送身份标识符和口令。系统可允许用户重试若干次</li>
+<li>如果需要有更好的安全性，则可使用更加复杂的<strong>口令握手鉴别协议 CHAP</strong>（Challenge-Handshake Authentication Protocol）</li>
+<li>若鉴别身份失败，则转 到“<strong>链路终止</strong>”（Link Terminate）状态。若鉴别成功，则进入“<strong>网络层协议</strong>”（Network-Layer Protocol）状态</li>
+</ul>
+</li>
+<li><p>在“<strong>网络层协议”</strong>状态，PPP 链路的两端的网络控制协议 NCP 根据网络层的不同协议互相交换网络层特定的网络控制分组</p>
+</li>
+<li><p>当网络层配置完毕后，链路就进入可进行数据通信的“<strong>链路打开</strong>”（Link Open）状态。链路的两个 PPP 端点可以彼此向对方发送分组。两个 PPP 端点还可发送<strong>回送请求</strong> LCP 分组 （Echo-Request）和<strong>回送回答</strong> LCP 分组（Echo-Reply），以检查链路的状态</p>
+</li>
+<li><p>数据传输结束后，可以由链路的一端发出<strong>终止请求</strong> LCP 分组（Terminate-Request）请求终止链路连接，在收到对方发来的<strong>终止确认</strong> LCP 分组Terminate-Ack）后，转到“<strong>链路终止</strong>”状态。如果链路出现故障，也会从“<strong>链路打开</strong>”状态转到“<strong>链路终止</strong>”状态。当调制解调器的载波停止后，则回到<strong>“链路静止</strong>”状态</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220202140523.png" style="zoom:38%;" />
+
+<h2 id="3-4-使用广播信道的数据链路层"><a href="#3-4-使用广播信道的数据链路层" class="headerlink" title="3.4 使用广播信道的数据链路层"></a>3.4 使用广播信道的数据链路层</h2><h3 id="3-4-1-局域网的数据链路层"><a href="#3-4-1-局域网的数据链路层" class="headerlink" title="3.4.1 局域网的数据链路层"></a>3.4.1 局域网的数据链路层</h3><ul>
+<li><p>局域网的主要优点：</p>
+<ol>
+<li><p>具有广播功能，从一个站点可很方便地访问全网。局域网上的主机可共享连接在局域网上的各种硬件和软件资源</p>
+</li>
+<li><p>便于系统的扩展和逐渐演变，各设备的位置可灵活调整和改变</p>
+</li>
+<li><p>提高了系统的可靠性（reliability）、可用性（availability）和生存性（survivability）</p>
+</li>
+</ol>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220204161554.png" style="zoom:33%;" />
+
+<ul>
+<li>共享信道要着重考虑的一个问题就是如何协调多个发送和接收站点对一个共享传输媒体对占用，即<strong>媒体接入控制 MAC</strong>（medium access control）。这在技术上有两种方法：<ul>
+<li><strong>静态划分信道</strong>，如频分复用、时分复用、波分复用和码分复用等。用户只要分配到了信道就不会和其他用户发生冲突。但这种划分信道的方法代价较高，不适合于局域网使用</li>
+<li><strong>动态媒体接入控制</strong>，它又称为<strong>多点接入</strong>（multiple access），其特点是信道并非在用户通信时固定分配给用户。这里又分为以下两类：<ul>
+<li><strong>随机接入：</strong>特点是所有的用户可随机地发送信息。但如果恰巧有两个或更多的用户在同一时刻发送信息，那么在共享媒体上就要产生碰撞（即发生了冲突），使得这些用户的发送都失败。因此，必须有解决碰撞的网络协议</li>
+<li><strong>受控接入：</strong>特点是用户不能随机地发送信息而必须服从一定的控制。这类的典型代表有分散控制的令牌环局域网和集中控制的多点线路<strong>探询</strong>（polling）， 或称为<strong>轮询</strong>。受控接入目前在局域网中使用得较少</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220204161612.png" style="zoom:33%;" />
+
+<h3 id="3-4-2-CSMA-x2F-CD协议"><a href="#3-4-2-CSMA-x2F-CD协议" class="headerlink" title="3.4.2 CSMA&#x2F;CD协议"></a>3.4.2 CSMA&#x2F;CD协议</h3><ul>
+<li><p>CSMA&#x2F;CD，意思是<strong>载波监听多点接入&#x2F;碰撞检测</strong>（Carrier Sense Multiple Access with Collision Detection）</p>
+<ul>
+<li><strong>多点接入：</strong>说明这是总线型网络，许多计算机以多点接入的方式连接在一根总线上，竞争使用总线</li>
+<li><strong>载波监听：</strong>每个站在发送帧之前先要检测一下总线上是否有其他站点在发送帧（“先听后说”）<ul>
+<li>若检测到总线空闲96比特时间，则发送这个帧</li>
+<li>若检测到总线忙，则继续检测并等待总线转为空闲96比特时间，然后发送这个帧</li>
+</ul>
+</li>
+<li>碰撞检测：每一个正在发送帧的站边发送变检测碰撞（“边说边听”）<ul>
+<li>一旦发现总线上出现碰撞，则立即停止发送，退避一段随机事件后再次发送（“一旦冲突，立即停说，等待时机，重新再说”）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>争用期（碰撞窗口）：将总线上的单程端到端传播时延记为 $\tau$ ，端到端往返传播时延即为 $2\tau$</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220204161642.png" style="zoom:43%;" />
+
+<ul>
+<li>主机最多经过 $2\tau$（即 $\delta\to 0$）的时长就可检测到本次发送是否遭受了碰撞</li>
+<li>以太网的端到端往返传播时延 $2\tau$ 称为<strong>争用期</strong>或<strong>碰撞窗口</strong></li>
+<li><strong>经过争用期这段时间还没有检测到碰撞，才能肯定这次发送不会发送碰撞</strong></li>
+<li>每个主机在自己发送帧之后的一小段时间内，存在着遭遇碰撞的可能性。这一小段时间是不确定的，它取决于另一个发送帧的主机到本主机的距离，但不会超过总线的端到端往返传播时延，即一个争用期时间</li>
+<li>显然，在以太网中发送帧的主机越多，端到端往返传播时延越大，发生碰转的概率就越大。因此，<strong>共享式以太网不能连接太多的主机，使用的总线也不能太长</strong></li>
+</ul>
+</li>
+<li><p><strong>以太网规定最小帧长为64字节</strong>，即512比特（512比特时间即为争用期）</p>
+<ul>
+<li>如果要发送的数据非常少，那么必须加入一些填充字节，使帧长不小于64字节</li>
+</ul>
+</li>
+<li><p>以太网的<strong>最小帧长确保了主机可在帧发送完成之前就检测到该帧的发送过程中是否遭遇了碰撞</strong></p>
+<ul>
+<li>如果在争用期（共发送64字节）没有检测到碰撞，那么后续发送到数据就一定不会发生碰撞</li>
+<li>如果在争用期内检测到碰撞，就立即中止发送，这时已发送出去的数据一定小于64字节，因此，<strong>凡长度小于64字节的帧都是由于碰撞而异常中止的无效帧</strong></li>
+</ul>
+</li>
+<li><p>以太网使用<strong>截断二进制指数退避</strong>（truncated binary exponential backoff）算法来确定碰撞后重传的时机</p>
+<ul>
+<li>$\mbox{退避时间}&#x3D;\mbox{基本退避时间} \times \mbox{随机数}, r$<ul>
+<li>基本退避时间为争用期 $2\tau$</li>
+<li>随机数 $r$ 从离散的整数集合 ${0,1,\cdots,2^k-1}$ 中随机选出一个数， $k&#x3D;\min{\mbox{重传次数},10}$</li>
+</ul>
+</li>
+<li>若连续发生多次碰撞，就表明可能有较多的主机参与竞争信道。但使用上述退避算法可<strong>使重传需要推迟的平均时间随重传次数而增大</strong>（这也称为<strong>动态退避</strong>），因而减小碰撞的概率，有利于整个系统的稳定</li>
+<li><strong>当重传达16次仍不能成功时</strong>，表示同时打算发送帧的主机太多，以至于连续发生碰撞，则<strong>丢弃该帧</strong>，并向高层报告</li>
+</ul>
+</li>
+<li><p>以太网还采取一种<strong>强化碰撞</strong>的机制：当发送数据的站一旦发现发生了碰撞时，除了立即停止发送数据外，还要再继续发送32比特或48比特的<strong>人为干扰信号</strong>（jamming signal），以便让所有用户都知道现在已经发生了碰撞</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220204161700.png" style="zoom:40%;" />
+
+<p><strong>CSMA&#x2F;CD 协议的要点归纳如下：</strong></p>
+<ol>
+<li><p>准备发送：适配器从网络层获得一个分组，加上以太网的首部和尾部，组成以太网帧，放入适配器的缓存中。但在发送之前，必须先检测信道。</p>
+</li>
+<li><p>检测信道：若检测到信道忙，则应不停地检测，一直等待信道转为空闲。若检测到信道空闲，并在 96 比特时间内信道保持空闲（保证了帧间最小间隔），就发送这个帧。</p>
+</li>
+<li><p>在发送过程中仍不停地检测信道，即网络适配器要边发送边监听。这里只有两种可能性:</p>
+<ul>
+<li>发送成功：在争用期内一直未检测到碰撞。这个帧肯定能够发送成功。发送完毕后，其他什么也不做。然后回到1</li>
+<li>发送失败：在争用期内检测到碰撞。这时立即停止发送数据，并按规定发送人为干扰信号。适配器接着就执行指数退避算法，等待 $r$ 倍 512 比特时间后，返回到步骤2，继续检测信道。但若重传达16次仍不能成功，则停止重传而向上报错</li>
+</ul>
+</li>
+</ol>
+<p>以太网每发送完一帧，一定要把已发送的帧暂时保留一下。如果在争用期内检测出发生了碰撞，那么还要在推迟一段时间后再把这个暂时保留的帧重传一次。</p>
+<p><strong>帧发送流程：</strong></p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220204172541.svg"></p>
+<p><strong>帧接收流程：</strong></p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20220204172857.svg"></p>
+<h3 id="3-4-3-使用集线器的星形拓扑"><a href="#3-4-3-使用集线器的星形拓扑" class="headerlink" title="3.4.3 使用集线器的星形拓扑"></a>3.4.3 使用集线器的星形拓扑</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203131605641.png" alt="3.19" style="zoom:30%;" />
+
+<p>集线器（hub）的一些特点如下：</p>
+<ul>
+<li><strong>使用集线器的以太网在逻辑上仍是一个总线网，各站共享逻辑上的总线，使用的还是 CSMA&#x2F;CD 协议</strong>（更具体些说，是各站中的适配器执行 CSMA&#x2F;CD 协议）。网络中的各站必须竞争对传输媒体的控制，并且<strong>在同一时刻至多只允许一个站发送数据</strong></li>
+<li>一个集线器有许多接口，每个接口通过 RJ-45 插头用两对双绞线与一台计算机上的适配器相连，一个集线器很像一个<strong>多接口的转发器</strong></li>
+<li>集线器工作在<strong>物理层</strong>，它的每个接口仅仅简单地<strong>转发比特</strong>，<strong>不进行碰撞检测</strong></li>
+<li><strong>集线器一般都有少量的容错能力和网络管理功能</strong>。例如，若网络中某个网卡出了故障，不停地在发送帧，此时集线器可以检测到这个问题，在内部断开与出故障网卡的连线，使整个以太网仍能正常工作</li>
+</ul>
+<h3 id="3-4-4-以太网的信道利用率"><a href="#3-4-4-以太网的信道利用率" class="headerlink" title="3.4.4 以太网的信道利用率"></a>3.4.4 以太网的信道利用率</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203131614880.png" alt="3.21" style="zoom:33%;" />
+
+<p>考虑上图的以太网信道被占用的情况</p>
+<ul>
+<li>一个站在发送帧时出现碰撞，经过一个争用期 $2 \tau$ 后，可能又出现了碰撞，这样经过若干个争用期后，一个站发送成功了</li>
+<li>假定发送帧需要的时间是 $T_0$ ，等于帧长除以发送速率</li>
+<li>考虑在最极端情况下，发送站在传输媒体的一端，当发送站发送完最后一个比特是，这个比特在在以太网上传播需要的时间为 $\tau$ </li>
+<li>所以必须在经过时间 $T_0 + \tau $ 后以太网的媒体才完全进入空闲状态，允许其他站发送数据</li>
+</ul>
+<p>定义参数 $a$ 为以太网单程端到端时延 $\tau$ 与帧的发送时间 $T_0$ 之比<br>$$<br>a &#x3D; \frac{\tau}{T_0}<br>$$</p>
+<ul>
+<li>参数 $a$ 越大，表明争用期所占的比例越大，这就使得每发生一次碰撞就浪费了不少的信道资源，使得信道利用率明显降低</li>
+<li>当数据率一定时，<strong>以太网的连线的长度受到限</strong>制，同时<strong>以太网的帧长不能太短</strong></li>
+</ul>
+<p>以太网极限信道利用率 $S_{max}$ 为<br>$$<br>S_{\mathrm{max}} &#x3D; \frac{T_0}{T_0 + \tau} &#x3D; \frac{1}{1+a}<br>$$</p>
+<ul>
+<li>只有当参数 $a$ 远小于 1 才能得到尽可能高的极限信道利用率</li>
+</ul>
+<h3 id="3-4-5-以太网的MAC层"><a href="#3-4-5-以太网的MAC层" class="headerlink" title="3.4.5 以太网的MAC层"></a>3.4.5 以太网的MAC层</h3><h4 id="1-MAC层的硬件地址"><a href="#1-MAC层的硬件地址" class="headerlink" title="1. MAC层的硬件地址"></a>1. MAC层的硬件地址</h4><ul>
+<li><p>当多个主机连接在同一个广播信道上，要想实现两个主机之间的通信，则每个主机都必须有一个唯一的标识，即一个数据链路层地址</p>
+</li>
+<li><p>在每个主机发送的<strong>帧中必须携带标识发送主机和接收主机的地址</strong>。由于这类地址是用于媒体介入控制 MAC（media access control），因此这类地址被称为 <strong>MAC 地址</strong></p>
+<ul>
+<li>MAC 地址一般被固化在网卡（网络适配器）的电可擦可编程只读存储器 EEPROM 中，因此 MAC 地址也被称为<strong>硬件地址</strong></li>
+<li>MAC 地址有时也被称为<strong>物理地址</strong>，但<strong>这并不意味着 MAC 地址属于网络体系结构中的物理层</strong></li>
+</ul>
+</li>
+<li><p>一般情况下，用户主机会包含两个网络适配器：有线局域网适配器（有线网卡）和无线局域网适配器（无线网卡）。每个网络适配器都有一个全球唯一的 MAC 地址。而交换机和路由器往往拥有更多的网络接口，所以会有更多的 MAC 地址。所以，严格来说，<strong>MAC 地址是对网络上各接口的唯一标识，而不是对网络上各设备的唯一标识</strong>。</p>
+</li>
+<li><p>IEEE 802 局域网的 MAC 帧格式</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203132004973.png" alt="3.4.5.1"></p>
+<ul>
+<li>IEEE 的<strong>注册管理机构 RA</strong>（Registration Authority）是局域网全球地址的法定管理机构，负责分配地址字段的 6 个字节中的前三个字节（即高位 24 位）。世界上凡要生产局域网适配器的厂家都必须向 IEEE 购买由这三个字节构成的地址块，称为<strong>组织唯一标识符 OUI</strong>（organizationally unique identifier）</li>
+<li>地址字段中的后三个字节（即低位 24 位）则由厂家自行指派，称为<strong>扩展标识符</strong>（extended identifier），只要保证生产出的适配器没有重复地址即可</li>
+<li>地址字段的第一字节的最低位为 I&#x2F;G（Individual&#x2F;Group）位，当 I&#x2F;G 位为 0 时，地址字段表示一个单个站地址；当 I&#x2F;G 位为 1 时表示组地址，用来进行多播</li>
+<li>地址字段第 1 字节的最低第二位规定为 G&#x2F;L（Global&#x2F;Local） 位。当 G&#x2F;L 位为 0 时是全球管理（保证 在全球没有相同的地址），厂商向 IEEE 购买的 OUI 都属于全球管理。当地址字段的 G&#x2F;L 位为 1 时是本地管理，这时用户可任意分配网络上的地址</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-MAC帧的格式"><a href="#2-MAC帧的格式" class="headerlink" title="2. MAC帧的格式"></a>2. MAC帧的格式</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203132020394.png" alt="3.22" style="zoom:40%;" />
+
+<ul>
+<li><p>以太网 V2的 MAC 帧格式为</p>
+<ul>
+<li>前两个字段分别为6字节长的<strong>目的地址</strong>和<strong>源地址字段</strong></li>
+<li>第三个字端是 2 字节的<strong>类型字段</strong>，用来标志上一层使用的是什么协议，以便把收到的 MAC 帧的数据上交给上一层的这个协议</li>
+<li>第四个字段是数据字段，其长度在 46 到 1500 字节之间（最小长度 64 字节减去 18 字节的首部和尾部就得出数据字段的最小长度 46 字节）</li>
+<li>最后一个字段是 4 字节的<strong>帧检验序列 FCS</strong>（使用 CRC 检验）</li>
+</ul>
+</li>
+<li><p>在以太网 V2 的 MAC 帧格式中，其首部并没有一个帧长度（或数据长度）字段。那么，MAC 子层又怎样知道从接收到的以太网帧中取出多少字节的数据交付上一层协议呢？</p>
+<ul>
+<li>曼彻斯特编码的 一个重要特点就是：在曼彻斯特编码的每一个码元（不管码元是 1 或 0）的正中间一定有一 次电压的转换（从高到低或从低到高）。当发送方把一个以太网帧发送完毕后，就不再发送其他码元了（既不发送 1，也不发送 0）。因此，发送方网络适配器的接口上的电压也就不再变化了。这样，接收方就可以很容易地找到以太网帧的结束位置。在这个位置往前数 4 字节（FCS 字段长度是 4 字节），就能确定数据字段的结束位置</li>
+</ul>
+</li>
+<li><p>当数据字段的长度小于 46 字节时，MAC 子层就会在数据字段的后面加入一个整数字节的填充字段，以保证以太网的 MAC 帧长不小于 64 字节</p>
+<ul>
+<li>上层协议如何知道填充字段的长度呢：当上层使用 IP 协议时，其首部就有一个“总长度”字段。因此，“总长度”加上填充字段的长度，应当等于 MAC 帧数据字段的长度。例如，当 IP 数据报的总长度为 42 字节时，填充字段共有 4 字节。当 MAC 帧把 46 字节的数据上交给 IP 层后，IP 层就把其中最后 4 字节的填充字段丢弃</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-5-拓展的以太网"><a href="#3-5-拓展的以太网" class="headerlink" title="3.5 拓展的以太网"></a>3.5 拓展的以太网</h2><h3 id="3-5-1-在物理层拓展以太网"><a href="#3-5-1-在物理层拓展以太网" class="headerlink" title="3.5.1 在物理层拓展以太网"></a>3.5.1 在物理层拓展以太网</h3><p>如果使用多个集线器，就可以连接成覆盖更大范围的多级星形结构的以太网</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203151041771.png" alt="3.24" style="zoom:43%;" />
+
+<h3 id="3-5-2-在数据链路层拓展以太网"><a href="#3-5-2-在数据链路层拓展以太网" class="headerlink" title="3.5.2 在数据链路层拓展以太网"></a>3.5.2 在数据链路层拓展以太网</h3><h4 id="1-以太网交换机的特点"><a href="#1-以太网交换机的特点" class="headerlink" title="1. 以太网交换机的特点"></a>1. 以太网交换机的特点</h4><ul>
+<li>以太网交换机实质上就是一个<strong>多接口的网桥</strong>，每个接口都可以直接与一台主机或另一个以太网交换机相连，一般都工作在<strong>全双工方式</strong></li>
+<li>以太网交换机具有并行性，能<strong>同时连通多对接口</strong>，使多对主机能同时通信，相互通信的主机都是独<strong>占传输媒体</strong>，<strong>无碰撞地传输数据</strong>（<strong>不使用 CSMA&#x2F;CD 协议</strong>）</li>
+<li>以太网交换机一般都具有多种速率的接口，例如10Mb&#x2F;s、100Mb&#x2F;s、1Gb&#x2F;s和10Gb&#x2F;s接口的多种组合</li>
+<li>以太网交换机工作在<strong>数据链路层</strong>（也包括物理层），它收到帧后，在帧交换表中查找<strong>帧的目的 MAC 地址所对应的接口号</strong>，然后通过该接口转发帧</li>
+<li>以太网交换机是一种即插即用设备，其内部的<strong>帧交换表</strong>是通过<strong>自学习算法</strong>自动地逐渐建立起来的</li>
+<li>帧的转发方式<ul>
+<li>大多以太网交换机采用<strong>存储转发</strong>方式</li>
+<li>一些交换机采用<strong>直通交换</strong>的方式：采用基于硬件的交叉矩阵，交换时延非常小，但不检查帧是否有差错</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203151055252.png" alt="3.25"></p>
+<h4 id="2-以太网交换机的自学习功能"><a href="#2-以太网交换机的自学习功能" class="headerlink" title="2. 以太网交换机的自学习功能"></a>2. 以太网交换机的自学习功能</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203151847444.png" alt="3.25" style="zoom:40%;" />
+
+<p>以上图为例说明以太网交换机是怎样进行自学习的</p>
+<ul>
+<li>A 先向 B 发送一帧，从接口1进入到交换机。交换机收到帧后，先查找交换表，没有查到应从哪个接口转发这个帧</li>
+<li>接着，交换机把这个帧的源地址 A 和接口1写入交换表中，并向除接口1以外的所有接口广播这个帧</li>
+<li>C 和 D 将丢弃这个帧，因为目的地址不对。只 B 才收下这个目的地址正确的帧。这也称为<strong>过滤</strong></li>
+<li>假定接下来 B 通过接口3向 A 发送一帧。交换机查找交换表，发现交换表中的 MAC 地址有 A。表明要发送给 A 的帧应从接口 1 转发</li>
+<li>于是就把这个帧传送到接口 1 转发给 A</li>
+<li>考虑到有时可能要在交换机的接口更换主机，或者主机要更换其网络适配器，这就需要更改交换表中的项目。为此，<strong>在交换表中每个项目都设有一定的有效时间，过期的项目就自动被删除</strong>。用这样的方法保证交换表中的数据都符合当前网络的实际状况。</li>
+</ul>
+<blockquote>
+<p>例：为简单起见，主机 A、B、C、D、E、F、G、H 的 MAC 地址与其主机名称相同，主机间依次入如下通信：B → C、D → A、G → D、E → H、C → B 和 F → G。请给出以太网交换机1，2，3的自学习过程以及各自最终的帧交换表的内容</p>
+</blockquote>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203161043392.png" alt="3.5.2.2.1"></p>
+<p>自学习过程如下：</p>
+<table>
+<thead>
+<tr>
+<th>通信过程</th>
+<th>以太网交换机1</th>
+<th>以太网交换机2</th>
+<th>以太网交换机3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B → C</td>
+<td>登记，盲目转发</td>
+<td>登记，盲目转发</td>
+<td>登记，盲目转发</td>
+</tr>
+<tr>
+<td>D → A</td>
+<td>登记，盲目转发</td>
+<td>登记，盲目转发</td>
+<td>登记，盲目转发</td>
+</tr>
+<tr>
+<td>G → D</td>
+<td>收不到</td>
+<td>登记，明确转发</td>
+<td>登记，明确转发</td>
+</tr>
+<tr>
+<td>E → H</td>
+<td>登记，盲目转发</td>
+<td>登记，盲目转发</td>
+<td>登记，盲目转发</td>
+</tr>
+<tr>
+<td>C → B</td>
+<td>登记，明确转发</td>
+<td>收不到</td>
+<td>收不到</td>
+</tr>
+<tr>
+<td>F → G</td>
+<td>收不到</td>
+<td>收不到</td>
+<td>登记，明确转发</td>
+</tr>
+</tbody></table>
+<p>最终的帧交换表如下：</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203161044242.png" alt="3.5.2.2.2"></p>
+<ul>
+<li>有时为了增加网络的可靠性，在使用以太网交换机组网时，往往会增加一些冗余的链路</li>
+<li>但是冗余链路会形成网络环路，造成广播风暴，主机收到重复的广播帧以及交换机的帧交换表震荡（漂移）等问题</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203151901579.png" alt="3.26" style="zoom:33%;" />
+
+<ul>
+<li>以太网交换机使用生成树协议 STP（spanning tree protocol），可以在增加冗余链路来提高网络可靠性的同时又<strong>避免网络环路带来的各种问题</strong><ul>
+<li>不论交换机之间采用怎样的物理连接，交换机都能<strong>自动计算并构建一个逻辑上没有环路的网络</strong>，其拓扑结构必须是树形的</li>
+<li>最终生成的树形拓扑结构要<strong>确保连通整个网络</strong></li>
+<li>当首次连接交换机或网络物理拓扑发生变化时（有可能是人为改变或故障），交换机都将进行<strong>生成树的重新计算</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-5-3-虚拟局域网"><a href="#3-5-3-虚拟局域网" class="headerlink" title="3.5.3 虚拟局域网"></a>3.5.3 虚拟局域网</h3><ul>
+<li>虚拟局域网 VLAN 是由一些局域网网段构成的与物理位置无关的逻辑组，而这些网段具有某些共同的需求。每一个 VLAN 的帧都有一个明确的标识符，指明发送这个帧的计算机属于哪一个 VLAN</li>
+<li>虚拟局域网只是局域网给用户提供的一种服务，而并不是一种新型局域网</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203151912907.png" alt="3.27" style="zoom:40%;" />
+
+<ul>
+<li><p>在虚拟局域网上的每一个站都可以收到同一个虚拟局域网上的其他成员所发出的广播</p>
+<ul>
+<li>当 $B_1$ 向工作组内成员发送数据时，计算机 $B_2$ 和 $B_3$ 将会收到广播的信息，虽然它们没有和 $B_1$ 连在同一个以太网交换机上</li>
+<li>当 $B_1$ 向工作组内成员发送数据时，计算机 $A_1$，$A_2$ 和 $C_1 $ 都不会收到 $B_1$ 发出的广播信息，虽然它们都与 $B_1$ 连接在同一个以太网交换机上</li>
+</ul>
+</li>
+<li><p>虚拟局域网限制了接收广播信息的计算机数，使得网络不会因传播过多的广播信息（即所谓的“广播风暴”）而引起性能恶化</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203151920196.png" alt="3.28" style="zoom:40%;" />
+
+<ul>
+<li>虚拟局域网协议允许在以太网的帧格式中插入一个 4 字节的标识符，称为 <strong>VLAN 标记</strong>，用来指明发送该帧的计算机属于哪一个虚拟局域网</li>
+<li>插入 VLAN 标记得出的帧称为 802.1Q 帧</li>
+<li>VLAN 标记字段的长度是 4 字节，插入在以太网 MAC 帧的源地址字段和类型字段之间</li>
+<li>VLAN 标记的前两个字节总是设置为 <code>0x8100</code>，称为 IEEE 802.1Q <strong>标记类型</strong></li>
+<li>当数据链路层检测到 MAC 帧的源地址字段后面的两个字节的值是 <code>0x8100</code> 时，就知道现在插入了 4 字节的 VLAN 标记。于是就接着检查后面两个字节的内容。在后面的两个字节中，前 3 位是<strong>用户优先级字段</strong>，接着的一位是<strong>规范格式指示符 CFI</strong>（Canonical Format Indicator），最后的12位是该虚拟局域网<strong>VLAN标识符VID</strong>，它唯一地标志了这个以太网帧属于哪一个 VLAN</li>
+<li>由于用于 VLAN 的以太网帧的首部增加了 4 个字节，因此以太网的最大帧长从原来的 1518 字节（1500 字节的数据加上 18 字节的首部）变为 1522 字节</li>
+</ul>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/06/06/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%B1%82/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第四章 网络层</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/06/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第二章 物理层</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拔丝地瓜</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-text">第三章 数据链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E4%BD%BF%E7%94%A8%E7%82%B9%E5%AF%B9%E7%82%B9%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-text">3.1 使用点对点信道的数据链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%92%8C%E5%B8%A7"><span class="nav-text">3.1.1 数据链路和帧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="nav-text">3.1.2 三个基本问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%B0%81%E8%A3%85%E6%88%90%E5%B8%A7"><span class="nav-text">1.封装成帧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93"><span class="nav-text">2.透明传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B7%AE%E9%94%99%E6%A3%80%E6%B5%8B"><span class="nav-text">3.差错检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93"><span class="nav-text">3.2 可靠传输</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">3.2.1 可靠传输的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-%E5%81%9C%E6%AD%A2-%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AESW"><span class="nav-text">3.2.2 停止-等待协议SW</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-%E5%9B%9E%E9%80%80N%E5%B8%A7%E5%8D%8F%E8%AE%AEGBN"><span class="nav-text">3.2.3 回退N帧协议GBN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-%E9%80%89%E6%8B%A9%E9%87%8D%E4%BC%A0%E5%8D%8F%E8%AE%AESR"><span class="nav-text">3.2.4 选择重传协议SR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E7%82%B9%E5%AF%B9%E7%82%B9%E5%8D%8F%E8%AE%AEPPP"><span class="nav-text">3.3 点对点协议PPP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-PPP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">3.3.1 PPP协议的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-PPP%E5%8D%8F%E8%AE%AE%E5%BA%94%E6%BB%A1%E8%B6%B3%E7%9A%84%E8%A6%81%E6%B1%82"><span class="nav-text">1.PPP协议应满足的要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-PPP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-text">2.PPP协议的组成</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-PPP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F"><span class="nav-text">3.3.2 PPP协议的帧格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%90%84%E5%AD%97%E6%AE%B5%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-text">1.各字段的意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AD%97%E8%8A%82%E5%A1%AB%E5%85%85"><span class="nav-text">2.字节填充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%9B%B6%E6%AF%94%E7%89%B9%E5%A1%AB%E5%85%85"><span class="nav-text">3.零比特填充</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-PPP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81"><span class="nav-text">3.3.3 PPP协议的工作状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E4%BD%BF%E7%94%A8%E5%B9%BF%E6%92%AD%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-text">3.4 使用广播信道的数据链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-%E5%B1%80%E5%9F%9F%E7%BD%91%E7%9A%84%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-text">3.4.1 局域网的数据链路层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-CSMA-x2F-CD%E5%8D%8F%E8%AE%AE"><span class="nav-text">3.4.2 CSMA&#x2F;CD协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-%E4%BD%BF%E7%94%A8%E9%9B%86%E7%BA%BF%E5%99%A8%E7%9A%84%E6%98%9F%E5%BD%A2%E6%8B%93%E6%89%91"><span class="nav-text">3.4.3 使用集线器的星形拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-4-%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87"><span class="nav-text">3.4.4 以太网的信道利用率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-5-%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84MAC%E5%B1%82"><span class="nav-text">3.4.5 以太网的MAC层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-MAC%E5%B1%82%E7%9A%84%E7%A1%AC%E4%BB%B6%E5%9C%B0%E5%9D%80"><span class="nav-text">1. MAC层的硬件地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-MAC%E5%B8%A7%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-text">2. MAC帧的格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E6%8B%93%E5%B1%95%E7%9A%84%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="nav-text">3.5 拓展的以太网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-%E5%9C%A8%E7%89%A9%E7%90%86%E5%B1%82%E6%8B%93%E5%B1%95%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="nav-text">3.5.1 在物理层拓展以太网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-%E5%9C%A8%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E6%8B%93%E5%B1%95%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="nav-text">3.5.2 在数据链路层拓展以太网</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">1. 以太网交换机的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E8%87%AA%E5%AD%A6%E4%B9%A0%E5%8A%9F%E8%83%BD"><span class="nav-text">2. 以太网交换机的自学习功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="nav-text">3.5.3 虚拟局域网</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

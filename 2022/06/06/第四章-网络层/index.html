@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="拔丝地瓜">
+    
+    <title>
+        
+            第四章 网络层 |
+        
+        拔丝地瓜
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/favicon.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                拔丝地瓜
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">第四章 网络层</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拔丝地瓜</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-06 11:28:37</span>
+        <span class="mobile">2022-06-06 11:28</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="第四章-网络层"><a href="#第四章-网络层" class="headerlink" title="第四章 网络层"></a>第四章 网络层</h1><h2 id="4-1-网络层提供的两种服务"><a href="#4-1-网络层提供的两种服务" class="headerlink" title="4.1 网络层提供的两种服务"></a>4.1 网络层提供的两种服务</h2><ul>
+<li><p>面向连接的虚电路服务</p>
+<ul>
+<li><strong>可靠通信由网络来保证</strong></li>
+<li>必须建立<strong>网络层的连接</strong>——<strong>虚电路 VC</strong>（virtual circuit）</li>
+<li>通信双方<strong>沿着已建立的虚电路发送分组</strong></li>
+<li>目的主机的地址仅在连接建立阶段使用，之后每个<strong>分组的首部只需携带一条虚电路的编号</strong>（构成虚电路的每一段链路都有一个虚电路编号）</li>
+<li>这种通信方式如果再使用可靠传输的网络协议，就可使所发送的分组最终正确到达接收方（无差错按序到达、不丢失、不重复）</li>
+<li><strong>通信结束后，需要释放之前所建立的虚电路</strong></li>
+<li>很多广域分组交换网都使用面向连接的虚电路服务。例如，曾经的 X.25 和逐渐过时的帧中继 FR、异步传输模式 ATM 等</li>
+</ul>
+</li>
+<li><p>无连接的数据报服务</p>
+<ul>
+<li><strong>可靠通信应当由用户主机来保证</strong></li>
+<li><strong>不需要建立网络层连接</strong></li>
+<li><strong>每个分组可走不同的路径</strong></li>
+<li>每个分组的<strong>首部必须携带目的主机的完整地址</strong></li>
+<li>这种通信方式所传送的<strong>分组可能误码、丢失、重复和失序</strong></li>
+<li>由于<strong>网络本身不提供端到端的可靠传输服务</strong>，这就使网络中的路由器可以做得比较简单，而且价格低廉（与电信网交换机相比较）</li>
+<li>因特网采用了这种设计思想，也就是<strong>将复杂的网络处理功能置于因特网的边缘（用户主机和其内部的运输层）</strong>，而将相对简单的尽最大努力的分组交付功能置于因特网核心</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203172030720.png" alt="4.1" style="zoom:33%;" />
+
+<p>虚电路服务与数据报功能的比较</p>
+<table>
+<thead>
+<tr>
+<th>对比的方面</th>
+<th>虚电路服务</th>
+<th>数据报服务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>思路</td>
+<td>可靠通信应当由网络来保证</td>
+<td>可靠通信应当由用户主机来保证</td>
+</tr>
+<tr>
+<td>连接的建立</td>
+<td>必须建立网络连接</td>
+<td>不需要建立网络连接</td>
+</tr>
+<tr>
+<td>终点地址</td>
+<td>仅在连接建立阶段使用，每个分组使用短的虚电路号</td>
+<td>每个分组都有终点的完整地址</td>
+</tr>
+<tr>
+<td>分组的转发</td>
+<td>属于同一条虚电路的分组均按照同一路由进行转发</td>
+<td>每个分组独立选择路由进行转发</td>
+</tr>
+<tr>
+<td>当结点出故障时</td>
+<td>所有通过出故障的结点的虚电路均不能工作</td>
+<td>出故障的结点可能会丢失分组，一些路由可能会发生变化</td>
+</tr>
+<tr>
+<td>分组的顺序</td>
+<td>总是按发送顺序到达终点</td>
+<td>到达终点的时间不一定按发送顺序</td>
+</tr>
+<tr>
+<td>端到端的差错处理和流量控制</td>
+<td>可以由网络负责，也可以由用户主机负责</td>
+<td>由用户主机负责</td>
+</tr>
+</tbody></table>
+<p><strong>由于 TCP&#x2F;IP 体系结构的因特网的网际层提供的是简单灵活的、无连接的、尽最大努力交付的数据报服务，因此本章主要围绕网际层如何传送 IP 数据报这个主题进行讨论</strong></p>
+<h2 id="4-2-网际协议IP"><a href="#4-2-网际协议IP" class="headerlink" title="4.2 网际协议IP"></a>4.2 网际协议IP</h2><p>网际协议 IP 是 TCP&#x2F;IP 体系中两个最主要的协议之一，与 IP 协议配套使用的还有三个协议</p>
+<ul>
+<li><strong>地址解析协议 ARP</strong>（Address Resolution Protocol）</li>
+<li><strong>网际控制报文协议 ICMP</strong>（Internet Control Message Protocol）</li>
+<li><strong>网际组管理协议 IGMP</strong>（Internet Group Management Protocol）</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203172047090.png" alt="4.2" style="zoom:25%;" />
+
+<h3 id="4-2-1-虚拟互连网络"><a href="#4-2-1-虚拟互连网络" class="headerlink" title="4.2.1 虚拟互连网络"></a>4.2.1 虚拟互连网络</h3><ul>
+<li>下图（a）表示有许多计算机网络通过一些路由器进行互连。由于参加互连的计算机网络都使用相同的<strong>网际协议 IP</strong>，因此可以把互连以后的计算机网络看成如图（b）所示的一个<strong>虚拟互连网络</strong></li>
+<li>虚拟互连网络也就是逻辑互连网络，就是互连起来的各种物理网络的异构性本来是客观存在的，但是我们利用 IP 协议就可以使这些性能各异的网络<strong>在网络层上看起来好像是一个统一的网络</strong></li>
+<li>当 IP 网上的主机进行通信时，就好像在一个单个网络上通信一样，它们看不见互连的各网络的具体异构细节</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203172050335.png" alt="4.3" style="zoom:40%;" />
+
+
+
+<p>只从网络层考虑问题，IP 数据报在下图中的传播路径为<br>$$<br>H_1 \to R_1 \to R_2 \to R_3 \to R_4 \to R_5 \to H_2<br>$$<br><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203172051967.png" alt="4.4" style="zoom:38%;" /></p>
+<h3 id="4-2-2-分类的IP地址"><a href="#4-2-2-分类的IP地址" class="headerlink" title="4.2.2 分类的IP地址"></a>4.2.2 分类的IP地址</h3><h4 id="1-IP地址及其表示方法"><a href="#1-IP地址及其表示方法" class="headerlink" title="1. IP地址及其表示方法"></a>1. IP地址及其表示方法</h4><p>IP 地址的编址方法共经过了三个历史阶段</p>
+<ul>
+<li><p><strong>分类的 IP 地址</strong>。这是最基本的编址方法，在1981年就通过了相应的标准协议</p>
+</li>
+<li><p><strong>子网的划分</strong>。这是对最基本的编址方法的改进，其标准 RFC950 在 1985 年通过</p>
+</li>
+<li><p><strong>构成超网</strong>。这是比较新的无分类编址方法。1993年提出后很快就得到推广应用</p>
+</li>
+</ul>
+<p>本节只讨论最基本的分类的 IP 地址：</p>
+<p>所谓“分类的 IP 地址”就是将 IP 地址划分为若干个固定类，每一类地址都由两个固定长度的字段组成，其中第一个字段是<strong>网络号（net-id）</strong>，它标志主机（或路由器）所连接到的网络。一个网络号在整个互联网范围内必须是唯一的。第二个字段是<strong>主机号（host-id）</strong>，它标志该主机（或路由器）。这种两级的 IP 地址可以记为<br>$$<br>\mathrm{IP} \mbox{地址}\ ::&#x3D;\ {\mbox{&lt;网络号&gt;,&lt;主机号&gt;}}<br>$$<br><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203172057469.png" alt="4.5" style="zoom:40%;" /></p>
+<ul>
+<li><p>A 类、B 类和 C 类地址的网络号字段分别为 1 个、2 个 和 3 个字节长，而在网络号字段的最前面有 1$\sim$3 位的<strong>类别位</strong>，其数值分别规定为 <code>0</code>，<code>10</code> 和 <code>110</code></p>
+</li>
+<li><p>A 类、B 类和 C 类地址的主机号字段分别为 3 个、2 个和 1 个字节长</p>
+</li>
+<li><p>D 类地址（前 4 位是 <code>1110</code>）用于<strong>多播</strong></p>
+</li>
+<li><p>E 类地址（前 4 位是 <code>1111</code> ）保留为以后使用</p>
+</li>
+<li><p>只有 A 类、B 类和 C 类地址可以分配给网络中的主机或路由器的各接口</p>
+</li>
+<li><p>主机号为“全 0”的地址是网络地址，表示该 IP 地址是“本主机”所连接到的单个网络地址，不能分配给主机或路由器的各接口</p>
+</li>
+<li><p>主机号为“全 1”的地址是广播地址，表示该网络上的所有主机，不能分配给主机或路由器的各接口</p>
+</li>
+</ul>
+<h4 id="2-常用的三种类别的IP地址"><a href="#2-常用的三种类别的IP地址" class="headerlink" title="2. 常用的三种类别的IP地址"></a>2. 常用的三种类别的IP地址</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203181014587.png" alt="4.2.2.1" style="zoom:33%;" />
+
+<ul>
+<li>A 类地址的网络号字段占 1 个字节，只有 7 位可供使用（该字段的第一位已固定为<code>0</code>）<ul>
+<li>网络号字段为全 0（<code>00000000</code>）表示“本网络”，为保留字段，不指派</li>
+<li>网络号为 127（<code>01111111</code>）保留作为本地软件<strong>环回测试</strong>本主机的进程之间的通信，不指派<ul>
+<li>最小的本地环回测试地址为 <code>127.0.0.1</code></li>
+<li>最大的本地环回测试地址为 <code>127.255.255.254</code></li>
+</ul>
+</li>
+<li>最后一个可指派的网络号为 <code>126</code>，网络地址为 <code>126.0.0.0</code></li>
+<li>可指派的网络数量为 $2^7 -2&#x3D;126$<ul>
+<li>减 2 的原因是去掉最小网络号 <code>0</code> 和最大网络号 <code>127</code></li>
+</ul>
+</li>
+<li>每个网络中分配的 IP 地址数量为 $2^{24} - 2 &#x3D; 16777214$<ul>
+<li>减 2 的原因是去掉主机号全 0 的网络地址和主机号全 1 的广播地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203181014023.png" alt="4.2.2.2" style="zoom:33%;" />
+
+<ul>
+<li>B 类地址的网络号字段有 2 个字节，但前面两位（<code>10</code>）已经固定了，只剩下14位可以进行分配<ul>
+<li>最小网络号也是第一个可指派的网络号为 <code>128.0</code>，网络地址为 <code>128.0.0.0</code></li>
+<li>最大网络号也是最后一个可指派的网络号为 <code>191.255</code>，网络地址为 <code>191.255.0.0</code></li>
+<li>可指派的网络数量为 $2^{14} &#x3D; 16384$</li>
+<li>每个网络中分配的 IP 地址数量为 $2^{16} - 2 &#x3D; 65534$<ul>
+<li>减 2 的原因是去掉主机号全 0 的网络地址和主机号全 1 的广播地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203181015641.png" alt="4.2.2.3" style="zoom:33%;" />
+
+<ul>
+<li>C 类地址有 3 个字节的网络号字段，最前面的 3 位是（<code>110</code>），还有21位可以进行分配<ul>
+<li>最小网络号也是第一个可指派的网络号为 <code>192.0.0</code>，网络地址为 <code>192.0.0.0</code></li>
+<li>最大网络号也是最后一个可指派的网络号为 <code>223.255.255</code>，网络地址为 <code>223.255.255.0</code></li>
+<li>可指派的网络数量为 $2^{21} &#x3D; 2097152$</li>
+<li>每个网络中分配的 IP 地址数量为 $2^{8} - 2 &#x3D; 254$<ul>
+<li>减 2 的原因是去掉主机号全 0 的网络地址和主机号全 1 的广播地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>IP 地址的指派范围为</p>
+<table>
+<thead>
+<tr>
+<th>网络类别</th>
+<th>最大可指派的网络数</th>
+<th>第一个可指派的网络号</th>
+<th>最后一个可指派的网络号</th>
+<th>每个网络中的最大主机数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>126（$2^7-2$）</td>
+<td><code>1</code></td>
+<td><code>126</code></td>
+<td>16777214</td>
+</tr>
+<tr>
+<td>B</td>
+<td>16384（$2^{14}$）</td>
+<td><code>128.1</code></td>
+<td><code>191.255</code></td>
+<td>65534</td>
+</tr>
+<tr>
+<td>C</td>
+<td>2097152（$2^{21}$）</td>
+<td><code>192.0.1</code></td>
+<td><code>223.255.255</code></td>
+<td>254</td>
+</tr>
+</tbody></table>
+<p>一般不使用的特殊 IP 地址为</p>
+<table>
+<thead>
+<tr>
+<th>网络号</th>
+<th>主机号</th>
+<th>源地址使用</th>
+<th>目的地址使用</th>
+<th>代表的意思</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>可以</td>
+<td>不可</td>
+<td>在本网络上的本主机</td>
+</tr>
+<tr>
+<td>0</td>
+<td>host-id</td>
+<td>可以</td>
+<td>不可</td>
+<td>在本网络上的某台主机 host-id</td>
+</tr>
+<tr>
+<td>全 1</td>
+<td>全 1</td>
+<td>不可</td>
+<td>可以</td>
+<td>只在本网络上进行广播（各路由器均不转发）</td>
+</tr>
+<tr>
+<td>net-id</td>
+<td>全 1</td>
+<td>不可</td>
+<td>可以</td>
+<td>对 net-id 上的所有主机进行广播</td>
+</tr>
+<tr>
+<td>127</td>
+<td>非全 0 或全 1 的任何数</td>
+<td>可以</td>
+<td>可以</td>
+<td>用于本地软件环回测试</td>
+</tr>
+</tbody></table>
+<p>IP 地址具有以下一些重要特点</p>
+<ul>
+<li><p>每一个 IP 地址都由网络号和主机号两部分组成，IP 地址是一种<strong>分等级的地址结构</strong></p>
+<ul>
+<li>IP 地址管理机构在分配 IP 地址时<strong>只分配网络号</strong>（第一级），而剩下的主机号（第二级）则由得到该网络号的单位自行分配。这样就方便了 IP 地址的管理</li>
+<li>路由器<strong>仅根据目的主机所连接的网络号来转发分组</strong>（而不考虑目的主机号），这样就可以使路由表中的项目数大幅度减少，从而<strong>减小了路由表所占的存储空间以及查找路由表的时间</strong></li>
+</ul>
+</li>
+<li><p>IP 地址是标志一台主机（或路由器）和一条链路的<strong>接口</strong></p>
+</li>
+<li><p>一个网络是指具有相同网络号 net-id 的主机的集合，因此，<strong>用转发器或网桥连接起来的若干个局域网仍为一个网络</strong></p>
+</li>
+<li><p>在 IP 地址中，所有分配到网络号的网络都是<strong>平等</strong>的。所谓平等，是指互联网同等对待每一个 IP 地址。</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203181047972.png" alt="4.7" style="zoom:40%;" />
+
+<h3 id="4-2-3-IP地址与硬件地址"><a href="#4-2-3-IP地址与硬件地址" class="headerlink" title="4.2.3 IP地址与硬件地址"></a>4.2.3 IP地址与硬件地址</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203221001937.png" alt="4.9" style="zoom:35%;" />
+
+<ul>
+<li>数据包转发过程中<strong>源 IP 地址和目的 IP 地址保持不变</strong></li>
+<li>数据包转发过程中<strong>源 MAC 地址和目的 MAC 地址逐个链路（或逐个网络）改变</strong></li>
+</ul>
+<h3 id="4-2-4-地址解析协议ARP"><a href="#4-2-4-地址解析协议ARP" class="headerlink" title="4.2.4 地址解析协议ARP"></a>4.2.4 地址解析协议ARP</h3><ul>
+<li>地址解析协议 ARP 用来解决已经知道一个机器（主机或路由器）的 IP 地址，需要找出其相应的硬件地址的问题</li>
+<li>地址解析协议 ARP 解决这个问题的方法是在主机 ARP 高速缓存中存放一个从 IP 地址到硬件地址的映射表，并且这个映射表还经常动态更新（新增或超时删除）</li>
+<li>每一台主机都设有一个 <strong>ARP 高速缓存</strong>（ARP cache），里面有本局域网上的各主机和路由器的 IP 地址到硬件地址的映射表</li>
+</ul>
+<p>ARP 映射表的构造过程如下：</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203221020537.png" alt="4.11" style="zoom:35%;" />
+
+<ul>
+<li><p>当主机 A 要向<strong>本局域网</strong>上的某台主机 B 发送 IP 数据报时，就先在其 ARP 高速缓存中查看有无主机 B 的 IP 地址。如有，就在 ARP 高速缓存中查出其对应的硬件地址，再把这个硬件地址写入 MAC 帧，然后通过局域网把该 MAC 帧发往此硬件地址</p>
+</li>
+<li><p>也有可能查不到主机 B 的 IP 地址的项目。这可能是主机 B 才入网，也可能是主机 A 刚刚加电，其高速缓存还是空的。在这种情况下，主机 A 就自动运行 ARP，然后按以下步骤找出主机 B 的硬件地址：</p>
+<ul>
+<li><strong>ARP 进程在本局域网上广播发送一个ARP 请求分组</strong>，其主要内容是：“我的 IP 地址是 209.0.0.5，硬件地址是 00-00-C0-15-AD-18。我想知道 IP 地址为 209.0.0.6 的主机的硬件地址。”</li>
+<li><strong>在本局域网上的所有主机上运行的 ARP 进程都收到此 ARP 请求分组</strong></li>
+<li><strong>主机 B 的 IP 地址与 ARP 请求分组中要查询的 IP 地址一致，就收下这个 ARP 请求分组，并向主机 A 发送 ARP 响应分组（单播）</strong>，其主要内容是：“我的 IP 地址是 209.0.0.6，我的硬件地址是 08-00-2B-00-EE-0A。”，同时<strong>将主机 A 的地址映射关系写入自己的 ARP 高速缓存中</strong>。其余的所有主机的 IP 地址都与 ARP 请求分组中要查询的 IP 地址不一致，因此都不理睬这个 ARP 请求分组</li>
+<li><strong>主机 A 收到主机 B 的 ARP 响应分组后，就在其 ARP 高速缓存中写入主机 B 的 IP 地址到硬件地址的映射</strong></li>
+</ul>
+</li>
+<li><p>ARP 对保存在高速缓存中的每一个映射地址项目都设置<strong>生存时间</strong>，凡超过生存时间的项目就从高速缓存中删除掉</p>
+</li>
+</ul>
+<p>使用 ARP 的四种典型情况：</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203221029516.png" alt="4.12" style="zoom:43%;" />
+
+<ol>
+<li>发送方是主机（如 $H_1$），要把 IP 数据报发送到同一个网络上的另一台主机（如 $H_2$）。这时 $H_1$ 发送 ARP 请求分组（在网 1 上广播），找到目的主机 $H_2$ 的硬件地址。</li>
+<li>发送方是主机（如 $H_1$），要把 IP 数据报发送到另一个网络上的一台主机（如 $H_3$ 或 $H_4$）。这时 $H_1$ 发送 ARP 请求分组（在网 1 上广播），找到网 1 上的一个路由器 $R_1$ 的硬件地址。剩下的工作由路由器 $R_1$ 来完成。$R_1$ 要做的事情是下面的3或4。</li>
+<li>发送方是路由器（如 $R_1$），要把 IP 数据报转发到与 $R_1$ 连接在同一个网络（网 2）上的主机（如 $H_3$）。这时 $R_1$ 发送 ARP 请求分组（在网 2 上广播），找到目的主机 $H_3$ 的硬件地址。</li>
+<li>发送方是路由器（如 $R_1$），要把 IP 数据报转发到网 3 上的一台主机（如 $H_4$）。$H_4$ 与 $R_1$ 不是连接在同一个网络上。这时 $R_1$ 发送 ARP 请求分组（在网 2 上广播），找到连接在网 2 上的一个路由器 $R_2$ 的硬件地址。剩下的工作由这个路由器 $R_2$ 来完成。</li>
+</ol>
+<h3 id="4-2-5-IP数据报的格式"><a href="#4-2-5-IP数据报的格式" class="headerlink" title="4.2.5 IP数据报的格式"></a>4.2.5 IP数据报的格式</h3><p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203241406820.png" alt="4.13"></p>
+<h4 id="1-IP数据报首部的固定部分中的各字段"><a href="#1-IP数据报首部的固定部分中的各字段" class="headerlink" title="1. IP数据报首部的固定部分中的各字段"></a>1. IP数据报首部的固定部分中的各字段</h4><h5 id="（1）版本"><a href="#（1）版本" class="headerlink" title="（1）版本"></a>（1）版本</h5><p>占 4 比特，表示 IP 协议的版本，通信双方使用的 IP 协议的版本必须一致，目前广泛使用的 IP 协议版本号为4（即 IPv4）</p>
+<h5 id="（2）首部长度"><a href="#（2）首部长度" class="headerlink" title="（2）首部长度"></a>（2）首部长度</h5><p>占 4 比特，表示 IP 数据报首部的长度，该字段所表示数的单位是 32 位字（即 4 字节）</p>
+<ul>
+<li>最小十进制取值为 5，表示 IP 数据报首部只有 20 字节固定部分</li>
+<li>最大十进制取值为 15，表示 IP 数据报首部包含 20 字节固定部分和最大 40 字节的可变部分</li>
+</ul>
+<h5 id="（3）区分服务"><a href="#（3）区分服务" class="headerlink" title="（3）区分服务"></a>（3）区分服务</h5><ul>
+<li>占 8 比特，用来获得更好的服务。</li>
+<li>这个字段在旧标准中叫做<strong>服务类型</strong>， 但实际上一直没有被使用过。1998 年 IETF 把这个字段改名为<strong>区分服务 DS</strong>（Differentiated Services）</li>
+<li>只有在使用区分服务时，这个字段才起作用。在一般的情况下都不使用这个字段</li>
+</ul>
+<h5 id="（4）总长度"><a href="#（4）总长度" class="headerlink" title="（4）总长度"></a>（4）总长度</h5><p>占 16 比特，表示 IP 数据报的总长度，即 IP 数据报首部长度和数据载荷长度之和</p>
+<h5 id="（5）标识（identification）"><a href="#（5）标识（identification）" class="headerlink" title="（5）标识（identification）"></a>（5）标识（identification）</h5><p>占 16 比特，属于同一个数据报的各分片数据报应该具有相同的标识。IP 软件维持一个计数器，每产生一个数据报，计数器值加 1 ，并将此值赋值给标识字段</p>
+<h5 id="（6）标志（flag）"><a href="#（6）标志（flag）" class="headerlink" title="（6）标志（flag）"></a>（6）标志（flag）</h5><p>占 3 比特，但目前只有两位有意义</p>
+<ul>
+<li>标志字段中的最低位记为<strong>MF</strong>（More Fragment）。$\mathrm{MF}&#x3D;1$ 即表示后面“<strong>还有分片</strong>” 的数据报。$\mathrm{MF}&#x3D;0$ 表示这已是若干数据报片中的最后一个</li>
+<li>标志字段中间的一位记为 <strong>DF</strong>（Don’t Fragment），意思是“<strong>不能分片</strong>”。只有当 $\mathrm{DF}&#x3D;0$ 时才允许分片</li>
+</ul>
+<h5 id="（7）片偏移"><a href="#（7）片偏移" class="headerlink" title="（7）片偏移"></a>（7）片偏移</h5><p>占 13 位。片偏移指出:较长的分组在分片后，某片在原分组中的相对位置。也就是说，相对于用户数据字段的起点，该片从何处开始。片偏移以 8 个字节为偏移单位。这就是说，<strong>每个分片的长度一定是 8 字节（64 位）的整数倍</strong></p>
+<blockquote>
+<p>例：对 IPv4 数据报进行分片</p>
+<p>一数据报的总长度为 3820 字节，其数据部分为 3800 字节长（使用固定首部），需要分片为长度不超过 1420 字节的数据报片</p>
+</blockquote>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203241437106.png" alt="4.14"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>总长度</th>
+<th>标识</th>
+<th>MF</th>
+<th>DF</th>
+<th>片偏移</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原始数据报</td>
+<td>3820</td>
+<td>12345</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>数据报片1</td>
+<td>1420</td>
+<td>12345</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>数据报片2</td>
+<td>1420</td>
+<td>12345</td>
+<td>1</td>
+<td>0</td>
+<td>175</td>
+</tr>
+<tr>
+<td>数据报片3</td>
+<td>1020</td>
+<td>12345</td>
+<td>0</td>
+<td>0</td>
+<td>350</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>现假定数据报片2经过某个网络时还需要再进行分片，即划分为数据报片2-1（携带数据800字节）和数据报片2-2（携带数据600字节）</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>总长度</th>
+<th>标识</th>
+<th>MF</th>
+<th>DF</th>
+<th>片偏移</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原始数据报</td>
+<td>3820</td>
+<td>12345</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>数据报片2-1</td>
+<td>820</td>
+<td>12345</td>
+<td>1</td>
+<td>0</td>
+<td>175</td>
+</tr>
+<tr>
+<td>数据报片2-2</td>
+<td>620</td>
+<td>12345</td>
+<td>1</td>
+<td>0</td>
+<td>275</td>
+</tr>
+</tbody></table>
+<h5 id="（8）生存时间TTL"><a href="#（8）生存时间TTL" class="headerlink" title="（8）生存时间TTL"></a>（8）生存时间TTL</h5><ul>
+<li><p>占 8 比特。最初以秒为单位，最大生存周期为 255 秒。路由器转发 IP 数据报时，将 IP 数据报首部中的该字段的值减去 IP 数据报在本路由器上所耗费的时间，若不为 0 则转发，否则就丢弃</p>
+</li>
+<li><p>现在以“跳数”为单位，路由器转发 IP 数据报时，将 IP 数据报首部中的该字段的值减 1，若不为 0 就转发，否则就丢弃</p>
+</li>
+</ul>
+<h5 id="（9）协议"><a href="#（9）协议" class="headerlink" title="（9）协议"></a>（9）协议</h5><p>占 8 比特，协议字段指出此数据报携带的数据是使用何种协议，以便使目的主机的 IP 层知道应将数据部分上交给哪个协议进行处理</p>
+<h5 id="（10）首部检验和"><a href="#（10）首部检验和" class="headerlink" title="（10）首部检验和"></a>（10）首部检验和</h5><ul>
+<li>占 16 比特，用来检验<strong>首部</strong>在传输过程中是否有差错。比 CRC 校验码简单，称为因特网检验和</li>
+<li>IP 数据报每经过一个路由器，路由器都要重新计算一下首部检验和，这是因为某些字段（生存时间、标志、片偏移等）的取值可能发生会发生变化</li>
+<li>由于 IP 层本身并不提供可靠传输服务，且计算首部检验和是一项耗时的操作，因此在 IPv6 中，路由器不再计算首部检验和，从而更快转发 IP 数据报</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203241904634.png" alt="4.15" style="zoom:43%;" />
+
+<h5 id="（11）源地址"><a href="#（11）源地址" class="headerlink" title="（11）源地址"></a>（11）源地址</h5><p>占 32 比特</p>
+<h5 id="（12）目的地址"><a href="#（12）目的地址" class="headerlink" title="（12）目的地址"></a>（12）目的地址</h5><p>占 32 比特</p>
+<h4 id="2-IP数据报首部的可变部分"><a href="#2-IP数据报首部的可变部分" class="headerlink" title="2. IP数据报首部的可变部分"></a>2. IP数据报首部的可变部分</h4><ul>
+<li>IP 数据报首部的可变部分就是一个选项字段。选项字段用来支持排错、测量以及安全等措施</li>
+<li>此字段的长度可变，从 1 个字节到 40 个字节不等，取决于所选择的项目</li>
+<li>增加首部的可变部分是为了增加 IP 数据报的功能，但这同时也使得 IP 数据报的首部长 度成为可变的。这就增加了每一个路由器处理数据报的开销。实际上这些选项很少被使用。</li>
+<li>为了确保首部长度为 4 字节的整数倍，有时需要用全 0 的填充字段将其补齐</li>
+</ul>
+<h3 id="4-2-6-IP层转发分组的流程"><a href="#4-2-6-IP层转发分组的流程" class="headerlink" title="4.2.6 IP层转发分组的流程"></a>4.2.6 IP层转发分组的流程</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203241502769.png" alt="4.16" style="zoom:44%;" />
+
+<p><strong>分组转发算法</strong>如下:</p>
+<ol>
+<li>从数据报的首部提取目的主机的 IP 地址 $D$, 得出目的网络地址为 $N$。</li>
+<li>若 $N$ 就是与此路由器直接相连的某个网络地址，则进行直接交付，不需要再经过其他的路由器，直接把数据报交付目的主机（这里包括把目的主机地址 $D$ 转换为具体的硬件地址，把数据报封装为 MAC 帧，再发送此帧）；否则就是间接交付，执行 3。</li>
+<li>若路由表中有目的地址为 $D$ 的特定主机路由，则把数据报传送给路由表中所指明的下一跳路由器；否则，执行 4。</li>
+<li>若路由表中有到达网络 $N$ 的路由，则把数据报传送给路由表中所指明的下一跳路由器；否则，执行 5。</li>
+<li>若路由表中有一个默认路由，则把数据报传送给路由表中所指明的默认路由器；否则，执行 6。</li>
+<li>报告转发分组出错。</li>
+</ol>
+<h2 id="4-3-划分子网和构造超网"><a href="#4-3-划分子网和构造超网" class="headerlink" title="4.3 划分子网和构造超网"></a>4.3 划分子网和构造超网</h2><h3 id="4-3-1-划分子网"><a href="#4-3-1-划分子网" class="headerlink" title="4.3.1 划分子网"></a>4.3.1 划分子网</h3><h4 id="1-从两级-IP-地址到三级-IP-地址"><a href="#1-从两级-IP-地址到三级-IP-地址" class="headerlink" title="1. 从两级 IP 地址到三级 IP 地址"></a>1. 从两级 IP 地址到三级 IP 地址</h4><p>划分子网的基本思路为：</p>
+<ul>
+<li><p>一个拥有许多物理网络的单位，可将所属的物理网络划分为若干个<strong>子网</strong>。划分子网纯属一个单位内部的事情。本单位以外的网络<strong>看不见</strong>这个网络是由多少个子网组成， 因为这个单位对<strong>外仍然表现为一个网络</strong>。</p>
+</li>
+<li><p>划分子网的方法是从网络的主机号借用若干位作为子网号，于是两级 IP 地址在本单位内部就变为三级 IP 地址:网络号、 子网号和主机号。也可以用以下记法来表示：</p>
+</li>
+</ul>
+<p>$$<br>{\mathrm{IP}} \mbox{地址}\ ::&#x3D;\ {\mbox{&lt;网络号&gt;，&lt;子网号&gt;，主机号&lt;&gt;}}<br>$$</p>
+<ul>
+<li>凡是从其他网络发送给本单位某台主机的 IP 数据报，仍然是根据 IP 数据报的目的 网络号找到连接在本单位网络上的路由器。但此路由器在收到 IP 数据报后，再按目的网络 号和子网号找到目的子网，把 IP 数据报交付目的主机。</li>
+</ul>
+<h4 id="2-子网掩码"><a href="#2-子网掩码" class="headerlink" title="2. 子网掩码"></a>2. 子网掩码</h4><p>32 比特的子网掩码可以表明分类 IP 地址的主机号部分被借用了几个比特作为子网号</p>
+<ul>
+<li>子网掩码使用<strong>连续的比特1来对应网络号和子网号</strong></li>
+<li>子网掩码使用<strong>连续的比特0来对应主机号</strong></li>
+<li>将划分子网的<strong>IPv4地址</strong>与其相应的<strong>子网掩码</strong>进行<strong>逻辑与运算</strong>就可得到IPv4地址<strong>所在子网的网络地址</strong></li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203222006367.png" alt="4.20" style="zoom:40%;" />
+
+<p>默认的子网掩码是指在未划分子网的情况下使用的子网掩码</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203222006167.png" alt="4.21" style="zoom:40%;" />
+
+<blockquote>
+<p>例：已知某个网络的地址为 218.75.230.0，使用子网掩码 255.255.255.128 对其进行子网划分，请给出划分细节</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>网络号</th>
+<th>子网号</th>
+<th>主机号</th>
+<th>具体含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>218.75.230</td>
+<td>0</td>
+<td>000 0000</td>
+<td>子网0的网络地址 218.75.230.0</td>
+</tr>
+<tr>
+<td>218.75.230</td>
+<td>0</td>
+<td>000 0001</td>
+<td>可分配的最小地址 218.75.230.1</td>
+</tr>
+<tr>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+</tr>
+<tr>
+<td>218.75.230</td>
+<td>0</td>
+<td>111 1110</td>
+<td>可分配的最大地址 218.75.230.126</td>
+</tr>
+<tr>
+<td>218.75.230</td>
+<td>0</td>
+<td>111 1111</td>
+<td>子网0的广播地址 218.75.230.127</td>
+</tr>
+<tr>
+<td>218.75.230</td>
+<td>1</td>
+<td>000 0000</td>
+<td>子网1的网络地址 218.75.230.128</td>
+</tr>
+<tr>
+<td>218.75.230</td>
+<td>1</td>
+<td>000 0001</td>
+<td>可分配的最小地址 218.75.230.129</td>
+</tr>
+<tr>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+</tr>
+<tr>
+<td>218.75.230</td>
+<td>1</td>
+<td>111 1110</td>
+<td>可分配的最大地址 218.75.230.254</td>
+</tr>
+<tr>
+<td>218.75.230</td>
+<td>1</td>
+<td>111 1111</td>
+<td>子网1的广播地址 218.75.230.255</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>例：已知 IP 地址是 141.14.72.24，子网掩码是 255.255.192.0，求网络地址</p>
+</blockquote>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203222018549.png" alt="4.22" style="zoom:43%;" />
+
+<h3 id="4-3-2-使用子网时分组的转发"><a href="#4-3-2-使用子网时分组的转发" class="headerlink" title="4.3.2 使用子网时分组的转发"></a>4.3.2 使用子网时分组的转发</h3><p>在划分子网的情况下，路由器转发分组的算法如下：</p>
+<ol>
+<li>从收到的数据报的首部提取目的 IP 地址 $D$。</li>
+<li>先判断是否为直接交付。对路由器直接相连的网络逐个进行检查：用各网络的子网掩码和 $D$ 逐位相“与”，看结果是否和相应的网络地址匹配。若匹配，则把分组进行直接交付（当然还需要把 $D$ 转换成物理地址，把数据报封装成帧发送出去），转发任务结束。否则就是间接交付，执行3。</li>
+<li>若路由表中有目的地址为 $D$ 的特定主机路由，则把数据报传送给路由表中所指明的下一跳路由器；否则，执行4。</li>
+<li>对路由表中的每一行（目的网络地址，子网掩码，下一跳地址），用其中的子网掩码和 $D$ 逐位相“与”，其结果为 $N$。若 $N$ 与该行的目的网络地址匹配，则把数据报传送给该行指明的下一跳路由器；否则，执行5。</li>
+<li>若路由表中有一个默认路由，则把数据报传送给路由表中所指明的默认路由器；否则，执行6。</li>
+<li>报告转发分组出错。</li>
+</ol>
+<blockquote>
+<p>例：源主机 $H_1$ 向目的主机 $H_2$ 发送分组。试讨论 $R_1$ 收到 $H_1$ 向 $H_2$ 发送的分组后查找路由表的过程</p>
+</blockquote>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203222027443.png" alt="4.24" style="zoom:43%;" />
+
+<p>源主机 $H_1$ 把本子网的“子网掩码 255.255.255.128”与目的主机 $H_2$ 的“IP 地址 128.30.33.138”逐位相“与”，得出 128.30.33.128，它不等于 $H_1$ 的 网络地址（128.30.33.0）。这说明 $H_2$ 与$H_1$ 不在同一个子网上。因此 $H_1$ 不能把分组直接交付 $H_2$，而必须交给子网上的默认路由器 $R_1$，由 $R_1$ 来转发。</p>
+<p>路由器 $R_1$ 在收到一个分组后，就在其路由表中逐行寻找有无匹配的网络地址。</p>
+<p>先看 $R_1$ 路由表中的第一行。用这一行的“子网掩码 255.255.255.128”和收到的分组的 “目的地址 128.30.33.138”逐位相“与”，得出 128.30.33.128。然后和这一行给出的目的网络地址 128.30.33.0 进行比较。但比较的结果不一致（即不匹配）。</p>
+<p>用同样方法继续往下找第二行。用第二行的“子网掩码 255.255.255.128”和该分组的 “目的地址 128.30.33.138”逐位相“与”，结果也是 128.30.33.128。这个结果和第二行的目的网络地址 128.30.33.128 相匹配，说明这个网络就是收到的分组所要寻找的目的网络。于是不需要再继续查找下去。$R_1$ 把分组从接口 1 直接交付主机 $H_2$。</p>
+<h3 id="4-3-3-无分类编址CIDR（构造超网）"><a href="#4-3-3-无分类编址CIDR（构造超网）" class="headerlink" title="4.3.3 无分类编址CIDR（构造超网）"></a>4.3.3 无分类编址CIDR（构造超网）</h3><h4 id="1-网络前缀"><a href="#1-网络前缀" class="headerlink" title="1. 网络前缀"></a>1. 网络前缀</h4><ul>
+<li>划分子网在一定程度上缓解了因特网在发展中遇到的困难，但是数量巨大的 C 类网因为其地址空间太小并没有得到充分使用，而因特网的 IP 地址仍在加速消耗，整个 IPv4 地址空间面临全部耗尽的威胁</li>
+<li>为此，因特网工程任务组 IETF 又提出了采用无分类编制的方法来解决 IP 地址紧张的问题，同时还专门成立 IPv6 工作组负责研究新版本 IP 以彻底解决 IP 地址耗尽的问题</li>
+<li>1993年，IETF 发布了无分类域间路由选择 CIDR（classless inter-domain routing）的 RFC 文档 RFC 1517$\sim$ 1519和1520<ul>
+<li>CIDR 消除了传统的 A 类、B 类和 C 类地址，以及划分子网概念</li>
+<li>CIDR 可以更加有效地分配 IPv4 的地址空间，并且可以在新的 IPv6 使用之前允许因特网的规模继续增长</li>
+</ul>
+</li>
+<li>CIDR 使用“斜线记法”或称为 CIDR 记法，即在 IPv4 地址后面加上斜线“&#x2F;”，在斜线后面写上网络前缀所占的比特数量<ul>
+<li>例如 <code>128.14.35.7/20</code> 表示网络前缀所占用的比特数量为 20，主机编号所占用的比特数量为 12</li>
+</ul>
+</li>
+<li>CIDR 实际上是将网络前缀都相同的连续的 IP 地址组成一个“CIDR 地址块”</li>
+</ul>
+<blockquote>
+<p>例：请给出 CIDR 地址块128.14.35.7&#x2F;20 的全部细节</p>
+</blockquote>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203231930273.png" alt="4.3.3.1" style="zoom:45%;" />
+
+<h4 id="2-最长前缀匹配"><a href="#2-最长前缀匹配" class="headerlink" title="2. 最长前缀匹配"></a>2. 最长前缀匹配</h4><ul>
+<li>在使用 CIDR 时，由于采用了网络前缀这种记法，因此在路由表中的项目需要改变为由“网络前缀”和 “下一跳地址”组成。但是在查找路由表时<strong>可能会得到不止一个匹配结果</strong></li>
+<li>对于这种情况，应当<strong>从匹配结果中选择具有最长网络前缀的路由</strong>。这叫做<strong>最长前缀匹配</strong>（longest-prefix matching）</li>
+<li>这是因为网络前缀越长，其地址块就越小，因而路由就越具体</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203231942769.png" alt="4.25" style="zoom:40%;" />
+
+<p>例如，对于上图中假定 ISP 收到一个数据报，其目的地址 IP 为 $D&#x3D;206.0.71.130$，把 $D$ 分别和路由表中的大学（206.0.68.0&#x2F;22）和四系（206.0.71.128&#x2F;25）的子网掩码诸位相“与”，发现均匹配，但根据最长前缀原则，应该选择后者（四系）</p>
+<h2 id="4-4-网际控制报文协议ICMP"><a href="#4-4-网际控制报文协议ICMP" class="headerlink" title="4.4 网际控制报文协议ICMP"></a>4.4 网际控制报文协议ICMP</h2><ul>
+<li>为了更有效地转发 IP 数据报和提高交付成功的机会，在网际层使用了网际控制报文协议 ICMP（Internet Control Message Protocol）</li>
+<li><strong>ICMP 报文被封装在 IP 数据报</strong>中发送</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203241531680.png" alt="4.27" style="zoom:43%;" />
+
+<h3 id="4-4-1-ICMP报文的种类"><a href="#4-4-1-ICMP报文的种类" class="headerlink" title="4.4.1 ICMP报文的种类"></a>4.4.1 ICMP报文的种类</h3><p>ICMP 报文的种类有两种，即 <strong>ICMP 差错报告报文</strong>和 <strong>ICMP 询问报文</strong></p>
+<ul>
+<li>ICMP 差错报告报文共有以下五种：<ul>
+<li><strong>终点不可达：</strong>当路由器或主机不能交付数据报时，就向源点发送终点不可达报文。具体可再根据 ICMP 的代码字段细分为目的网络不可达、目的主机不可达、目的端口不可达、目的网络未知、目的主机未知等13种错误</li>
+<li><strong>源点抑制：</strong>当路由器或主机由于拥塞而丢弃数据报时，就向源点发送源点抑制报文，使源点知道应当把数据报的发送速率放慢</li>
+<li><strong>时间超过：</strong>当路由器收到一个目的 IP 地址不是自己的 IP 数据报，会将其生存时间 TTL 字段的值减 1，若结果不为 0，则将该 IP 数据报转发出去；若结果为 0，除丢弃该 IP 数据报外，还要向源点发送时间超过报文。另外，当终点在预先规定的时间内不能收到一个数据报的全部数据报片时，就把已收到的数据报片都丢弃，也会向源点发送时间超过报文</li>
+<li><strong>参数问题：</strong>当路由器或目的主机收到 IP 数据报后，根据其首部中的检验和字段发现首部在传输过程中出现了误码，就丢弃该数据报，并向源点发送参数问题报文</li>
+<li><strong>改变路由（重定向）：</strong>路由器把改变路由报文发送给主机，让主机知道下次应将数据报发送给另外的路由器（可通过更好的路由）</li>
+</ul>
+</li>
+<li>以下情况下不应发送 ICMP 差错报告报文：<ul>
+<li>对 ICMP 差错报告报文，不再发送 ICMP 差错报告报文</li>
+<li>对第一个分片的数据报片的所有后续数据报片，都不发送 ICMP 差错报告报文</li>
+<li>对具有多播地址的数据报，都不发送 ICMP 差错报告报文</li>
+<li>对具有特殊地址（如 127.0.0.0 或 0.0.0.0）的数据报，不发送 ICMP 差错报告报文</li>
+</ul>
+</li>
+<li>常用的 ICMP 询问报文有两种：<ul>
+<li><strong>回送请求和回答</strong>： ICMP 回送请求报文是由主机或路由器向一个特定的目的主机发出的询问。收到此报文的主机必须给源主机或路由器发送 ICMP 回送回答报文。这种询问报文用来测试目的站是否可达以及了解其有关状态。</li>
+<li><strong>时间戳请求和回答</strong>： ICMP 时间戳请求报文是请某台主机或路由器回答当前的日 期和时间。在 ICMP 时间戳回答报文中有一个 32 位的字段，其中写入的整数代表从 1900 年 1 月 1 日起到当前时刻一共有多少秒。时间戳请求与回答可用于时钟同步和时间测量。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-4-2-ICMP的应用举例"><a href="#4-4-2-ICMP的应用举例" class="headerlink" title="4.4.2 ICMP的应用举例"></a>4.4.2 ICMP的应用举例</h3><ul>
+<li>分组网间探测 PING（Packet InterNet Groper）<ul>
+<li>用来测试主机和路由器间的连通性</li>
+<li>应用层直接使用网际层的 ICMP（没有通过运输层的 TCP 或 UDP）</li>
+<li>使用 ICMP 回送请求和回答报文</li>
+<li>使用命令为 <code>ping hostname</code></li>
+</ul>
+</li>
+<li>跟踪路由（traceroute）<ul>
+<li>用来测试 IP 数据报从源主机到达目的主机需要经过哪些路由器</li>
+<li>Windows 版本<ul>
+<li><code>tracert</code> 命令</li>
+<li>应用层直接使用网际层 ICMP</li>
+<li>使用了 ICMP 回送请求和回答报文以及差错报告报文</li>
+</ul>
+</li>
+<li>Unix 版本<ul>
+<li><code>traceroute</code> 命令</li>
+<li>在运输层使用 UDP 协议</li>
+<li>仅使用 ICMP 差错报告报文</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-5-互联网的路由选择协议"><a href="#4-5-互联网的路由选择协议" class="headerlink" title="4.5 互联网的路由选择协议"></a>4.5 互联网的路由选择协议</h2><h3 id="4-5-1-有关路由选择协议的几个基本概念"><a href="#4-5-1-有关路由选择协议的几个基本概念" class="headerlink" title="4.5.1 有关路由选择协议的几个基本概念"></a>4.5.1 有关路由选择协议的几个基本概念</h3><h4 id="1-理想的路由算法"><a href="#1-理想的路由算法" class="headerlink" title="1. 理想的路由算法"></a>1. 理想的路由算法</h4><p>一个理想的路由算法应具有如下的一些特点</p>
+<ul>
+<li>算法必须是正确的和完整的</li>
+<li>算法在计算上应简单</li>
+<li>算法应能适应通信量和网络拓扑的变化</li>
+<li>算法应具有稳定性</li>
+<li>算法应是公平的</li>
+<li>算法应是最佳的</li>
+</ul>
+<p>倘若从路由算法能否随网络的通信量或拓扑自适应地进行调整变化来划分，则只有两大类，即<strong>静态路由选择策略</strong>与<strong>动态路由选择策略</strong></p>
+<ul>
+<li>静态路由选择<ul>
+<li>由<strong>人工配置</strong>的网络路由、默认路由、特定主机路由、黑洞路由等都属于静态路由</li>
+<li>这种人工配置方式简单、开销小，但<strong>不能及时适应网络状态（流量、拓扑等）的变化</strong></li>
+<li>一般只在<strong>小规模网络</strong>中采用</li>
+</ul>
+</li>
+<li>动态路由选择<ul>
+<li>路由器通过路由选择协议<strong>自动获取路由信息</strong></li>
+<li>比较复杂、开销比较大，<strong>能较好地适应网络状态的变化</strong></li>
+<li>适用于<strong>大规模网络</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="2-分层次的路由选择协议"><a href="#2-分层次的路由选择协议" class="headerlink" title="2. 分层次的路由选择协议"></a>2. 分层次的路由选择协议</h4><p>互联网采用分层次的路由选择协议，因此可以把整个互联网划分为许多较小的<strong>自治系统 AS</strong>（autonomous system）。自治系统 AS 是在单一技术管理下的一组路由器，而这些路由器使用一种自治系统内部的路由选择协议和共同的度量。一个 AS 对其他 AS 表现出的是<strong>一个单一的和一致的路由选择策略</strong></p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203241925326.png" alt="4.31" style="zoom:43%;" />
+
+<p>互联网将路由选择协议划分为两大类，即：</p>
+<ul>
+<li><strong>内部网关协议 IGP</strong>（Interior Gateway Protocol）：即在一个自治系统内部使用的路由选择协议，而这与在互联网中的其他自治系统选用什么路由选择协议无关。目前这类路由选择协议使用得最多，如 RIP 和 OSPF 协议</li>
+<li><strong>外部网关协议 EGP</strong>（External Gateway Protocol）：若源主机和目的主机处在不同的自治系统中（这两个自治系统可能使用不同的内部网关协议），当数据报传到一个自治系统的边界时，就需要使用一种协议将路由选择信息传递到另一个自治系统中。这样的协议就是外部网关协议 EGP。目前使用最多的外部网关协议是 BGP 的版本 4（BGP-4）</li>
+</ul>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203241940594.png" alt="4.5.2"></p>
+<h3 id="4-5-2-内部网关协议RIP"><a href="#4-5-2-内部网关协议RIP" class="headerlink" title="4.5.2 内部网关协议RIP"></a>4.5.2 内部网关协议RIP</h3><h4 id="1-工作原理"><a href="#1-工作原理" class="headerlink" title="1. 工作原理"></a>1. 工作原理</h4><ul>
+<li><p><strong>路由信息协议 RIP</strong>（routing information protocol）是内部网关协议 IGP 中最先得到广泛使用的协议之一，其相关标准文档为 RFC 1058</p>
+</li>
+<li><p>RIP 要求自治系统 AS 内的每一个路由器都要维护从它自己到 AS 内其他每一个网络的距离记录。这是一组距离，称为<strong>距离向量 D-V</strong>（distance vector）</p>
+</li>
+<li><p>RIP 使用<strong>跳数</strong>（hop count）作为度量（metric）<strong>来衡量到达目的网络的距离</strong></p>
+<ul>
+<li>路由器到直连网络的距离定义为 1</li>
+<li>路由器到非直连网络的距离定义为所经过的路由器数加 1</li>
+<li>允许一条路径最多只能包含 15 个路由器。<strong>“距离”等于 16 时相当于不可达</strong>。因此 <strong>RIP 只适用于小型互联网</strong></li>
+</ul>
+</li>
+<li><p>RIP 认为<strong>好的路由</strong>就是“距离短”的路由，也就是<strong>所通过路由器数量最少的路由</strong></p>
+</li>
+<li><p>当到达同一目的网络有多条“距离相等”的路由时，可以进行<strong>等价负载均衡</strong></p>
+</li>
+<li><p>RIP 包含以下三个要点：</p>
+<ul>
+<li><strong>和谁交换信息</strong>：仅和<strong>相邻路由器</strong>交换信息</li>
+<li><strong>交换什么信息</strong>：当前本路由器所知道的全部信息，即自己现在的<strong>路由表</strong></li>
+<li><strong>在什么时候交换信息</strong>：按固定的时间间隔<strong>周期性交换</strong>（例如每 30 秒）</li>
+</ul>
+</li>
+<li><p>路由器在<strong>刚刚开始工作时</strong>，它的路由表是空的。然后路由器就得出到直接相连的几个网络的距离（这些距离定义为 1）。接着，每一个路由器也只和数目非常有限的相邻路由器交换并更新路由信息。但经过若干次的更新后，所有的路由器最终都会知道到达本自治系统中任何一个网络的最短距离和下一跳路由器的地址</p>
+</li>
+</ul>
+<h4 id="2-距离向量算法"><a href="#2-距离向量算法" class="headerlink" title="2. 距离向量算法"></a>2. 距离向量算法</h4><p>对<strong>每一个相邻路由器</strong>发送过来的 RIP 报文，进行以下步骤：</p>
+<ol>
+<li>对地址为 $X$ 的相邻路由器发来的 RIP 报文，先修改此报文中的所有项目：把“下一跳”字段中的地址都改为 $X$，并把所有的“距离”字段的值加 1。每一个项目都有三个关键数据，即：到目的网络 $N$，距离是 $d$，下一跳路由器是 $X$</li>
+<li>对修改后的 RIP 报文中的每一个项目，进行以下步骤： <ul>
+<li>若原来的路由表中没有目的网络 $N$，则把该项目添加到路由表中</li>
+<li>否则（即在路由表中有目的网络 $N$，这时就再查看下一跳路由器地址）<ul>
+<li>若下一跳路由器地址是 $X$，则把收到的项目替换原路由表中的项目 </li>
+<li>否则（即这个项目是:到目的网络 $N$，但下一跳路由器不是 $X$）<ul>
+<li>若收到的项目中的距离 $d$ 小于路由表中的距离，则进行更新</li>
+<li>否则什么也不做</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>若 3 分钟还没有收到相邻路由器的更新路由表，则把此相邻路由器记为不可达的路路由器，即把距离置为 16（距离为 16 表示不可达）</li>
+<li>返回</li>
+</ol>
+<blockquote>
+<p>已知路由器 $R_6$ 有下表所示的路由表。现在收到相邻路由器 $R_4$ 发来的路由更新信息，如下表所示。试更新路由器 $R_6$ 的路由表</p>
+</blockquote>
+<p>路由器 $R_6$ 的路由表（表1）</p>
+<table>
+<thead>
+<tr>
+<th>目的网络</th>
+<th>距离</th>
+<th>下一跳路由器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Net 2</td>
+<td>3</td>
+<td>$R_4$</td>
+</tr>
+<tr>
+<td>Net 3</td>
+<td>4</td>
+<td>$R_5$</td>
+</tr>
+<tr>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody></table>
+<p>$R_4$ 发来的路由更新信息（表2）</p>
+<table>
+<thead>
+<tr>
+<th>目的网络</th>
+<th>距离</th>
+<th>下一跳路由器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Net 1</td>
+<td>3</td>
+<td>$R_1$</td>
+</tr>
+<tr>
+<td>Net 2</td>
+<td>4</td>
+<td>$R_2$</td>
+</tr>
+<tr>
+<td>Net 3</td>
+<td>1</td>
+<td>直接交付</td>
+</tr>
+</tbody></table>
+<p>首先先把表2中的距离都加1，并把下一跳路由器都改为 $R_4$，得出表3</p>
+<table>
+<thead>
+<tr>
+<th>目的网络</th>
+<th>距离</th>
+<th>下一跳路由器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Net 1</td>
+<td>4</td>
+<td>$R_4$</td>
+</tr>
+<tr>
+<td>Net 2</td>
+<td>5</td>
+<td>$R_4$</td>
+</tr>
+<tr>
+<td>Net 3</td>
+<td>2</td>
+<td>$R_4$</td>
+</tr>
+</tbody></table>
+<p>把表3和的每一行和表1进行比较</p>
+<ul>
+<li>第一行在表1中没有，因此要把这一行添加到表1中。</li>
+<li>第二行的 Net 2 在表1中有，且下一跳路由器也是 $R_4$。因此要更新（最新消息）</li>
+<li>第三行的 Net 3 在表1中有，但下一跳路由器不同。于是就要比较距离。新的路由信息的距离是 2，小于原来表中的 4，因此要更新。</li>
+</ul>
+<p>得出更新后的 R6 的路由表如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>目的网络</th>
+<th>距离</th>
+<th>下一跳路由器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Net 1</td>
+<td>4</td>
+<td>$R_4$</td>
+</tr>
+<tr>
+<td>Net 2</td>
+<td>5</td>
+<td>$R_4$</td>
+</tr>
+<tr>
+<td>Net 3</td>
+<td>2</td>
+<td>$R_4$</td>
+</tr>
+<tr>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody></table>
+<h4 id="3-RIP协议的报文格式"><a href="#3-RIP协议的报文格式" class="headerlink" title="3. RIP协议的报文格式"></a>3. RIP协议的报文格式</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203242044839.png" alt="4.32" style="zoom:43%;" />
+
+<ul>
+<li>RIP 存在”<strong>坏消息传播得慢</strong>“的问题，即当网络出现故障时，要经过比较长的时间才能将此信息传送到所有的路由器</li>
+<li>”坏消息传播得慢“又称为<strong>路由环路</strong>或<strong>距离无穷计数</strong>问题，这是<strong>距离向量算法的一个固有问题</strong>。可以采取多种措施减少出现该问题的概率或减小该问题带来的危害<ul>
+<li><strong>限制最大路径距离为 15</strong>（16表示不可达）</li>
+<li>当路由表发生变化时就立即发送更新报文（即”<strong>触发更新</strong>“），而不仅是周期性发送</li>
+<li>让路由器记录收到某特定路由信息的接口，而不让同一路由信息再通过此接口向反方向传送（即”<strong>水平分割</strong>“）</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202203242050454.png" alt="4.33" style="zoom: 39%;" />
+
+<ul>
+<li>现在假定路由器 $R_1$ 到网 1 的链路出了故障，$R_1$ 无法到达网 1。于是路由器 $R_1$ 把到网 1 的距离改为 16（表示到网 1 不可达），因而在 $R_1$ 的路由表中的相应项目变为“1, 16, 直接”</li>
+<li>但是，很可能要经过 30 秒钟后 $R_1$ 才把更新信息发送给 $R_2$。然而 $R_2$ 可能已经先把自己的路由表发送给了 $R_1$，其中有“1, 2, $R_1$”这一项</li>
+<li>$R_1$ 收到 $R_2$ 的更新报文后，误认为可经过 $R_2$ 到达网 1，于是把收到的路由信息“1, 2, $R_1$”修改为：“1, 3, $R_2$”，表明“我到网1的距离是3，下一跳经过$R_2$”，并把更新后的信息发送给 $R_2$</li>
+<li>同理，$R_2$ 接着又更新自己的路由表为“1, 4, $R_1$”，以为“我到网1距离是4，下一跳经过 $R_1$”。</li>
+<li>这样的更新一直继续下去，直到 $R_1$ 和 $R_2$ 到网 1 的距离都增大到 16 时，$R_1$ 和 $R_2$ 才知道原来网 1 是不可达的</li>
+</ul>
+<h3 id="4-5-3-内部网关协议OSPF"><a href="#4-5-3-内部网关协议OSPF" class="headerlink" title="4.5.3 内部网关协议OSPF"></a>4.5.3 内部网关协议OSPF</h3><h4 id="1-OSPF协议的基本特点"><a href="#1-OSPF协议的基本特点" class="headerlink" title="1. OSPF协议的基本特点"></a>1. OSPF协议的基本特点</h4><ul>
+<li><p>开放最短路径优先 OSPF（Open Shortest Path First）是为克服 RIP 的缺点在 1989 年开发出来的</p>
+<ul>
+<li>“开放”表明 OSPF 协议不是受某一家厂商控制，而是<strong>公开发表</strong>的</li>
+<li>“最短路径优先”是因为使用了 Dijkstra 提出的<strong>最短路径算法</strong> SPF</li>
+</ul>
+</li>
+<li><p>OSPF 与 RIP 工作要点的对比</p>
+<ul>
+<li>采用<strong>洪泛法</strong>（flooding）向本自治系统中<strong>所有路由器</strong>发送信息；而 RIP 仅仅向自己相邻的几个路由器发送信息</li>
+<li>发送的信息是与本路由器<strong>相邻的所有路由器的链路状态</strong>，“链路状态”指的是本路由器都<strong>和哪些路由器相邻</strong>，以及相应链路的<strong>代价</strong>（cost）；而 RIP 发送的信息是到所有网络的距离和下一跳路由器</li>
+<li>只有当链路状态<strong>发生变化</strong>时，路由器才向所有路由器用洪泛法发送此信息；而 RIP不管网络拓扑有无发生变化，路由器之间都要定期交换路由表的信息</li>
+</ul>
+</li>
+<li><p>由于各路由器之间频繁地交换<strong>链路状态信息</strong>（link-state advertisement，LSA），因此所有的路由器最终都能建立一个<strong>链路状态数据库</strong>（link-state database，LSDB），这个数据库实际上就是<strong>全网的拓扑结构图</strong>，每一个路由器使用链路状态数据库中的数据，构造出自己的路由表</p>
+</li>
+</ul>
+<p>为了使 OSPF 能够用于规模很大的网络，OSPF 将一个自治系统再划分为若干个更小的范围，叫做<strong>区域</strong>（area）。划分区域的好处就是把利用洪泛法交换链路状态信息的范围局限于每一个区域而不是整个自治系统，这就减少了整个网络上的通信量</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031523636.png" alt="4.34" style="zoom:35%;" />
+
+<p>对于上图，则有</p>
+<ul>
+<li>区域内路由器 IR（internal router）：$R_1$，$R_2$，$R_8$，$R_9$</li>
+<li>区域边界路由器 ABR（area border router）：$R_3$，$R_4$，$R_7$</li>
+<li>主干路由器 BBR（backbone router）：$R_3$，$R_4$，$R_5$，$R_6$，$R_7$</li>
+<li>自治系统边界路由器 ASBR（AS border router）：$R_6$</li>
+</ul>
+<h4 id="2-OSPF的基本工作原理"><a href="#2-OSPF的基本工作原理" class="headerlink" title="2. OSPF的基本工作原理"></a>2. OSPF的基本工作原理</h4><ul>
+<li><p>OSPF 共有 5 种分组类型</p>
+<ul>
+<li>类型 1，<strong>问候</strong>（Hello）分组，用来发现和维持邻站的可达性</li>
+<li>类型 2，<strong>数据库描述</strong>（Database Description）分组，向邻站给出自己的链路状态数据库中的所有链路状态项目的摘要信息</li>
+<li>类型 3，<strong>链路状态请求</strong>（Link State Request）分组，向对方请求发送某些链路状态项目的详细信息</li>
+<li>类型 4，<strong>链路状态更新</strong>（Link State Update）分组，用洪泛法对全网更新链路状态，路由器使用这种分组将其链路状态通知给邻站</li>
+<li>类型 5，<strong>链路状态确认</strong>（Link State Acknowledgment）分组，对链路更新分组的确认</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031550929.png" alt="4.36" style="zoom:50%;" />
+
+<ul>
+<li><p>OSPF 规定，每两个相邻路由器每隔 10 秒钟要交换一次问候分组。这样就能确知哪些邻站是可达的，若有 40 秒钟没有收到某个相邻路由器发来的问候分组，则可认为该相邻路由器是不可达的，应立即修改链路状态数据库，并重新计算路由表。</p>
+</li>
+<li><p>OSPF 在多点接入网络中路由器邻居关系的建立</p>
+<ul>
+<li>选举<strong>指定路由器</strong> DR（designated router）和<strong>备用的制定路由器</strong> BDR（backup designated router）</li>
+<li>所有的非 DR&#x2F;BDR 只与 DR&#x2F;BDR 建立邻居联系</li>
+<li>非 DR&#x2F;BDR 之间通过 DR&#x2F;BDR 交换信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-5-4-外部网关协议BGP"><a href="#4-5-4-外部网关协议BGP" class="headerlink" title="4.5.4 外部网关协议BGP"></a>4.5.4 外部网关协议BGP</h3><ul>
+<li>外部网关协议 EGP（例如边界网关协议 BGP）<ul>
+<li>在不同的自治系统内，度量路由的“代价”（距离、带宽、费用等）可能不同，因此对于自治系统之间的路由选择，使用“代价”作为度量来寻找最佳路由是不行的</li>
+<li>自治系统之间的路由选择必须考虑相关的策略（政治、经济、安全等）</li>
+<li>BGP 只能是力求寻找一条能够到达目的网络且比较好的路由（不能兜圈子），而并非要寻找一条最佳路由</li>
+</ul>
+</li>
+<li>在配置 BGP 时，每个自治系统的管理员要选择至少一个路由器作为该自治系统的“ <strong>BGP 发言人</strong>”</li>
+<li>在不同自治系统的 BGP 发言人要交换路由信息，首先必须建立 TCP 连接，端口号为 179<ul>
+<li>在此 TCP 连接上交换 BGP 报文以建立 <strong>BGP 会话</strong></li>
+<li>利用 BGP 会话<strong>交换路由信息</strong>，例如增加新的路由，或撤销过时的路由，以及报告出错的情况等</li>
+<li>使用 TCP 连接交换路由信息的两个 BGP 发言人，彼此称为对方的<strong>邻站</strong>（neighbor）或<strong>对等站</strong>（peer）</li>
+</ul>
+</li>
+<li>BGP 发言人除了运行 BGP 外，还必须运行自己所在自治系统所使用的内部网关协议 IGP，例如 OSPF 或 RIP</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031620741.png" alt="4.38" style="zoom:43%;" />
+
+<ul>
+<li>BGP 发言人<strong>交换网络可达性的信息</strong>（要到达某个网络所要经过的一系列自治系统）</li>
+<li>当 BGP 发言人互相交换例网络可达性的信息后，各 BGP 发言人就<strong>根据</strong>所采用的<strong>策略</strong>从收到的路由信息中<strong>找出到达各自治系统的较好的路由</strong>，也就是构造出树形结构、<strong>不存在回路的自治系统连通图</strong></li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031620208.png" alt="4.39" style="zoom:33%;" />
+
+<ul>
+<li>BGP 适用于多级结构的因特网，以下图为例：<ul>
+<li>自治系统 $AS_2$ 的 BGP 发言人通知主干网的BGP发言人：“要到达网络$N_1$，$N_2$，$N_3$ 和$N_4$可经过$AS_2$。”</li>
+<li>主干网在收到这个通知后，就发出通知：“要到达网络$N_1$，$N_2$，$N_3$ 和 $N_4$ 可沿路径 $(AS_1,AS_2)$。”</li>
+<li>同理，主干网还可发出通知：“要到达网络 $N_5$，$N_6$ 和 $N_7$ 可沿路径 $(AS_1,AS_3)$。”</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031620254.png" alt="4.40" style="zoom:33%;" />
+
+<ul>
+<li>BGP 有以下四种报文：<ul>
+<li>OPEN（打开）报文，用来与相邻的另一个 BGP 发言人建立关系，使通信初始化</li>
+<li>UPDATE（更新）报文，用来通告某一路由的信息，以及列出要撤销的多条路由</li>
+<li>KEEPALIVE（保活）报文，用来周期性地证实邻站的连通性</li>
+<li>NOTIFICATION（通知）报文，用来发送检测到的差错</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031849641.png" alt="4.41" style="zoom:43%;" />
+
+<h3 id="4-5-5-路由器的构成"><a href="#4-5-5-路由器的构成" class="headerlink" title="4.5.5 路由器的构成"></a>4.5.5 路由器的构成</h3><h4 id="1-路由器的结构"><a href="#1-路由器的结构" class="headerlink" title="1. 路由器的结构"></a>1. 路由器的结构</h4><ul>
+<li>路由器是一种具有多个输入端口和多个输出端口的专用计算机，其任务是转发分组</li>
+<li>从路由器某个输入端口收到的分组，按照分组要去的目的地（即目的网络），把该分组从路由器的某个合适的输出端口转发给下一跳路由器。下一跳路由器也按照这种方法处理分组， 直到该分组到达终点为止</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031857506.png" alt="4.42" style="zoom:44%;" />
+
+<ul>
+<li><p>整个的路由器结构可划分为两大部分：<strong>路由选择</strong>部分和<strong>分组转发</strong>部分</p>
+<ul>
+<li><p>路由选择部分也叫做<strong>控制部分</strong>，其核心构件是路由选择处理机</p>
+<ul>
+<li>路由选择处理机的任务是根据所选定的路由选择协议构造出路由表，同时经常或定期地和相邻路由器交换路由信 息而不断地更新和维护路由表</li>
+</ul>
+</li>
+<li><p>分组转发部分由三部分组成：<strong>交换结构</strong>、一组<strong>输入端口</strong>和一组<strong>输出端口</strong></p>
+<ul>
+<li><p>交换结构（switching fabric）又称为<strong>交换组织</strong>，它的作用就是根据<strong>转发表</strong>（forwarding table）对分组进行处理，将某个输入端口进入的分组从一个合适的输出端口转发出去</p>
+<blockquote>
+<p>注意，在讨论路由选择的原理时，往往不去区分转发表和路由表的区别，而可以笼统地都使用路由表这一名词</p>
+</blockquote>
+</li>
+<li><p>输入端口中的查找和转发功能在路由器的交换功能中是最重要的。为了使交换功能分散化，往往把复制的转发表放在每一个输入端口中（如上图中的虚线箭头所示）。路由选择处理机负责对各转发表的副本进行更新。这些副本常称为“<strong>影子副本</strong>”</p>
+</li>
+<li><p>分组在路由器的输入端口和输出端口都可能会在队列中排队等候处理</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031908020.png" alt="4.43"></p>
+<h4 id="2-交换结构"><a href="#2-交换结构" class="headerlink" title="2. 交换结构"></a>2. 交换结构</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031915474.png" alt="4.45" style="zoom:45%;" />
+
+<ul>
+<li>最早使用的路由器就是利用普通的计算机，用计算机的 CPU 作为路由器的路由选择 理机。路由器的输入和输出端口的功能和传统的操作系统中的 I&#x2F;O 设备一样</li>
+<li>许多现代的路由器也通过存储器进行交换，上图（a）表示分组通过存储器进行交换。与早期的路由器的区别就是，目的地址的查找和分组在存储器中的缓存都是在输入端口中进行的</li>
+<li>图 （b）是通过总线进行交换的示意图。采用这种方式时，数据报从输入端口通过共享的总线直接传送到合适的输出端口，而不需要路由选择处理机的干预。但是，由于总线是共享的，因此在同一时间只能有一个分组在总线上传送。当分组到达输入端口时若发现总线忙，则被阻塞而不能通过交换结构，并在输入端口排队等待。因为每一个要转发的分组都要通过这一条总线，因此路由器的转发带宽就受总线速率的限制</li>
+<li>图（c）是通过纵横交换结构进行交换。这种交换机构常称为<strong>互连网络</strong>，它有 $2N$ 条总线，可以使 $N$ 个输入端口和 $N$ 个输出端口相连接，这取决于相应的交叉结点是使水平总线和垂直总线接通还是断开。当输入端口收到一个分组时，就将它发送到与该输入端口相连的水平总线上。若通向所要转发的输出端口 的垂直总线是空闲的，则在这个结点将垂直总线与水平总线接通，然后将该分组转发到这个输出端口。但若该垂直总线已被占用，则后到达的分组就被阻塞，必须在输入端口排队</li>
+</ul>
+<h2 id="4-6-虚拟专用网VPN和网络地址转换NAT"><a href="#4-6-虚拟专用网VPN和网络地址转换NAT" class="headerlink" title="4.6 虚拟专用网VPN和网络地址转换NAT"></a>4.6 虚拟专用网VPN和网络地址转换NAT</h2><h3 id="4-6-1-虚拟专用网VPN"><a href="#4-6-1-虚拟专用网VPN" class="headerlink" title="4.6.1 虚拟专用网VPN"></a>4.6.1 虚拟专用网VPN</h3><ul>
+<li><p>2013 年，RFC 6890全面地给出了一些专用地址，这些地址只能用于一个机构的内部通信，而不能用于和互联网上的主机通信，采用这样专用 IP 地址的互连网络称为<strong>专用网</strong>，这些地址为</p>
+<ul>
+<li>10.0.0.0 到 10.255.255.255（10.0.0.0&#x2F;8）</li>
+<li>172.16.0.0 到 172.31.255.255（172.16.0.0&#x2F;12）</li>
+<li>192.168.0.0 到 192.168.255.255（192.168.0.0&#x2F;16）</li>
+</ul>
+</li>
+<li><p><strong>利用公用的因特网</strong>作为本机构各专用网之间的通信载体，这样的专用网又称为虚拟专用网（virtual private network）</p>
+</li>
+<li><p>由于 IPv4 地址的紧缺，一个机构能够申请到的 IPv4 地址数量往往远小于本机构所拥有的主机数量。因此，<strong>虚拟专用网中的各主机所分配的地址应该是本机构可自由分配的专用地址</strong>，而不是需要申请的、在因特网上使用的共有地址</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031945182.png" alt="4.59" style="zoom:45%;" />
+
+<h3 id="4-6-2-网络地址转换NAT"><a href="#4-6-2-网络地址转换NAT" class="headerlink" title="4.6.2 网络地址转换NAT"></a>4.6.2 网络地址转换NAT</h3><ul>
+<li>虽然因特网采用了无分类编址方式来缓解 IPv4 地址空间耗尽的速度，但由于因特网用户数目的激增，特别是大量小型办公室网络和家庭网络接入因特网的需求不断增加，IPv4 地址空间即将面临耗尽的危险仍然没有被解除</li>
+<li>1994 年提出了一种网络地址转换 NAT 的方法再次<strong>缓解了 IPv4 地址空间即将耗尽的问题</strong></li>
+<li>NAT 能使大量<strong>使用内部专用地址的专用网络用户共享少量外部全球地址来访问因特网上的主机和资源</strong></li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202204031948324.png" alt="4.60" style="zoom:45%;" />
+
+<ul>
+<li><p>NAT 路由器工作原理</p>
+<ul>
+<li>NAT 路由器收到从专用网内部的主机 A 发往互联网上主机 B 的 IP 数据报：源 IP 地址是 192.168.0.3，而目的 IP 地址是 213.18.2.4。NAT 路由器把 IP 数据报的源 IP 地址 192.168.0.3，转换为新的源 IP 地址（即 NAT 路由器的全球 IP 地址）172.38.1.5，然后转发出去</li>
+<li>主机 B 收到这个 IP 数据报时，以为 A 的 IP 地址是 172.38.1.5。当 B 给 A 发送应答时，IP 数据报的目的 IP 地址是 NAT 路由器的 IP 地址 172.38.1.5</li>
+<li>当 NAT 路由器收到互联网上的主机 B 发来的 IP 数据报时，还要进行一次 IP 地址的转换。通过 NAT 地址转换表，就可把 IP 数据报上的旧的目的 IP 地址 172.38.1.5，转换为新的目的 IP 地址 192.168.0.3（主机 A 真正的本地 IP 地址）</li>
+<li>该过程的 NAT 地址转换表如下</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>字段</th>
+<th>旧的 IP 地址</th>
+<th>新的 IP 地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出</td>
+<td>源 IP 地址</td>
+<td>192.168.0.3</td>
+<td>172.38.1.5</td>
+</tr>
+<tr>
+<td>入</td>
+<td>目的 IP 地址</td>
+<td>172.38.1.5</td>
+<td>192.168.0.3</td>
+</tr>
+<tr>
+<td>出</td>
+<td>源 IP 地址</td>
+<td>192.168.0.7</td>
+<td>172.38.1.6</td>
+</tr>
+<tr>
+<td>入</td>
+<td>目的 IP 地址</td>
+<td>172.38.1.6</td>
+<td>192.168.0.7</td>
+</tr>
+</tbody></table>
+<ul>
+<li>由此可见，当 NAT 路由器具有 $n$ 个全球 IP 地址时，专用网内最多可以同时有 $n$ 台主机接入到互联网</li>
+</ul>
+</li>
+<li><p>由于绝大多数的网络应用都是使用运输层协议 TCP 或 UDP 来传送数据，因此可以利用运输层端口号和 IP 地址一起进行转换。这样，<strong>用一个全球 IP 地址就可以使多个拥有本地地址的主机同时和因特网上的主机通信</strong>。这种将端口号和 IP 地址一起进行转换的技术叫作<strong>网络地址与端口号转换 NAPT</strong>（network address and port translation）</p>
+<ul>
+<li>NAPT 地址转换举例</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>字段</th>
+<th>旧的 IP 地址和端口号</th>
+<th>新的 IP 地址和端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出</td>
+<td>源 IP 地址</td>
+<td>192.168.0.3:30000</td>
+<td>172.38.1.5:40001</td>
+</tr>
+<tr>
+<td>入</td>
+<td>目的 IP 地址</td>
+<td>172.38.1.5:30000</td>
+<td>192.168.0.3:40002</td>
+</tr>
+<tr>
+<td>出</td>
+<td>源 IP 地址</td>
+<td>192.168.0.7:40001</td>
+<td>172.38.1.6:30000</td>
+</tr>
+<tr>
+<td>入</td>
+<td>目的 IP 地址</td>
+<td>172.38.1.6:40002</td>
+<td>192.168.0.7:30000</td>
+</tr>
+</tbody></table>
+<ul>
+<li>在专用网内主机 192.168.0.3 向互联网发送 IP 数据报，其 TCP 端口号选择为 30000。NAPT 把源 IP 地址和 TCP 端口号都进行转换。另一台主机 192.168.0.4 也选择了同样的 TCP 端口号 30000。这纯属巧合。现在 NAPT 把专用网内不同的源 IP 地址都转换为同样的全球 IP 地址。但对源主机所采用的 TCP 端口号，则转换为不同的新的端口号。因此，当 NAPT 路由器收到从互联网发来的应答时，就可以从 IP 数据报的数据部分找出运输层的端口号，然后根据不同的目的端口号，从 NAPT 转换表中找到正确的目的主机</li>
+</ul>
+</li>
+<li><p>对于一些 P2P 网络应用，需要<strong>外网主机与内网主机进行通信，在通过 NAT 时会遇到问题</strong>，需要网络应用自己使用一些特殊的 NAT 穿越技术来解决问题</p>
+</li>
+<li><p>由于 <strong>NAT 对外网屏蔽了内网主机的网络地址，能为内网的主机提供一定的安全保护</strong></p>
+</li>
+</ul>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/06/06/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BF%90%E8%BE%93%E5%B1%82/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第五章 运输层</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/06/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第三章 数据链路层</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拔丝地瓜</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-text">第四章 网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9C%8D%E5%8A%A1"><span class="nav-text">4.1 网络层提供的两种服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP"><span class="nav-text">4.2 网际协议IP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-%E8%99%9A%E6%8B%9F%E4%BA%92%E8%BF%9E%E7%BD%91%E7%BB%9C"><span class="nav-text">4.2.1 虚拟互连网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-%E5%88%86%E7%B1%BB%E7%9A%84IP%E5%9C%B0%E5%9D%80"><span class="nav-text">4.2.2 分类的IP地址</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-IP%E5%9C%B0%E5%9D%80%E5%8F%8A%E5%85%B6%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-text">1. IP地址及其表示方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%88%AB%E7%9A%84IP%E5%9C%B0%E5%9D%80"><span class="nav-text">2. 常用的三种类别的IP地址</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-IP%E5%9C%B0%E5%9D%80%E4%B8%8E%E7%A1%AC%E4%BB%B6%E5%9C%B0%E5%9D%80"><span class="nav-text">4.2.3 IP地址与硬件地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AEARP"><span class="nav-text">4.2.4 地址解析协议ARP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-5-IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-text">4.2.5 IP数据报的格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E9%A6%96%E9%83%A8%E7%9A%84%E5%9B%BA%E5%AE%9A%E9%83%A8%E5%88%86%E4%B8%AD%E7%9A%84%E5%90%84%E5%AD%97%E6%AE%B5"><span class="nav-text">1. IP数据报首部的固定部分中的各字段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E7%89%88%E6%9C%AC"><span class="nav-text">（1）版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E9%A6%96%E9%83%A8%E9%95%BF%E5%BA%A6"><span class="nav-text">（2）首部长度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E5%8C%BA%E5%88%86%E6%9C%8D%E5%8A%A1"><span class="nav-text">（3）区分服务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E6%80%BB%E9%95%BF%E5%BA%A6"><span class="nav-text">（4）总长度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%885%EF%BC%89%E6%A0%87%E8%AF%86%EF%BC%88identification%EF%BC%89"><span class="nav-text">（5）标识（identification）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%886%EF%BC%89%E6%A0%87%E5%BF%97%EF%BC%88flag%EF%BC%89"><span class="nav-text">（6）标志（flag）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%887%EF%BC%89%E7%89%87%E5%81%8F%E7%A7%BB"><span class="nav-text">（7）片偏移</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%888%EF%BC%89%E7%94%9F%E5%AD%98%E6%97%B6%E9%97%B4TTL"><span class="nav-text">（8）生存时间TTL</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%889%EF%BC%89%E5%8D%8F%E8%AE%AE"><span class="nav-text">（9）协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%8810%EF%BC%89%E9%A6%96%E9%83%A8%E6%A3%80%E9%AA%8C%E5%92%8C"><span class="nav-text">（10）首部检验和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%8811%EF%BC%89%E6%BA%90%E5%9C%B0%E5%9D%80"><span class="nav-text">（11）源地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%8812%EF%BC%89%E7%9B%AE%E7%9A%84%E5%9C%B0%E5%9D%80"><span class="nav-text">（12）目的地址</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E9%A6%96%E9%83%A8%E7%9A%84%E5%8F%AF%E5%8F%98%E9%83%A8%E5%88%86"><span class="nav-text">2. IP数据报首部的可变部分</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-6-IP%E5%B1%82%E8%BD%AC%E5%8F%91%E5%88%86%E7%BB%84%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-text">4.2.6 IP层转发分组的流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%88%92%E5%88%86%E5%AD%90%E7%BD%91%E5%92%8C%E6%9E%84%E9%80%A0%E8%B6%85%E7%BD%91"><span class="nav-text">4.3 划分子网和构造超网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-%E5%88%92%E5%88%86%E5%AD%90%E7%BD%91"><span class="nav-text">4.3.1 划分子网</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BB%8E%E4%B8%A4%E7%BA%A7-IP-%E5%9C%B0%E5%9D%80%E5%88%B0%E4%B8%89%E7%BA%A7-IP-%E5%9C%B0%E5%9D%80"><span class="nav-text">1. 从两级 IP 地址到三级 IP 地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="nav-text">2. 子网掩码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-%E4%BD%BF%E7%94%A8%E5%AD%90%E7%BD%91%E6%97%B6%E5%88%86%E7%BB%84%E7%9A%84%E8%BD%AC%E5%8F%91"><span class="nav-text">4.3.2 使用子网时分组的转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-%E6%97%A0%E5%88%86%E7%B1%BB%E7%BC%96%E5%9D%80CIDR%EF%BC%88%E6%9E%84%E9%80%A0%E8%B6%85%E7%BD%91%EF%BC%89"><span class="nav-text">4.3.3 无分类编址CIDR（构造超网）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%BD%91%E7%BB%9C%E5%89%8D%E7%BC%80"><span class="nav-text">1. 网络前缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9C%80%E9%95%BF%E5%89%8D%E7%BC%80%E5%8C%B9%E9%85%8D"><span class="nav-text">2. 最长前缀匹配</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E7%BD%91%E9%99%85%E6%8E%A7%E5%88%B6%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AEICMP"><span class="nav-text">4.4 网际控制报文协议ICMP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-ICMP%E6%8A%A5%E6%96%87%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-text">4.4.1 ICMP报文的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2-ICMP%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B"><span class="nav-text">4.4.2 ICMP的应用举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="nav-text">4.5 互联网的路由选择协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-1-%E6%9C%89%E5%85%B3%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">4.5.1 有关路由选择协议的几个基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%90%86%E6%83%B3%E7%9A%84%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95"><span class="nav-text">1. 理想的路由算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%88%86%E5%B1%82%E6%AC%A1%E7%9A%84%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="nav-text">2. 分层次的路由选择协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-2-%E5%86%85%E9%83%A8%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AERIP"><span class="nav-text">4.5.2 内部网关协议RIP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">1. 工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%B7%9D%E7%A6%BB%E5%90%91%E9%87%8F%E7%AE%97%E6%B3%95"><span class="nav-text">2. 距离向量算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-RIP%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="nav-text">3. RIP协议的报文格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-3-%E5%86%85%E9%83%A8%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AEOSPF"><span class="nav-text">4.5.3 内部网关协议OSPF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-OSPF%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E7%82%B9"><span class="nav-text">1. OSPF协议的基本特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-OSPF%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">2. OSPF的基本工作原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-4-%E5%A4%96%E9%83%A8%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AEBGP"><span class="nav-text">4.5.4 外部网关协议BGP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-5-%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E6%9E%84%E6%88%90"><span class="nav-text">4.5.5 路由器的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-text">1. 路由器的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BA%A4%E6%8D%A2%E7%BB%93%E6%9E%84"><span class="nav-text">2. 交换结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E8%99%9A%E6%8B%9F%E4%B8%93%E7%94%A8%E7%BD%91VPN%E5%92%8C%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2NAT"><span class="nav-text">4.6 虚拟专用网VPN和网络地址转换NAT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-1-%E8%99%9A%E6%8B%9F%E4%B8%93%E7%94%A8%E7%BD%91VPN"><span class="nav-text">4.6.1 虚拟专用网VPN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-2-%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2NAT"><span class="nav-text">4.6.2 网络地址转换NAT</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

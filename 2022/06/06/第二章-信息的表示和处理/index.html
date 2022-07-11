@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="拔丝地瓜">
+    
+    <title>
+        
+            第二章 信息的表示和处理 |
+        
+        拔丝地瓜
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/favicon.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                拔丝地瓜
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">第二章 信息的表示和处理</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拔丝地瓜</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-06 10:35:08</span>
+        <span class="mobile">2022-06-06 10:35</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/CSAPP%E7%AC%94%E8%AE%B0/">CSAPP笔记</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="第二章-信息的表示和处理"><a href="#第二章-信息的表示和处理" class="headerlink" title="第二章 信息的表示和处理"></a>第二章 信息的表示和处理</h1><h3 id="2-1-信息存储"><a href="#2-1-信息存储" class="headerlink" title="2.1 信息存储"></a>2.1 信息存储</h3><hr>
+<p>大多数计算机使用8 位的块，或者<strong>字节</strong> （byte）, 作为最小的可寻址的内存单位。</p>
+<p>机器级程序将内存视为一个非常大的字节数组，称为<strong>虚拟内存</strong> （virtual memory） 。</p>
+<p>内存的每个字节都由一个唯一的数字来标识，称为它的<strong>地址</strong> （address）。</p>
+<p>所有可能地址的集合就称为<strong>虚拟地址空间</strong> （virtual address space），这个虚拟地址空间只是一个展现给机器级程序的概念性映像。</p>
+<h4 id="2-1-1-十六进制表示法"><a href="#2-1-1-十六进制表示法" class="headerlink" title="2.1.1 十六进制表示法"></a>2.1.1 十六进制表示法</h4><p>十六进制表示、十六进制和十进制的互相转换。</p>
+<h4 id="2-1-2-字数据大小"><a href="#2-1-2-字数据大小" class="headerlink" title="2.1.2 字数据大小"></a>2.1.2 字数据大小</h4><p>每台计算机都有一个<strong>字长</strong> （word size）， 指明指针数据的标称大小（nominal size）。因为虚拟地址是以这样的一个字来编码的，所以字长决定的最重要的系统参数就是虚拟地址空间的最大大小。也就是说，对于一个字长为$w$位的机器而言，虚拟地址的范围为$0\sim 2^w-1$，程序最多访问$2^w$个字节。</p>
+<p>32 位字长限制虚拟地址空间为4 千兆字节（写作4GB，1G&#x3D;$2^{30}$）, 也就是说，刚刚超过$4\times 10^9$字节。扩展到64 位字长使得虚拟地址空间为16EB, 大约是$1.84\times 10^{19} $字节。</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210811191106.png"></p>
+<p><strong>可移植性：</strong> 许多程序员假设一个声明为<code>int</code> 类型的程序对象能被用来存储一个指针。这在大多数32 位的机器上能正常工作，但是在一台64 位的机器上却会导致问题。</p>
+<h4 id="2-1-3-寻址和字节顺序"><a href="#2-1-3-寻址和字节顺序" class="headerlink" title="2.1.3 寻址和字节顺序"></a>2.1.3 寻址和字节顺序</h4><p>对于跨越多字节的程序对象，必须建立两个规则：这个<strong>对象的地址是什么</strong> ，以及<strong>在内存中如何排列这些字节</strong> 。</p>
+<p>在几乎所有的机器上，多字节对象都被存储为连续的字节序列，对象的地址为所使用字节中最小的地址。</p>
+<p>某些机器选择在内存中按照从最低有效字节到最高有效字节的顺序存储对象，称为<strong>小端法</strong> （little endian）；而另一些机器则按照从最高有效字节到最低有效字节的顺序存储，称为<strong>大端法</strong> （big endian）。</p>
+<p>以<code>int</code>类型的变量<code>x</code>为例，假设其位于地址<code>0x100</code>处，它的16进制值为<code>0x01234567</code>。地址范围<code>0x100~0x103</code>的字节顺序依赖于机器的类型：</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210811194257.png" style="zoom:45%;" />
+
+<p>在有些时候，字节顺序会成为问题：</p>
+<ol>
+<li><p>是在不同类型的机器之间通过网络传送二进制数据时， 一个常见的问题是当小端法机器产生的数据被发送到大端法机器或者反过来时，接收程序会发现，字里的字节成了反序的。为了避免这类问题，网络应用程序的代码编写必须遵守已建立的关千字节顺序的规则，以确保发送方机器将它的内部表示转换成网络标准，而接收方机器则将网络标准转换为它的内部表示。</p>
+</li>
+<li><p>当阅读表示整数数据的字节序列时字节顺序也很重要。这通常发生在阅读由反汇编器生成的机器级代码时。</p>
+</li>
+<li><p>当编写规避正常的类型系统的程序时。</p>
+</li>
+</ol>
+<p><strong>打印程序对象的字节表示：</strong> </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">char</span> *byte_pointer;<span class="comment">//用typedef将数据类型byte_pointer定义为一个指向类型为unsigned char的对象的指针</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_bytes</span><span class="params">(byte_pointer start,<span class="type">size_t</span> len)</span>&#123;<span class="comment">//输入参数是一个字节序列的地址，用一个字节指针和一个字节数来表示。</span></span><br><span class="line">  <span class="type">size_t</span> i;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; len;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.2x&quot;</span>,start[i]);<span class="comment">//表示整数必须用至少两个数字的十六进制格式输出。</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;<span class="comment">//打印出每个以十六进制表示的字节。</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_int</span><span class="params">(<span class="type">int</span> x)</span>&#123;<span class="comment">//&amp;x被强制类型转换为&quot;unsigned char *&quot;，即把这个指针看成指向一个字节序列的对象</span></span><br><span class="line">  show_bytes((byte_pointer) &amp;x,<span class="keyword">sizeof</span>(<span class="type">int</span>));<span class="comment">//使用sizeof增加可移植性</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_float</span><span class="params">(<span class="type">float</span> x)</span>&#123;</span><br><span class="line">  show_bytes((byte_pointer) &amp;x,<span class="keyword">sizeof</span>(<span class="type">float</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_pointer</span><span class="params">(<span class="type">void</span> *x)</span>&#123;</span><br><span class="line">  show_bytes((byte_pointer) &amp;x,<span class="keyword">sizeof</span>(<span class="type">void</span> *));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test_show_bytes</span><span class="params">(<span class="type">int</span> val)</span>&#123;</span><br><span class="line">  <span class="type">int</span> ival = val;</span><br><span class="line">  <span class="type">float</span> fval = (<span class="type">float</span>) ival;</span><br><span class="line">  <span class="type">int</span> *pval = &amp;ival;</span><br><span class="line">  show_int(ival);</span><br><span class="line">  show_float(fval);</span><br><span class="line">  show_pointer(pval);</span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="2-1-4-表示字符串"><a href="#2-1-4-表示字符串" class="headerlink" title="2.1.4 表示字符串"></a>2.1.4 表示字符串</h4><p>C语言中字符串被编码为一个以null（其值为0）字符结尾的字符数组。每个字符都由某个标准编码来表示，最常见的是ASCII字符码。</p>
+<p>在使用ASCII码作为字符码的任何系统上都将得到相同的结果，与字节顺序和字大小规则无关。</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210811205814.png"></p>
+<h4 id="2-1-5-表示代码"><a href="#2-1-5-表示代码" class="headerlink" title="2.1.5 表示代码"></a>2.1.5 表示代码</h4><p>对于下面的C函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>在不同机器上生成的字节表示的机器代码是不同的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Linux 32    55 89 e5 8b 45 0c 03 45 08 c9 c3</span><br><span class="line">Windows     55 89 e5 8b 45 0c 03 45 08 5d c3</span><br><span class="line">Sum         81 c3 e0 08 90 02 00 09</span><br><span class="line">Linux 64    55 48 89 e5 89 7d fc 89 75 f8 03 45 fc c9 c3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>不同的机器类型使用不同的且不兼容的指令和编码方式，二进制代码是不兼容的。</p>
+<p>计算机系统的一个基本概念是，从机器的角度来看，程序仅仅只是字节序列。</p>
+<h4 id="2-1-6-布尔代数简介"><a href="#2-1-6-布尔代数简介" class="headerlink" title="2.1.6 布尔代数简介"></a>2.1.6 布尔代数简介</h4><p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210811220014.png"></p>
+<h4 id="2-1-7-C语言中的位运算"><a href="#2-1-7-C语言中的位运算" class="headerlink" title="2.1.7 C语言中的位运算"></a>2.1.7 C语言中的位运算</h4><p>C语言使用的符号和布尔运算中使用的符号相同：<code>|</code>就是或，<code>&amp;</code>就是与，<code>~</code>就是取反，<code>^</code>就是异或</p>
+<p>位级运算的一个常见用法就是实现<strong>掩码</strong> 运算，这里掩码是一个位模式，表示从一个字中选出的位的集合。例如：掩码<code>0xFF</code>（最低的8 位为1）表示一个字的低位字节。位级运算<code>x&amp;0xFF</code>生成一个由<code>x</code>的最低有效字节组成的值，而其他的字节就被置为0 。比如，对于<code>x=0x89ABCDEF</code>其表达式将得到<code>0x000000EF</code></p>
+<h4 id="2-1-8-C语言中的逻辑运算"><a href="#2-1-8-C语言中的逻辑运算" class="headerlink" title="2.1.8 C语言中的逻辑运算"></a>2.1.8 C语言中的逻辑运算</h4><p>C语言中的逻辑运算符<code>||</code>、<code>&amp;&amp;</code>和<code>!</code>分别对应于命题逻辑中的OR、AND和NOT运算。</p>
+<p>逻辑运算认为所有非零的参数都表示TRUE，而参数0表示FALSE。它们返回1或0，分别表示结果为TRUE或者FALSE。例如：</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210811221815.png" style="zoom:44%;" />
+
+<h4 id="2-1-9-C语言中的移位运算"><a href="#2-1-9-C语言中的移位运算" class="headerlink" title="2.1.9 C语言中的移位运算"></a>2.1.9 C语言中的移位运算</h4><p>对于一个位表示为$[x_{w-1},x_{w-2},\cdots,x_0]$的操作数$x$</p>
+<p><strong>左移运算：</strong> <code>x&lt;&lt;k</code>生成位表示为$[x_{w-k-1},x_{w-k-2},\cdots,x_0,0,\cdots,0]$的值。即$x $向左移动$k$位，丢弃最高的$k $位，并在右端补$k$个0。</p>
+<p><strong>右移运算：</strong> <code>x&gt;&gt;k</code>，分为<strong>逻辑右移</strong> 和<strong>算术右移</strong> 。逻辑右移在左端补$k $个0，得到结果是$[0,\cdots,0,x_{w-1},x_{w-2},\cdots,x_k]$；算术右移在左端补$k$个最高有效位的值，得到的结果是$[x_{w-1},\cdots,x_{w-1},x_{w-1},x_{w-2},\cdots,x_k]$。</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210812094058.png" style="zoom:50%;" />
+
+<p>C 语言标准并没有明确定义对于有符号数应该使用哪种类型的右移，但是，实际上，几乎所有的编译器&#x2F;机器组合都对有符号数使用算术右移，且许多程序员也都假设机器会使用这种右移。</p>
+<p>Java对于如何进行右移有明确的定义，<code>x&gt;&gt;k</code>会将<code>x</code>进行算术右移，而<code>x&gt;&gt;&gt;k</code>会对<code>x</code>进行逻辑右移。</p>
+<p>对于一个由$w$位组成的数据类型，当移动$k\geq w$位时，实际位移量是通过计算$k\mod w$得到的。例如，假设数据类型<code>int</code>为$w&#x3D;32$</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>      lval = <span class="number">0xFEDCBA98</span>  &lt;&lt; <span class="number">32</span>; <span class="comment">//0xFEDCBA98</span></span><br><span class="line"><span class="type">int</span>      aval = <span class="number">0xFEDCBA98</span>  &lt;&lt; <span class="number">36</span>; <span class="comment">//0xFFEDCBA9</span></span><br><span class="line"><span class="type">unsigned</span> uval = <span class="number">0xFEDCBA98</span>u &gt;&gt; <span class="number">40</span>; <span class="comment">//0x00FEDCBA</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-2-整数表示"><a href="#2-2-整数表示" class="headerlink" title="2.2 整数表示"></a>2.2 整数表示</h3><hr>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210812104559.png"></p>
+<h4 id="2-2-1-整数数据类型"><a href="#2-2-1-整数数据类型" class="headerlink" title="2.2.1 整数数据类型"></a>2.2.1 整数数据类型</h4><table>
+<thead>
+<tr>
+<th>C数据类型</th>
+<th>32位</th>
+<th>64位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[signed]char</code></td>
+<td>$-2^7\sim 2^7-1$</td>
+<td>$-2^7\sim 2^7-1$</td>
+</tr>
+<tr>
+<td><code>unsigned char</code></td>
+<td>$0\sim2^8-1$</td>
+<td>$0\sim2^8-1$</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>$-2^{15}\sim 2^{15}-1$</td>
+<td>$-2^{15}\sim 2^{15}-1$</td>
+</tr>
+<tr>
+<td><code>unsigned short</code></td>
+<td>$0\sim 2^{16}-1$</td>
+<td>$0\sim 2^{16}-1$</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>$-2^{31}\sim 2^{31}-1$</td>
+<td>$-2^{31}\sim 2^{31}-1$</td>
+</tr>
+<tr>
+<td><code>unsigned long</code></td>
+<td>$0\sim 2^{32}-1$</td>
+<td>$0\sim 2^{32}-1$</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>$-2^{31}\sim 2^{31}-1$</td>
+<td>$-2^{63}\sim2^{63}-1$</td>
+</tr>
+<tr>
+<td><code>unsigned long</code></td>
+<td>$0\sim 2^{32}-1$</td>
+<td>$0\sim 2^{64}-1$</td>
+</tr>
+<tr>
+<td><code>int32_t</code></td>
+<td>$-2^{31}\sim 2^{31}-1$</td>
+<td>$-2^{31}\sim 2^{31}-1$</td>
+</tr>
+<tr>
+<td><code>uint_t</code></td>
+<td>$0\sim 2^{32}-1$</td>
+<td>$0\sim 2^{32}-1$</td>
+</tr>
+<tr>
+<td><code>int64_t</code></td>
+<td>$-2^{63}\sim2^{63}-1$</td>
+<td>$-2^{63}\sim2^{63}-1$</td>
+</tr>
+<tr>
+<td><code>uint64_t</code></td>
+<td>$0\sim 2^{64}-1$</td>
+<td>$0\sim 2^{64}-1$</td>
+</tr>
+</tbody></table>
+<p>C和C++都支持有符号数（默认）和无符号数，Java只支持有符号数。</p>
+<h4 id="2-2-2-无符号数的编码"><a href="#2-2-2-无符号数的编码" class="headerlink" title="2.2.2 无符号数的编码"></a>2.2.2 无符号数的编码</h4><p><strong>无符号数编码的定义：</strong> 对于向量$\boldsymbol{x}&#x3D;[x_{w-1},x_{w-2},\cdots,x_0]$：</p>
+<p>$$<br>B2U_w(\boldsymbol{x})\doteq \sum_{i&#x3D;0}^{w-1} x_i2^i<br>$$</p>
+<p>$w$位所能表示的值的范围为：最小是0，最大是$\displaystyle{UMax_w\doteq \sum_{i&#x3D;0}^{w-1}2^i}&#x3D;2^w-1$</p>
+<h4 id="2-2-3-补码编码"><a href="#2-2-3-补码编码" class="headerlink" title="2.2.3 补码编码"></a>2.2.3 补码编码</h4><p><strong>补码编码的定义：</strong> 对于向量$\boldsymbol{x}&#x3D;[x_{w-1},x_{w-2},\cdots,x_0]$：</p>
+<p>$$<br>B2T_w(\boldsymbol{x})\doteq -x_{w-1}2^{w-1}+\sum_{i&#x3D;0}^{w-2} x_i2^i<br>$$</p>
+<p>$w$位所能表示的值的范围为：最小是$TMin_w\doteq-2^{w-1}$，最大是$TMax_w\doteq 2^{w-1}-1$</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210813094844.png"></p>
+<h4 id="2-2-4-有符号数和无符号数之间的转换"><a href="#2-2-4-有符号数和无符号数之间的转换" class="headerlink" title="2.2.4 有符号数和无符号数之间的转换"></a>2.2.4 有符号数和无符号数之间的转换</h4><p><strong>补码转换为无符号数：</strong> 对满足$TMin_w\leq x\leq TMax_w$的$x $有：</p>
+<p>$$<br>T2U_w(x)&#x3D;\begin{cases}<br>x+2^w, &amp; x&lt;0  \\<br>x, &amp; x \geq 0<br>\end{cases}<br>$$</p>
+<p><strong>无符号数转换为补码：</strong> 对满足$0\leq u\leq UMax_w$的$u$有：</p>
+<p>$$<br>U2T_w(u)&#x3D;\begin{cases}<br>u, &amp; u\leq TMax_w \\<br>u-2^w, &amp; u&gt; TMax_w<br>\end{cases}<br>$$</p>
+<p>$-A$<strong>的表示可以通过把</strong> $A$<strong>的反码加1得到，即“</strong> <strong>取反加1</strong> <strong>”。</strong> （无论是负数转换为无符号数，还是无符号转换为负数都适用）</p>
+<h4 id="2-2-5-C语言中的有符号数与无符号数"><a href="#2-2-5-C语言中的有符号数与无符号数" class="headerlink" title="2.2.5 C语言中的有符号数与无符号数"></a>2.2.5 C语言中的有符号数与无符号数</h4><p>显式强制类型转换：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> tx,ty;</span><br><span class="line"><span class="type">unsigned</span> ux,uy;</span><br><span class="line">tx = (<span class="type">int</span>) ux;</span><br><span class="line">uy = (<span class="type">unsigned</span>) ty;</span><br></pre></td></tr></table></figure>
+
+
+<p>隐式类型转换：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> tx,ty;</span><br><span class="line"><span class="type">unsigned</span> ux,uy;</span><br><span class="line">tx = ux; <span class="comment">//转换为有符号数</span></span><br><span class="line">uy = ty; <span class="comment">//转换为无符号数</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>在32位机器上运行以下代码：</strong> </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">-1</span>;<span class="comment">//1111 1111 1111 1111 1111 1111 1111 1111,0xFFFF FFFF</span></span><br><span class="line"><span class="type">unsigned</span> u = <span class="number">2147483648</span>; <span class="comment">//2^31,1000 0000 0000 0000 0000 0000 0000 0000,0x8000 0000</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;x = %u = %d\n&quot;</span>,x,x); <span class="comment">//x = 429497295 = -1</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;u = %u = %d\n&quot;</span>,u,u); <span class="comment">//u = 2147483648 = -2147483648</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="2-2-6-拓展一个数字的位表示"><a href="#2-2-6-拓展一个数字的位表示" class="headerlink" title="2.2.6 拓展一个数字的位表示"></a>2.2.6 拓展一个数字的位表示</h4><p><strong>无符号数的零拓展：</strong> 定义宽度为$w$的位向量$\boldsymbol{u}&#x3D;[u_{w-1},u_{w-2},\cdots,u_0]$和宽度为$w’$的位向量$\boldsymbol{u’}&#x3D;[0,\cdots,0,u_{w-1},u_{w-2},\cdots,u_0]$，其中$w’&gt;w$。则$B2U_w(\boldsymbol{u})&#x3D;B2U_{w’}(\boldsymbol{u’})$。</p>
+<p><strong>补码数的符号拓展：</strong> 定义宽度为$w$的位向量$\boldsymbol{x}&#x3D;[x_{w-1},x_{w-2},\cdots,x_0]$和宽度为$w’$的位向量$\boldsymbol{x’}&#x3D;[x_{w-1},\cdots,x_{w-1},x_{w-1},x_{w-2},\cdots,x_0]$，其中$w’&gt;w$。则$B2U_w(\boldsymbol{x})&#x3D;B2U_{w’}(\boldsymbol{x’})$。</p>
+<h4 id="2-2-7-截断数字"><a href="#2-2-7-截断数字" class="headerlink" title="2.2.7 截断数字"></a>2.2.7 截断数字</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">53191</span>; <span class="comment">//0000 0000 0000 0000 1100 1111 1100 0111</span></span><br><span class="line"><span class="type">short</span> sx = (<span class="type">short</span>) x; <span class="comment">//-12345</span></span><br><span class="line"><span class="type">int</span> y = sx; <span class="comment">//-12345    12345-&gt;0011 0000 0011 1001</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>截断无符号数：</strong> 令$\boldsymbol{x}$等于位向量$[x_{w-1},x_{w-2},\cdots,x_0]$，而$\boldsymbol{x’}$是将其截断为$k$位的结果：$\boldsymbol{x’}&#x3D;[x_{k-1},x_{k-2},\cdots,x_0]$。令$x&#x3D;B2U_w(\boldsymbol{x})$,$x’&#x3D;B2U_k(\boldsymbol{x’})$。则$x’&#x3D;x\mod 2^k$。</p>
+<p><strong>截断补码数值：</strong> 令$\boldsymbol{x}$等于位向量$[x_{w-1},x_{w-2},\cdots,x_0]$，而$\boldsymbol{x’}$是将其截断为$k$位的结果：$\boldsymbol{x’}&#x3D;[x_{k-1},x_{k-2},\cdots,x_0]$。令$x&#x3D;B2U_w(\boldsymbol{x})$,$x’&#x3D;B2T_k(\boldsymbol{x’})$。则$x’&#x3D;U2T_k(x\mod 2^k)$。</p>
+<h4 id="2-2-8-关于有符号数与无符号数的建议"><a href="#2-2-8-关于有符号数与无符号数的建议" class="headerlink" title="2.2.8 关于有符号数与无符号数的建议"></a>2.2.8 关于有符号数与无符号数的建议</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">**<span class="comment">/* WARNING: This is buggy code. */</span>** </span><br><span class="line"><span class="type">float</span> <span class="title function_">sum_elements</span><span class="params">(<span class="type">float</span> a[],<span class="type">unsigned</span> length)</span>&#123;</span><br><span class="line">  <span class="type">int</span> i;</span><br><span class="line">  <span class="type">float</span> result = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt;= lenght<span class="number">-1</span>;i++)&#123;</span><br><span class="line">    result += a[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>当参数<code>length</code>等于0时，运行上面的代码应该返回<code>0.0</code>，可实际上运行时会遇到一个内存错误。</p>
+<p>因为参数<code>length</code>是无符号的，计算<code>0-1</code>将使用无符号运算，这等价于模数加法。结果得到$UMax$。$\leq $同样使用无符号数比较，而因为任何数都小于等于$UMax$，所以总是为真，因此代码将试图访问数组<code>a</code>的非法元素。</p>
+<h3 id="2-3-整数运算"><a href="#2-3-整数运算" class="headerlink" title="2.3 整数运算"></a>2.3 整数运算</h3><hr>
+<h4 id="2-3-1-无符号加法"><a href="#2-3-1-无符号加法" class="headerlink" title="2.3.1 无符号加法"></a>2.3.1 无符号加法</h4><p><strong>无符号数加法（</strong> $+_w^u$<strong>）：</strong> 对满足$x\geq 0,y&lt;2^w$的$x$和$y$有：<br>$$<br>x+_w^u y&#x3D;\begin{cases}<br> x+y, &amp; x+y&lt;2^w &amp; \text{正常}  \\<br> x+y-2^w, &amp; 2^w\leq x+y&lt;2^{w+1} &amp; \text{溢出}<br>\end{cases}<br>$$</p>
+<p><strong>检测无符号数加法中的溢出：</strong> 对在范围$x\geq 0,y\leq UMax_w$中的$x$和$y $，令$s\doteq x+_w^uy$。则对计算$s$，当且仅当$s&lt;x$（或等价地$s&lt;y$）时，发生了溢出。</p>
+<p>无符号数求反：对满足$0\leq x&lt;2^w$的任意$x$，其$w$位的无符号逆元$-_w^ux$由下式给出：</p>
+<p>$$<br>-^u_wx&#x3D;\begin{cases}<br> x, &amp; x&#x3D;0 \\<br> 2^w-x, &amp; x&gt;0<br>\end{cases}<br>$$</p>
+<h4 id="2-3-2-补码加法"><a href="#2-3-2-补码加法" class="headerlink" title="2.3.2 补码加法"></a>2.3.2 补码加法</h4><p><strong>补码加法：</strong> 对满足$x\geq -2^{w-1},y\leq2^{w-1}-1$的整数$x$和$y$，有：</p>
+<p>$$<br>x+_w^t y&#x3D;\begin{cases}<br> x+y-2^w, &amp; x+y\geq 2^{w-1} &amp; \text{正溢出}   \\<br> x+y, &amp; -2^{w-1}\leq x+y&lt;2^{w-1} &amp; \text{正常}  \\<br> x+y+2^w, &amp; x+y&lt;-2^{w-1} &amp; \text{负溢出}<br>\end{cases}<br>$$</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210813151047.png" style="zoom: 33%;" />
+
+<p><strong>检测补码加法中的溢出：</strong> 对满足$x\geq TMin_w,y\leq TMax_w$的$x$和$y$，令$s\doteq x+_w^t y$。当且仅当$x&gt;0,y&gt;0$，但$s\leq 0$时，计算$s$发生了正溢出。当且仅当$x&lt;0,y&lt;0$，但$s\geq 0$时，计算$s$发生了负溢出。</p>
+<h4 id="2-3-3-补码的非"><a href="#2-3-3-补码的非" class="headerlink" title="2.3.3 补码的非"></a>2.3.3 补码的非</h4><p><strong>补码的非：</strong> 对满足$TMin_w\leq x\leq TMax_w$的$x$，其补码的非$-_w^tx$由下式给出</p>
+<p>$$<br>-^t_wx&#x3D;\begin{cases}<br> TMin_w, &amp; x&#x3D;TMin_w  \\<br> -x, &amp; x&gt;TMin_w<br>\end{cases}<br>$$</p>
+<p><strong>补码非的位级表示：</strong> （1）对每一位求补，再对结果加1（取反加1）</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210813161909.png" style="zoom:44%;" />
+
+<p>（2）设$k$是$x$最右边的1的位置（从右往左数的第一个1），因而$x$的位级表示形如$[x_{w-1},x_{w-2},\cdots,x_{k+1},1,0,\cdots,0]$，这个值的非写成二进制格式就是$[\sim x_{w-1},\sim x_{w-2},\cdots,\sim x_{k+1},1,0,\cdots,0]$。也就是对位$k$左边的所有位取反。</p>
+<h4 id="2-3-4-无符号乘法"><a href="#2-3-4-无符号乘法" class="headerlink" title="2.3.4 无符号乘法"></a>2.3.4 无符号乘法</h4><p><strong>无符号数乘法：</strong> 对满足$x\geq 0,y\leq UMax_w$的$x$和$y$有：</p>
+<p>$$<br>x*_w^u y&#x3D;(x\cdot y)\mod 2^w<br>$$</p>
+<h4 id="2-3-5-补码乘法"><a href="#2-3-5-补码乘法" class="headerlink" title="2.3.5 补码乘法"></a>2.3.5 补码乘法</h4><p><strong>补码乘法：</strong> 对满足$x\geq TMin_w,y\leq TMax_w$的$x$和$y$有：</p>
+<p>$$<br>x*_w^ty&#x3D;U2T_w((x\cdot y)\mod 2^w)<br>$$</p>
+<p><strong>无符号和补码乘法的位级等价性：</strong> 给定长度为$w$的位向量$\boldsymbol{x}$和$\boldsymbol{y}$，用补码形式的位向量表示来定义整数$x$和$y$：$x&#x3D;B2T_w(\boldsymbol{x}),y&#x3D;B2T_w(\boldsymbol{y})$。用无符号形式的位向量表示来定义非负整数$x’$和$y’$：$x’&#x3D;B2U_w(\boldsymbol{x}),y’&#x3D;B2U_w(\boldsymbol{y})$。则</p>
+<p>$$<br>T2B_w(x*_w^ty)&#x3D;U2B_w(x’*_w^uy’)<br>$$</p>
+<h4 id="2-3-6-乘以常数"><a href="#2-3-6-乘以常数" class="headerlink" title="2.3.6 乘以常数"></a>2.3.6 乘以常数</h4><p><strong>乘以2的幂：</strong> 设$x$为位模式$[x_{w-1},x_{w-2},\cdots,x_0]$表示的无符号整数。那么，对于任何$k\geq0$，都认为$[x_{w-1},x_{w-2},\cdots,x_0,0,\cdots,0]$给出了$x2^k$的$w+k$位的无符号表示，这里右边增加了$k$个$0$</p>
+<p><strong>与2的幂相乘的无符号乘法：</strong> C变量<code>x</code>和<code>k</code>有无符号数值$x$和$k$，且$0\leq k&lt;w$，则C表达式<code>x&lt;&lt;k</code>产生数值$x*_w^u2^k$。</p>
+<p><strong>与2的幂相乘的补码乘法：</strong> C变量<code>x</code>和<code>k</code>有补码值$x$和无符号数值$k$，且$0\leq k&lt;w$，则C表达式<code>x&lt;&lt;k</code>产生数值$x*_w^t2^k$。</p>
+<p>由于整数乘法比移位和加法的代价要大得多，许多C语言编译器试图以移位、加法和减法的组合来消除很多整数乘以常数的情况。例如对于表达式<code>x*14</code>，编译器会将其重写为<code>(x&lt;&lt;3)+(x&lt;&lt;2)+(x&lt;&lt;1)</code>或<code>(x&lt;&lt;4)-(x&lt;&lt;1)</code>。</p>
+<h4 id="2-3-7-除以2的幂"><a href="#2-3-7-除以2的幂" class="headerlink" title="2.3.7 除以2的幂"></a>2.3.7 除以2的幂</h4><p><strong>除以2的幂的无符号除法：</strong> C变量<code>x</code>和<code>k</code>有无符号数值$x$和$k$，且$0\leq k&lt;w$，则C表达式<code>x&gt;&gt;k</code>产生数值$\lfloor x&#x2F;2^k\rfloor$。</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210813210319.png"></p>
+<p><strong>除以2的幂的补码除法，向下舍入：</strong> C变量<code>x</code>和<code>k</code>有补码值$x$和无符号数值$k$，且$0\leq k&lt;w$，则当执行算术移位时，C表达式<code>x&gt;&gt;k</code>产生数值$\lfloor x&#x2F;2^k\rfloor$。</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210813210907.png"></p>
+<p><strong>除以2的幂的补码除法，向上舍入：</strong> C变量<code>x</code>和<code>k</code>有补码值$x$和无符号数值$k$，且$0\leq k&lt;w$，则当执行算术移位时，C表达式<code>(x+(1&lt;&lt;k)-1)&gt;&gt;k</code>产生数值$\lceil x&#x2F;2^k\rceil$。</p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210813211258.png"></p>
+<p>对于使用算术右移的补码机器，C表达式<code>(x&lt;0 ? x+(1&lt;&lt;k)-1 : x) &gt;&gt; k</code>将会计算数值$x&#x2F;2^k$。</p>
+<blockquote>
+<p>写一个函数<code>div16</code>，对于整数参数<code>x</code>返回<code>x/16</code>的值。函数中不能使用除法、模运算、乘法、任何条件语句、任何比较运算符或任何循环。假设数据类型<code>int</code>是32位长，使用补码表示，右移是算术右移。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 利用表达式x&gt;&gt;31产生一个字，如果x是负数，这个字为全1，否则为全0。</span></span><br><span class="line"><span class="comment">   通过掩码屏蔽掉适当的位就可以得到期望的偏置值 */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">div16</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">  <span class="comment">/* Compute bias to be either 0(x &gt;=0) or 15(x &lt; 0) */</span></span><br><span class="line">  <span class="type">int</span> bias = (x&gt;&gt;<span class="number">31</span>) &amp; <span class="number">0xF</span>;</span><br><span class="line">  <span class="keyword">return</span> (x+bias) &gt;&gt;<span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-4-浮点数"><a href="#2-4-浮点数" class="headerlink" title="2.4 浮点数"></a>2.4 浮点数</h3><hr>
+<p>浮点数对形如$V&#x3D;x\times 2^y$的有理数进行编码。</p>
+<h4 id="2-4-1-二进制小数"><a href="#2-4-1-二进制小数" class="headerlink" title="2.4.1 二进制小数"></a>2.4.1 二进制小数</h4><p>考虑一个形如</p>
+<p>$$<br>b_mb_{m-1}\cdots b_1b_0.b_{-1}b_{-2}\cdots b_{-n-1}b_{-n}<br>$$</p>
+<p>的表示法，其中每个二进制数字，或者称为位，$b_i$的取值范围是0和1，如下图所示。这种表示方法表示的数$b$定义如下：</p>
+<p>$$<br>b&#x3D;\sum_{i&#x3D;-n}^m2^i\times b_i<br>$$</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210814092115.png" style="zoom:40%;" />
+
+<h4 id="2-4-2-IEEE浮点表示"><a href="#2-4-2-IEEE浮点表示" class="headerlink" title="2.4.2 IEEE浮点表示"></a>2.4.2 IEEE浮点表示</h4><p>IEEE浮点数标准用$V&#x3D;{(-1)}^s\times M\times 2^E$的形式来表示一个数：</p>
+<ul>
+<li><p><strong>符号：</strong> $s$决定这数是负数（$s&#x3D;1$）还是正数（$s&#x3D;0$），而对于数值0的符号位解释作为特殊情况处理</p>
+</li>
+<li><p><strong>尾数：</strong> $M$是一个二进制小数，它的范围是$1\sim2-\varepsilon$，或者是$0\sim 1-\varepsilon$</p>
+</li>
+<li><p><strong>阶码：</strong> $E$的作用是对浮点数加权，这个权重是2的$E$次幂（可能是负数）</p>
+</li>
+</ul>
+<p>将浮点数的位表示划分为三个字段，分别对这些值进行编码：</p>
+<ul>
+<li><p>一个单独的符号位$s$直接编码符号$s$</p>
+</li>
+<li><p>$k$位的阶码字段<code>exp</code>&#x3D;$e_{k-1}\cdots e_1e_0$编码阶码$E$</p>
+</li>
+<li><p>$n$位小数字段<code>frac</code>&#x3D;$f_{n-1}\cdots f_1f_0$编码尾数$M$，但是编码出来的值也依赖于阶码字段的值是否等于0</p>
+</li>
+</ul>
+<p>在单精度浮点格式中，<code>s</code>、<code>exp</code>和<code>frac</code>字段分别为$1$<strong>位、</strong> $k&#x3D;8$<strong>位和</strong> $n&#x3D;23$<strong>位</strong> ，得到一个32位的表示。在双精度浮点格式中，<code>s</code>、<code>exp</code>和<code>frac</code>字段分别为$1$<strong>位、</strong> $k&#x3D;11$<strong>位和</strong> $n&#x3D;52$<strong>位</strong> ，得到一个64位的表示。</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210814095306.png" style="zoom:40%;" />
+
+<p>给定位表示，根据<code>exp</code>的值，被编码的值可以分成三种不同的情况：</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210814100211.png" style="zoom:33%;" />
+
+<p><strong>情况1：规格化的值</strong> </p>
+<p>当<code>exp</code>的位模式既不全为0，又不全为1时，都属于这类情况。在这种情况中，阶码字段被解释为以偏置形式表示的有符号整数。也就是说，阶码的值是$E&#x3D;e-Bias$，其中$e$是无符号数，其位表示为$e_{k-1}\cdots e_1e_0$，而$Bias$是一个等于$2^{k-1}-1$<strong>（单精度是127，双精度是1023）</strong> 的偏置量。由此产生指数的取值范围，<strong>对于单精度是</strong> $-126\sim+127$<strong>，而对于双精度是</strong> $-1022\sim +1023$。</p>
+<p>小数字段<code>frac</code>被解释为描述小数值$f$，其中$0\leq f&lt;1$，其二进制表示为$0.f_{n-1}\cdots f_1f_0$，也就是二进制小数点在最高有效位的左边。尾数定义为$M&#x3D;1+f$。这种方式也叫<strong>隐含的以1开头</strong> 的表示，因为可以把$M$看成一个二进制表达式为$1.f_{n-1}\cdots f_1f_0$的数字。实际上是用23位来表示一个24位的数字。</p>
+<p><strong>情况2：非规格化的值</strong> </p>
+<p>当阶码域全为0时，所表示的数是非规格化的形式。在这种情况下， 阶码值是$E&#x3D;1-Bias$（<strong>单精度是</strong> $-126$<strong>，双精度是</strong> $-1022 $），而尾数的值是$M&#x3D;f$，也就是小数字段的值，没有隐含的开头的1。</p>
+<p><strong>情况3：特殊值</strong> </p>
+<p>这一类数值是当阶码域全为1时出现的。当小数域全为0时，得到的值表示无穷，当$s&#x3D;0$时是正无穷，当$s&#x3D;1 $时是负无穷。当小数域为非0时，表示$NaN$。</p>
+<h4 id="2-4-3-数字示例"><a href="#2-4-3-数字示例" class="headerlink" title="2.4.3 数字示例"></a>2.4.3 数字示例</h4><p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210814143353.png"></p>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210814142933.png"></p>
+<h4 id="2-4-4-舍入"><a href="#2-4-4-舍入" class="headerlink" title="2.4.4 舍入"></a>2.4.4 舍入</h4><p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/20210814154658.png"></p>
+<p>向偶数舍入也被称为向最接近的值舍入，是默认的方式，试图找到一个最接近的匹配值。它将数字向上或者向下舍入，使得结果的最低有效数字是偶数。</p>
+<p>其他三种方式产生实际值的确界。向零舍入方式把正数向下舍入，把负数向上舍入，得到值$\hat{x}$，使得$|\hat{x}|\leq |x|$。向下舍入方式把正数和负数都向下舍入，得到值$x^-$，使得$x^-\leq x$。向上舍入方式把正数和负数都向上舍入，得到值$x^+$，满足$x^+\geq x$。</p>
+<p>对于向偶数舍入来讲，它最大的作用是在统计时使用。<strong>向偶数舍入可以让我们在统计时，将舍入产生的误差平均，从而尽可能的抵消</strong> 。而其它三种方式在这方面都是有一定缺陷的，向上和向下舍入会造成值的偏大或偏小。而对于向零舍入来讲，如果全是正数的时候则会造成结果偏小，全是负数的时候则会造成结果偏大。</p>
+<p><strong>向偶数舍入规则</strong> ：例如有效数字超出规定数位的多余数字是1001，它大于超出规定最低位的一半（即0.5），故最低位进1。如果多余数字是0111，它小于最低位的一半，则舍掉多余数字（截断尾数）即可。对于多余数字是1000（正好是最低位一半）的特殊情况，若最低位为0则舍掉多余位，最低为1则进位1，使得最低位仍为0（偶数）。 </p>
+<table>
+<thead>
+<tr>
+<th>舍入前</th>
+<th>舍入后（舍入到最接近的二分之一）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$10.010_2$</td>
+<td>$10.0_2$</td>
+</tr>
+<tr>
+<td>$10.011_2$</td>
+<td>$10.1_2$</td>
+</tr>
+<tr>
+<td>$10.110_2<br />$</td>
+<td>$11.0_2$</td>
+</tr>
+<tr>
+<td>$11.001_2$</td>
+<td>$11.0_2$</td>
+</tr>
+</tbody></table>
+<h4 id="2-4-5-浮点运算"><a href="#2-4-5-浮点运算" class="headerlink" title="2.4.5 浮点运算"></a>2.4.5 浮点运算</h4><ul>
+<li><p><strong>浮点加法不具有结合性。</strong> 例如，<code>(3.14+1e10)-1e10</code>结果为0.0，而<code>3.14+(1e10-1e10)</code>结果为3.14。</p>
+</li>
+<li><p><strong>浮点加法满足单调性：</strong> 如果$a\geq b $，那么对于任何$a,b$及$x$的值，除了$NaN $，都有$x+a\geq x+b$。无符号或补码加法不具有这个性质。</p>
+</li>
+<li><p><strong>浮点乘法是可交换的，不具有结合性，在加法上不具有分配性，满足单调性，且只要</strong> $a\neq NaN$<strong>，就有</strong> $a*a\geq 0$<strong>。</strong></p>
+</li>
+</ul>
+<h4 id="2-4-6-C语言中的浮点数"><a href="#2-4-6-C语言中的浮点数" class="headerlink" title="2.4.6 C语言中的浮点数"></a>2.4.6 C语言中的浮点数</h4><ul>
+<li><p>所有的C语言版本提供了两种不同的浮点数据类型：<code>float</code>和<code>double</code>。在支持IEEE浮点格式的机器上，这些数据类型就对应于单精度和双精度浮点。</p>
+</li>
+<li><p>这类机器使用向偶数舍入的舍入方式。</p>
+</li>
+<li><p>因为C语言标准不要求机器使用IEEE浮点，所以没有标准的方法来改变舍入方式或者得到诸如$-0$、$+\infty$、$-\infty$或者$NaN$之类的特殊值。</p>
+</li>
+<li><p>可以通过引入库函数<code>math.h</code>定义程序常数<code>INFINITY</code>和<code>NAN</code>。</p>
+</li>
+<li><p>从<code>float</code>或<code>double</code>转换成<code>int</code>时，值会向零舍入。进一步来说，值可能会溢出。C语言标准没有对这种情况指定固定的结果。与Intel兼容的微处理器指定位模式$[100\cdots000]$（字长为$w$时的$TMin_w$）为整数不确定值。一个从浮点数到整数的转换，如果不能为该浮点数找到一个合理的整数近似值，就会产生这样一个值。因此<code>(int) 1e10</code>会得到<code>-2147483648</code>，即从一个正值变为一个负值。</p>
+</li>
+</ul>
+<h3 id="2-5-小结"><a href="#2-5-小结" class="headerlink" title="2.5 小结"></a>2.5 小结</h3><hr>
+<p>计算机将信息编码为位（比特），通常组织成字节序列。有不同的编码方式用来表示整数、实数和字符串。不同的计算机模型在编码数字和多字节数据中的字节顺序时使用不同的约定。</p>
+<p>C语言的设计可以包容多种不同字长和数字编码的实现。64位字长的机器逐渐普及，并正在取代统治市场长达30多年的32位机器。由于64位机器也可以运行为32位机器编译的程序，我们的重点就放在区分32位和64位程序，而不是机器本身。64位程序的优势是可以突破32位程序具有的4GB地址限制。</p>
+<p>大多数机器对整数使用补码编码，而对浮点数使用IEEE标准754编码。在位级上理解这些编码，并且理解算术运算的数学特性，对于想使编写的程序能在全部数值范围上正确运算的程序员来说，是很重要的。</p>
+<p>在相同长度的无符号和有符号整数之间进行强制类型转换时，大多数C语言实现遵循的原则是底层的位模式不变。在补码机器上，对于一个$w$位的值，这种行为是由函数$T2U_w$和$U2T_w$来描述的。C语言隐式的强制类型转换会出现许多程序员无法预计的结果，常常导致程序错误。</p>
+<p>由于编码的长度有限，与传统整数和实数运算相比，计算机运算具有非常不同的属性。当超出表示范围时，有限长度能够引起数值溢出。当浮点数非常接近于$0.0$, 从而转换成零时，也会下溢。</p>
+<p>和大多数其他程序语言一样， C语言实现的有限整数运算和真实的整数运算相比，有一些特殊的属性。例如，由于溢出，表达式<code>x*x</code> 能够得出负数。但是，无符号数和补码的运算都满足整数运算的许多其他属性，包括结合律、交换律和分配律。这就允许编译器做很多的优化。例如，用<code>(x&lt;&lt;3)-x</code>取代表达式<code>7*x</code>时，我们就利用了结合律、交换律和分配律的属性，还利用了移位和乘以2 的幂之间的关系。</p>
+<p>我们已经看到了几种使用位级运算和算术运算组合的聪明方法。例如，使用补码运算， <code>~x+1</code>等价于<code>-x</code>。另外一个例子，假设我们想要一个形如$[0,\cdots,0,1,\cdots,1]$的位模式，由$w-k$个$0$后面紧跟着$k$个$1$组成。这些位模式有助于掩码运算。这种模式能够通过C表达式<code>(1&lt;&lt;k)-1</code>生成，利用的是这样一个属性，即我们想要的位模式的数值为$2^k-1$。例如，表达式<code>(1&lt;&lt;8)-1</code>将产生位模式<code>0xFF</code>。</p>
+<p>浮点表示通过将数字编码为$x\times 2^y$的形式来近似地表示实数。最常见的浮点表示方式是由IEEE标准754定义的。它提供了几种不同的精度，最常见的是单精度（32位）和双精度（64位）。IEEE浮点也能够表示特殊值$+\infty$、$-\infty$和$NaN$ 。</p>
+<p>必须非常小心地使用浮点运算，因为浮点运算只有有限的范围和精度，而且并不遵守普遍的算术属性，比如结合性。</p>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/06/06/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第三章 程序的机器级表示</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/06/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第一章 计算机系统漫游</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拔丝地瓜</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="nav-text">第二章 信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-text">2.1 信息存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-text">2.1.1 十六进制表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F"><span class="nav-text">2.1.2 字数据大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-%E5%AF%BB%E5%9D%80%E5%92%8C%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F"><span class="nav-text">2.1.3 寻址和字节顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-4-%E8%A1%A8%E7%A4%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">2.1.4 表示字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-5-%E8%A1%A8%E7%A4%BA%E4%BB%A3%E7%A0%81"><span class="nav-text">2.1.5 表示代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-6-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0%E7%AE%80%E4%BB%8B"><span class="nav-text">2.1.6 布尔代数简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-7-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-text">2.1.7 C语言中的位运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-8-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-text">2.1.8 C语言中的逻辑运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-9-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-text">2.1.9 C语言中的移位运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-text">2.2 整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E6%95%B4%E6%95%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">2.2.1 整数数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81"><span class="nav-text">2.2.2 无符号数的编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-%E8%A1%A5%E7%A0%81%E7%BC%96%E7%A0%81"><span class="nav-text">2.2.3 补码编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-text">2.2.4 有符号数和无符号数之间的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B8%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">2.2.5 C语言中的有符号数与无符号数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-6-%E6%8B%93%E5%B1%95%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97%E7%9A%84%E4%BD%8D%E8%A1%A8%E7%A4%BA"><span class="nav-text">2.2.6 拓展一个数字的位表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-7-%E6%88%AA%E6%96%AD%E6%95%B0%E5%AD%97"><span class="nav-text">2.2.7 截断数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-8-%E5%85%B3%E4%BA%8E%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B8%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="nav-text">2.2.8 关于有符号数与无符号数的建议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text">2.3 整数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-%E6%97%A0%E7%AC%A6%E5%8F%B7%E5%8A%A0%E6%B3%95"><span class="nav-text">2.3.1 无符号加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-%E8%A1%A5%E7%A0%81%E5%8A%A0%E6%B3%95"><span class="nav-text">2.3.2 补码加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-%E8%A1%A5%E7%A0%81%E7%9A%84%E9%9D%9E"><span class="nav-text">2.3.3 补码的非</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4-%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95"><span class="nav-text">2.3.4 无符号乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5-%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95"><span class="nav-text">2.3.5 补码乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-6-%E4%B9%98%E4%BB%A5%E5%B8%B8%E6%95%B0"><span class="nav-text">2.3.6 乘以常数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-7-%E9%99%A4%E4%BB%A52%E7%9A%84%E5%B9%82"><span class="nav-text">2.3.7 除以2的幂</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-text">2.4 浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B0%8F%E6%95%B0"><span class="nav-text">2.4.1 二进制小数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-IEEE%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-text">2.4.2 IEEE浮点表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3-%E6%95%B0%E5%AD%97%E7%A4%BA%E4%BE%8B"><span class="nav-text">2.4.3 数字示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-4-%E8%88%8D%E5%85%A5"><span class="nav-text">2.4.4 舍入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-5-%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97"><span class="nav-text">2.4.5 浮点运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-6-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-text">2.4.6 C语言中的浮点数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E5%B0%8F%E7%BB%93"><span class="nav-text">2.5 小结</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

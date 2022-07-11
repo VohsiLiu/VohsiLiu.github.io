@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="拔丝地瓜">
+    
+    <title>
+        
+            质数筛 |
+        
+        拔丝地瓜
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/favicon.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                拔丝地瓜
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">质数筛</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拔丝地瓜</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-06 10:15:44</span>
+        <span class="mobile">2022-06-06 10:15</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="质数筛"><a href="#质数筛" class="headerlink" title="质数筛"></a>质数筛</h1><h2 id="埃氏筛"><a href="#埃氏筛" class="headerlink" title="埃氏筛"></a>埃氏筛</h2><p><strong>素数筛法</strong>，是一种快速“筛”出$2\sim n$​​之间所有素数的方法。</p>
+<p>朴素的筛法叫<strong>埃氏筛</strong>（the Sieve of Eratosthenes，<strong>埃拉托色尼筛</strong>），它的过程是这样的：</p>
+<p>先将$2\sim n$​​​​的数按顺序写出来：<br>$$<br>2 \quad 3\quad 4\quad 5\quad 6\quad 7\quad 8\quad 9\quad 10\quad 11\quad 12\quad 13\quad 14\quad 15\quad 16<br>$$<br>从前往后看，找到第一个未被划掉的数，是2，说明它是质数（这里是质数用标为蓝色表示）。然后把2的倍数（不包括2）划掉（这里划掉用标红表示）：</p>
+<p>$$<br>\textcolor{blue}{2}\quad 3\quad \textcolor{red}{4}\quad 5\quad \textcolor{red}{6}\quad 7\quad \textcolor{red}{8}\quad 9\quad \textcolor{red}{10}\quad 11\quad \textcolor{red}{12}\quad 13\quad \textcolor{red}{14}\quad 15\quad \textcolor{red}{16}<br>$$<br>下一个未被划掉的数是3，它是质数，然后把3的倍数划掉：<br>$$<br>\textcolor{blue}{2}\quad \textcolor{blue}{3}\quad \textcolor{red}{4}\quad 5\quad \textcolor{red}{6}\quad 7\quad \textcolor{red}{8}\quad \textcolor{red}{9}\quad \textcolor{red}{10}\quad 11\quad \textcolor{red}{12}\quad 13\quad \textcolor{red}{14}\quad \textcolor{red}{15}\quad \textcolor{red}{16}<br>$$<br>接下来应该是5，但是由于5已经超过$\sqrt{16}$​了，所以遍历结束，剩下未被划掉的都是素数：<br>$$<br>\textcolor{blue}{2}\quad \textcolor{blue}{3}\quad \textcolor{red}{4}\quad \textcolor{blue}{5}\quad \textcolor{red}{6}\quad \textcolor{blue}{7}\quad \textcolor{red}{8}\quad \textcolor{red}{9}\quad \textcolor{red}{10}\quad \textcolor{blue}{11}\quad \textcolor{red}{12}\quad \textcolor{blue}{13}\quad \textcolor{red}{14}\quad \textcolor{red}{15}\quad \textcolor{red}{16}<br>$$<br>这个过程用代码表示为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> isPrime[MAXN+<span class="number">5</span>] = &#123;<span class="number">0</span>&#125;;<span class="comment">//标记数组 用来表示数字是否是质数：true表示是质数，false表示不是质数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">aiPrime</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;<span class="comment">//埃氏筛处理n以内的质数</span></span><br><span class="line">	<span class="built_in">memset</span>(isPrime,<span class="literal">true</span>,<span class="built_in">sizeof</span>(isPrime));<span class="comment">//所有数字，默认标记为质数 </span></span><br><span class="line">	isPrime[<span class="number">1</span>] = <span class="literal">false</span>;<span class="comment">//修改1的状态，1不是质数</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i * i &lt;= n; i++)&#123;<span class="comment">//从2开始，枚举范围n以内的每个数字 </span></span><br><span class="line">		<span class="keyword">if</span>(isPrime[i])&#123;<span class="comment">//如果i是质数，则将n以内所有i的倍数（2倍及以上），标记为非质数 </span></span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">2</span>; j * i &lt;= n; j++)&#123;</span><br><span class="line">				isPrime[j*i]=<span class="literal">false</span>;<span class="comment">// 标记i的倍数为非质数 </span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>埃式筛算法的复杂度是 $O(n\log \log n)$​​，但是我们发现，在筛的过程中我们会重复筛到同一个数，例如12同时被2和3筛到，30同时被2、3和5筛到。</p>
+<p>所以我们引入<strong>欧拉筛</strong>，也叫<strong>线性筛</strong>，可以在$O(n)$​时间内完成对$2\sim n$的筛选。它的核心思想是：<strong>让每一个合数被其最小质因数筛到</strong>。</p>
+<h2 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h2><p>这次除了要把$2\sim n$​列出来，还维护一个<strong>质数表</strong>：<br>$$<br>2 \quad 3\quad 4\quad 5\quad 6\quad 7\quad 8\quad 9\quad 10\quad 11\quad 12\quad 13\quad 14\quad 15\quad 16<br>\\<br>primes:( )<br>$$<br>仍然是从头到尾遍历，第一个数是2，未被划掉，把它放进质数表：<br>$$<br>\textcolor{blue}{2} \quad 3\quad 4\quad 5\quad 6\quad 7\quad 8\quad 9\quad 10\quad 11\quad 12\quad 13\quad 14\quad 15\quad 16<br>\\<br>primes:(2)<br>$$<br>然后用2去乘质数表里的每个数，并且划掉它们：<br>$$<br>\textcolor{blue}{2} \quad 3\quad \textcolor{red}{4}\quad 5\quad 6\quad 7\quad 8\quad 9\quad 10\quad 11\quad 12\quad 13\quad 14\quad 15\quad 16<br>\\<br>primes:(2)<br>$$<br>下一个是3，加入质数表，并用3去乘质数表里每一个数（此时是2和3），划掉6和9：<br>$$<br>\textcolor{blue}{2} \quad \textcolor{blue}{3}\quad \textcolor{red}{4}\quad 5\quad \textcolor{red}{6}\quad 7\quad 8\quad \textcolor{red}{9}\quad 10\quad 11\quad 12\quad 13\quad 14\quad 15\quad 16<br>\\<br>primes:(2,3)<br>$$<br>下一个是4（<strong>注意：这里划掉的数也要遍历，只是不加入质数表</strong>），用4去乘质数表里每个数，划掉8，但不划掉12，因为$12&#x3D;2\times 6 &#x3D; 3\times 4$​​，应该由它的最小质因数2筛掉，而不是3。<br>$$<br>\textcolor{blue}{2} \quad \textcolor{blue}{3}\quad \textcolor{red}{4}\quad 5\quad \textcolor{red}{6}\quad 7\quad \textcolor{red}{8}\quad \textcolor{red}{9}\quad 10\quad 11\quad 12\quad 13\quad 14\quad 15\quad 16\\<br>primes:(2,3)<br>$$<br><strong>实际上，对于数$i$​，当遍历到质数表中的 $p$​ ，且发现 $p|i$​​（$p$能整除$i$）时，就应当停止遍历质数表。</strong></p>
+<blockquote>
+<p>因为如果$p|i$​​​​​​，即<code>i%p == 0</code>​，则说明<br>$$<br>\exist   k,p\cdot k&#x3D;i \tag{1}<br>$$<br>假设在质数表中$p$​​​​的下一位是$p’$​​​​​，设<br>$$<br>p’\cdot i&#x3D;X\tag{2}<br>$$<br>所以由$(1),(2)$有$p’\cdot p\cdot k&#x3D;X$，因为$p’&gt;p$，设$p’\cdot k&#x3D;i’$所以$i’&gt;i$​​​​​，则<br>$$<br>p\cdot i’&#x3D;X\tag{3}<br>$$<br>所以如果用$(2)$​​式筛掉所以如果用3式筛去$X$​​的话，当$i&#x3D;i’$​​时，$X$​​又会被$(3)$​​​式筛去一次，为了确保合数只被最小质因子筛掉，最小质因子要乘以最大的倍数，即要乘以最大的$i$​​, 所以不能提前筛。</p>
+</blockquote>
+<p>下一个数是5，加入质数表，划掉10和15：<br>$$<br>\textcolor{blue}{2} \quad \textcolor{blue}{3}\quad \textcolor{red}{4}\quad \textcolor{blue}5\quad \textcolor{red}{6}\quad 7\quad \textcolor{red}{8}\quad \textcolor{red}{9}\quad \textcolor{red}{10}\quad 11\quad 12\quad 13\quad 14\quad \textcolor{red}{15}\quad 16<br>\\<br>primes:(2,3,5)<br>$$<br>下一个数是6，划掉12，6能被2整除，跳过。</p>
+<p>……</p>
+<p>按这样的步骤进行下去，可以筛掉所有的合数，并得到一张质数表：<br>$$<br>\textcolor{blue}{2}\quad \textcolor{blue}{3}\quad \textcolor{red}{4}\quad \textcolor{blue}{5}\quad \textcolor{red}{6}\quad \textcolor{blue}{7}\quad \textcolor{red}{8}\quad \textcolor{red}{9}\quad \textcolor{red}{10}\quad \textcolor{blue}{11}\quad \textcolor{red}{12}\quad \textcolor{blue}{13}\quad \textcolor{red}{14}\quad \textcolor{red}{15}\quad \textcolor{red}{16}<br>\\<br>primes:(2,3,5,7,11,13)<br>$$<br>我们可以保证每个合数都被筛过。设任意合数 $x&#x3D;pr(r\geq p)$，其中$p$是$x$的最小质因数，又设$r&#x3D;p’r’(r’\geq p’)$，$p’$是$r$的最小质因数。在处理时$r$时，要遍历质数表，直到遇到$p’$时才结束，所以任意小于等于的$p’$质数与$r$的乘积，都会在此时被筛掉。</p>
+<p>而由于一定有$p\leq p’$（因为$x$的最小质因数是$p$，而不是$p’$），所以在处理到$r$时，$rp$一定会被筛到。</p>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> isPrime[MAXN+<span class="number">5</span>];  </span><br><span class="line"><span class="type">int</span> prime[MAXM+<span class="number">5</span>];  </span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否是一个素数  Mark 标记数组 index 素数个数  </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">olaPrime</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(isPrime,<span class="literal">true</span>,<span class="built_in">sizeof</span>(isPrime));  </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt; MAXSIZE; i++)&#123;   </span><br><span class="line">        <span class="comment">//如果i未被标记为非素数（即false）则得到一个素数  </span></span><br><span class="line">        <span class="keyword">if</span>(isPrime[i] == <span class="literal">true</span>)&#123;  </span><br><span class="line">            prime[index++] = i;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="comment">//标记目前得到的素数的i倍为非素数  </span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; index &amp;&amp; prime[j] * i &lt; MAXN; j++)&#123;   </span><br><span class="line">            isPrime[i * prime[j]] = <span class="literal">false</span>;  </span><br><span class="line">            <span class="keyword">if</span>(i % prime[j] == <span class="number">0</span>)&#123;  </span><br><span class="line">                <span class="keyword">break</span>;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;    </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="comment">//如果空间不够用质数表也可以不用开始就开到最大</span></span><br><span class="line"><span class="type">bool</span> isnp[MAXN];<span class="comment">//is not prime</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; primes; <span class="comment">// 质数表</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">olaPrime</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (!isnp[i])&#123;</span><br><span class="line">            primes.<span class="built_in">push_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> p : primes)&#123;</span><br><span class="line">            <span class="keyword">if</span> (p * i &gt; n)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            isnp[p * i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % p == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>欧式筛的时间复杂度为$O(n)$。</p>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/06/06/%E9%AB%98%E7%B2%BE%E5%BA%A6%E8%BF%90%E7%AE%97/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">高精度运算</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拔丝地瓜</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%A8%E6%95%B0%E7%AD%9B"><span class="nav-text">质数筛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%83%E6%B0%8F%E7%AD%9B"><span class="nav-text">埃氏筛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E7%AD%9B"><span class="nav-text">欧拉筛</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
