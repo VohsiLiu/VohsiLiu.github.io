@@ -2,18 +2,18 @@
   --background-color: #fff;
   --second-background-color: #f7f7f7;
   --primary-color: #06c;
-  --first-text-color: #484853;
-  --second-text-color: #4c4c57;
-  --third-text-color: #808091;
-  --fourth-text-color: #ededef;
-  --default-text-color: #50505c;
+  --first-text-color: #000;
+  --second-text-color: #000;
+  --third-text-color: #4d4d4d;
+  --fourth-text-color: #e6e6e6;
+  --default-text-color: #000;
   --border-color: #b3b3b3;
   --selection-color: #0075eb;
   --shadow-color: rgba(0,0,0,0.2);
   --shadow-hover-color: rgba(0,0,0,0.28);
-  --scrollbar-color: #595967;
+  --scrollbar-color: #0f0f0f;
   --scroll-bar-bg-color: #e6e6e6;
-  --link-color: #484853;
+  --link-color: #000;
   --copyright-info-color: #c03;
   --avatar-background-color: #06c;
   --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
@@ -23,18 +23,18 @@
     --background-color: #fff;
     --second-background-color: #f7f7f7;
     --primary-color: #06c;
-    --first-text-color: #484853;
-    --second-text-color: #4c4c57;
-    --third-text-color: #808091;
-    --fourth-text-color: #ededef;
-    --default-text-color: #50505c;
+    --first-text-color: #000;
+    --second-text-color: #000;
+    --third-text-color: #4d4d4d;
+    --fourth-text-color: #e6e6e6;
+    --default-text-color: #000;
     --border-color: #b3b3b3;
     --selection-color: #0075eb;
     --shadow-color: rgba(0,0,0,0.2);
     --shadow-hover-color: rgba(0,0,0,0.28);
-    --scrollbar-color: #595967;
+    --scrollbar-color: #0f0f0f;
     --scroll-bar-bg-color: #e6e6e6;
-    --link-color: #484853;
+    --link-color: #000;
     --copyright-info-color: #c03;
     --avatar-background-color: #06c;
     --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
@@ -66,18 +66,18 @@
   --background-color: #fff;
   --second-background-color: #f7f7f7;
   --primary-color: #06c;
-  --first-text-color: #484853;
-  --second-text-color: #4c4c57;
-  --third-text-color: #808091;
-  --fourth-text-color: #ededef;
-  --default-text-color: #50505c;
+  --first-text-color: #000;
+  --second-text-color: #000;
+  --third-text-color: #4d4d4d;
+  --fourth-text-color: #e6e6e6;
+  --default-text-color: #000;
   --border-color: #b3b3b3;
   --selection-color: #0075eb;
   --shadow-color: rgba(0,0,0,0.2);
   --shadow-hover-color: rgba(0,0,0,0.28);
-  --scrollbar-color: #595967;
+  --scrollbar-color: #0f0f0f;
   --scroll-bar-bg-color: #e6e6e6;
-  --link-color: #484853;
+  --link-color: #000;
   --copyright-info-color: #c03;
   --avatar-background-color: #06c;
   --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
@@ -259,7 +259,7 @@ body {
   background: var(--background-color);
   font-family: Titillium Web, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 15.2px;
+  font-size: 16.8px;
   line-height: 22px;
 }
 html::-webkit-scrollbar,
@@ -270,14 +270,14 @@ body::-webkit-scrollbar {
 @media (max-width: 780px) {
   html,
   body {
-    font-size: 14.591999999999999px;
+    font-size: 16.128px;
     line-height: 21.119999999999997px;
   }
 }
 @media (max-width: 500px) {
   html,
   body {
-    font-size: 13.68px;
+    font-size: 15.120000000000001px;
     line-height: 19.8px;
   }
 }
