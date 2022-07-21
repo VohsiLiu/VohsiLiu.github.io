@@ -259,7 +259,7 @@ body {
   background: var(--background-color);
   font-family: Titillium Web, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 16.8px;
+  font-size: 16.5px;
   line-height: 22px;
 }
 html::-webkit-scrollbar,
@@ -270,14 +270,14 @@ body::-webkit-scrollbar {
 @media (max-width: 780px) {
   html,
   body {
-    font-size: 16.128px;
+    font-size: 15.84px;
     line-height: 21.119999999999997px;
   }
 }
 @media (max-width: 500px) {
   html,
   body {
-    font-size: 15.120000000000001px;
+    font-size: 14.85px;
     line-height: 19.8px;
   }
 }
@@ -313,7 +313,7 @@ a:active span {
 }
 img[lazyload] {
   padding: 10px;
-  margin: 20px auto !important;
+  margin: 20px auto;
   cursor: not-allowed;
   pointer-events: none;
 }
