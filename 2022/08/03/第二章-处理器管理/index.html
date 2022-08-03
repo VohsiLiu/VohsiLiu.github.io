@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="拔丝地瓜">
+    
+    <title>
+        
+            第二章 处理器管理 |
+        
+        拔丝地瓜
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207121124025.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207121124025.svg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                拔丝地瓜
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">第二章 处理器管理</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拔丝地瓜</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-08-03 16:42:21</span>
+        <span class="mobile">2022-08-03 16:42</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="第二章-处理器管理"><a href="#第二章-处理器管理" class="headerlink" title="第二章 处理器管理"></a>第二章 处理器管理</h1><h2 id="2-1-处理器"><a href="#2-1-处理器" class="headerlink" title="2.1 处理器"></a>2.1 处理器</h2><h3 id="2-1-1-处理器与寄存器"><a href="#2-1-1-处理器与寄存器" class="headerlink" title="2.1.1 处理器与寄存器"></a>2.1.1 处理器与寄存器</h3><h4 id="1-处理器及其部件"><a href="#1-处理器及其部件" class="headerlink" title="1. 处理器及其部件"></a>1. 处理器及其部件</h4><p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207271607707.png" alt="2.1.1.1"></p>
+<ul>
+<li><p>上图各组件通过内部总线连接起来，构成一个不包含通用寄存器、I/O 相关寄存器、地址寄存器、数据寄存器和 Cache 的示意图</p>
+</li>
+<li><p>CPU 中的各组件描述</p>
+<ul>
+<li>算数逻辑单元：计算结束之后会将结果的标志放置到标志寄存器 Flag 中</li>
+<li>控制单元：包含重要的指令译码器 ID，而指令是放置在指令暂存器 IR 中</li>
+<li>程序计数器 PC：下一条指令的地址</li>
+<li>内存地址寄存器和内存数据寄存器：用来完成对内存数据的访问</li>
+</ul>
+</li>
+<li><p>通过系统总线来访问内存中的数据，首先设置地址和数据，然后通过控制来完成数据的读取和写回</p>
+</li>
+<li><p>时钟等来源于外围设备等信号直接反应到控制单元中，中断响应操作由此可以实现</p>
+</li>
+</ul>
+<h4 id="2-寄存器"><a href="#2-寄存器" class="headerlink" title="2. 寄存器"></a>2. 寄存器</h4><p>寄存器分为<strong>用户程序可见寄存器</strong>和<strong>状态与控制寄存器</strong>两类</p>
+<ul>
+<li><p>用户程序可见寄存器</p>
+<ul>
+<li><p>可以使程序员减少访问主存储器的次数，提高指令执行的效率</p>
+</li>
+<li><p>所有程序可使用，包括应用程序和系统程序</p>
+<ul>
+<li>数据寄存器：又称通用寄存器</li>
+<li>地址寄存器：索引、栈指针、段地址等寄存器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>状态与控制寄存器</p>
+<ul>
+<li><p>用于控制处理器的操作；主要被具有特权的操作系统程序使用，以控制程序的执行</p>
+<ul>
+<li><p>程序计数器 PC：存储将取指令的地址</p>
+</li>
+<li><p>指令寄存器 IR：存储最近使用的指令</p>
+</li>
+<li><p>条件码 CC：CPU 为指令操作结果设置的位，标志正/负/零/溢出等结果</p>
+</li>
+<li><p>标志位</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>位</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>中断位</td>
+<td>是否有中断发生了，中断源是什么</td>
+</tr>
+<tr>
+<td>中断允许位</td>
+<td>表示目前是否响应中断</td>
+</tr>
+<tr>
+<td>中断屏蔽位</td>
+<td>中断发生了，中断响应了，我们要不要屏蔽中断</td>
+</tr>
+<tr>
+<td>处理器模式位</td>
+<td>现在处理器是处于何种模式</td>
+</tr>
+<tr>
+<td>内存保护位</td>
+<td>对这段内存是只读还是读写还是不可操作</td>
+</tr>
+</tbody></table>
+<h4 id="3-程序状态字"><a href="#3-程序状态字" class="headerlink" title="3. 程序状态字"></a>3. 程序状态字</h4><ul>
+<li><p>PSW 既是操作系统的概念，指记录当前程序运行的<strong>动态信息</strong>，通常包含：</p>
+<ul>
+<li><p>程序计数器、指令寄存器、条件码</p>
+</li>
+<li><p>中断字、中断允许/禁止、中断屏蔽、处理器模式、内存保护、调试控制</p>
+</li>
+</ul>
+</li>
+<li><p>PSW 也是计算机系统的<strong>寄存器</strong></p>
+<ul>
+<li><p>通常设置一组控制与状态寄存器</p>
+</li>
+<li><p>也可以专设一个 PSW 寄存器</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-2-指令与处理器模式"><a href="#2-1-2-指令与处理器模式" class="headerlink" title="2.1.2 指令与处理器模式"></a>2.1.2 指令与处理器模式</h3><h4 id="1-机器指令及流水线"><a href="#1-机器指令及流水线" class="headerlink" title="1. 机器指令及流水线"></a>1. 机器指令及流水线</h4><p><strong>机器指令</strong>是计算机系统执行的基本命令，是中央处理器执行的基本单位</p>
+<ul>
+<li><p>指令由一个或多个字节组成，包括操作码字段、一个或多个操作数地址字段、以及一些表征机器状态的状态字以及特征码</p>
+</li>
+<li><p>指令完成各种算术逻辑运算、数据传输、控制流跳转</p>
+</li>
+</ul>
+<p>指令执行过程</p>
+<ul>
+<li><p>CPU 根据 PC <strong>取出指令</strong>，放入 IR，并对指令译码，然后发出各种控制命令，执行微操作系列，从而完成一条指令的执行</p>
+</li>
+<li><p>指令执行步骤如下：（仅为一种划分方式）</p>
+<ul>
+<li><p>取指：根据 PC 从存储器或高速缓冲存储器中取指令到 IR</p>
+</li>
+<li><p>解码：解译 IR 中的指令来决定其执行行为</p>
+</li>
+<li><p>执行：连接到 CPU 部件，执行运算，产生结果并写回，同时在 CC 里设置运算结论标志；跳转指令操作PC，其他指令递增 PC 值</p>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207271743661.png" alt="2.1.2.1" style="zoom:20%;">
+
+<h4 id="2-特权指令和非特权指令"><a href="#2-特权指令和非特权指令" class="headerlink" title="2. 特权指令和非特权指令"></a>2. 特权指令和非特权指令</h4><p>用户程序并非能够使用全部机器指令，那些与计算机核心资源相关的特殊指令会被保护</p>
+<ul>
+<li><p>比如：启动 I/O 指令、置 PC 指令等</p>
+</li>
+<li><p>核心资源相关的指令只能被操作系统程序使用</p>
+</li>
+</ul>
+<p>在多道程序设计环境中，从资源管理和控制程序执行的角度出发，必须将指令系统中的指令分成两类：</p>
+<ul>
+<li>特权指令：只能被操作系统内核使用的指令</li>
+<li>非特权指令：能够被所有程序使用的指令</li>
+</ul>
+<h4 id="3-用户态和内核态"><a href="#3-用户态和内核态" class="headerlink" title="3. 用户态和内核态"></a>3. 用户态和内核态</h4><p>内核态又称管态，是操作系统管理程序运行时所处的状态</p>
+<ul>
+<li>可认为处理器正在运行可信系统软件，此时全部机器指令都被允许在处理器上执行</li>
+<li>程序可访问所有主存单元和系统资源，并具有改变处理器状态的能力</li>
+</ul>
+<p>用户态又称目态，当处理器处于用户态时，它正在运行非可信的应用程序，此时无法执行特权指令，且访问仅限于当前处理器上执行程序所在的地址空间</p>
+<p>处理器、主存、设备等资源管理程序应在内核态运行，否则安全性没有保证</p>
+<ul>
+<li><p>涉及核心数据结构的各种原语应在内核态运行，否则会导致系统混乱</p>
+</li>
+<li><p>创建进程管理数据结构、为进程分配主存、启动外围设备构造文件系统核心数据等程序也必须在内核态运行</p>
+</li>
+</ul>
+<p>应用程序逻辑与数据处理则应放在用户态执行</p>
+<ul>
+<li>操作系统外外围程序，如支撑程序、命令解释程序、页面调度程序、图形界面处理程序、记账程序与审计程序等也可以在用户态运行</li>
+</ul>
+<p>计算机系统为操作系统提供内核态与用户态的界分，通过设置处理器状态实现特权指令管理</p>
+<ul>
+<li>通过为处理器建立硬件标志位，称为处理器状态位，通常是程序状态字中的比特位</li>
+<li>处理器状态位可以定义操作系统的保护权限<ul>
+<li>当其为内核态时，处理器就可以执行包括特权指令在内的所有指令，这一状态为操作系统内核程序使用</li>
+<li>当处理器状态位设置为用户态时，处理器就只能执行非特权指令，应用程序和操作系统外围程序在此状态下被良好隔离、互不打扰</li>
+</ul>
+</li>
+</ul>
+<p>大多数计算机系统的处理器状态有4种，分别支持 0~3 级共 4 个特权级别，其中 0 级权限最高，3 级权限最低：</p>
+<ul>
+<li><p>0 级为内核级，处理 I/O 操作，执行中断处理等关键操作</p>
+</li>
+<li><p>1 级为系统调用级，可以执行文件系统调用，获得特定的和受保护的程序服务</p>
+</li>
+<li><p>2 级为共享库级，可被多个运行进程共享，允许调用库函数，读取但不修改内部数据</p>
+</li>
+<li><p>3 级为应用程序级，所受到的保护最少</p>
+</li>
+</ul>
+<blockquote>
+<p>目前几乎所有通用操作系统实现都只使用了 0 级与 3 级，即简单区分内核态与用户态</p>
+</blockquote>
+<h4 id="4-处理器状态切换"><a href="#4-处理器状态切换" class="headerlink" title="4. 处理器状态切换"></a>4. 处理器状态切换</h4><p>只有<strong>中断</strong>才会使处理器从用户态向内核态转换，其中包含以下三类情况：</p>
+<ul>
+<li><p>在程序运行时产生异步中断事件（如 I/O 操作完成），运行程序被中断，转向中断处理程序处理</p>
+</li>
+<li><p>程序主动同步请求操作系统服务，执行系统调用，触发了系统异常，也称白愿性中断</p>
+</li>
+<li><p>在程序运行时，执行指令出现问题从而产生同步异常事件（如用户态执行特权指令）,运行程序被打断，转向异常处理程序工作，这属于程序性中断事件</p>
+</li>
+</ul>
+<p>操作系统内核处理完成后，调用中断返回指令（例如 Intel 的 <code>iret</code> 指令），实现从内核态返回用户态，操作系统将控制权转交给应用进程</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207301119898.png" alt="2.1.2.4" style="zoom:30%;">
+
+<h4 id="5-用户栈和核心栈"><a href="#5-用户栈和核心栈" class="headerlink" title="5. 用户栈和核心栈"></a>5. 用户栈和核心栈</h4><p>用户栈是用户进程空间中开辟的一块区域，用于保存应用程序的子程序（函数）间相互调用的参数、返回值、返回点以及子程序的局部变量</p>
+<p>如果只有用户栈，没有核心栈，那么操作系统的一切工作都将暴露在用户态下，将很难提供相应的保护措施</p>
+<p>核心栈也叫系统栈或内核栈，是内存中属于操作系统空间的一块区域，其用途包括：</p>
+<ul>
+<li><p>保存中断现场，对于嵌套中断，将被中断程序的现场信息依次压入核心栈，中断返回时逆序弹出</p>
+</li>
+<li><p>保存操作系统程序（函数）间相互调用的参数、返回值、返回点以及程序局部变量</p>
+</li>
+</ul>
+<p>每个进程被创建时捆绑一个核心栈，具有可读、可写、不可执行的属性</p>
+<h2 id="2-2-中断"><a href="#2-2-中断" class="headerlink" title="2.2 中断"></a>2.2 中断</h2><h3 id="2-2-1-中断的概念"><a href="#2-2-1-中断的概念" class="headerlink" title="2.2.1 中断的概念"></a>2.2.1 中断的概念</h3><p>中断是指程序执行过程中，遇到急需处理的事件时，暂时中止 CPU 上现行程序的运行，转去执行相应的事件处理程序，待处理完成后再返回原程序被中断处或调度其他程序执行的过程</p>
+<ul>
+<li>中断有广义和狭义之分，上述中断是指广义的中断</li>
+<li>广义中断可以划分为狭义中断、异常和系统异常三大类<ul>
+<li>狭义的中断（很多情况下简称为中断）指来源于处理器之外的中断事件，即与当前运行指令无关的中断事件，如 I/O 中断、时钟中断、外部信号中断等</li>
+<li>异常指当前运行指令引起的中断事件，如地址异常、算术异常、处理器硬件故障等</li>
+<li>系统异常指执行陷入指令而触发系统调用引起的中断事件，如请求设备、请求 I/O、创建进程等</li>
+</ul>
+</li>
+</ul>
+<p>操作系统是“中断驱动”的；换言之，中断是激活操作系统的唯一方式</p>
+<h3 id="2-2-2-中断源"><a href="#2-2-2-中断源" class="headerlink" title="2.2.2 中断源"></a>2.2.2 中断源</h3><p>通常将引起中断的事件，即中断请求信号的来源，统称为中断源</p>
+<p>中断事件可以分为以下几类：硬件故障中断事件、程序性中断事件、自愿性中断事件、I/O 中断事件和外部中断事件</p>
+<h4 id="1-硬件故障中断事件"><a href="#1-硬件故障中断事件" class="headerlink" title="1. 硬件故障中断事件"></a>1. 硬件故障中断事件</h4><ul>
+<li><p>由处理器、内存储器、总线等硬件故障引起，除了极少类的校验错误可以恢复以外，是<strong>非常严重</strong>的中断</p>
+</li>
+<li><p>处理原则为：保护现场，停止设备，停止 CPU，向操作员报告，等待人工干预</p>
+</li>
+</ul>
+<h4 id="2-程序性中断事件"><a href="#2-程序性中断事件" class="headerlink" title="2. 程序性中断事件"></a>2. 程序性中断事件</h4><p>由处理器执行机器指令出错或异常引起</p>
+<ul>
+<li>除数为零、操作数溢出等算术异常：简单处理，报告用户，由用户判断计算机结果是否可信；也可以由用户编写中断续元程序处理，操作系统把处理权限交给用户程序</li>
+<li>非法指令、用户态使用特权指令、地址越界、非法存取等指令异常：终止进程</li>
+<li>终止进程指令：终止进程</li>
+<li>虚拟地址异常：指令和数据不在内存当中，调整内存后重新执行指令</li>
+</ul>
+<h4 id="3-自愿性中断事件"><a href="#3-自愿性中断事件" class="headerlink" title="3. 自愿性中断事件"></a>3. 自愿性中断事件</h4><p>此类中断事件又称系统调用，是由程序执行陷入指令引起的，表示当前运行程序对操作系统功能的调用</p>
+<ol>
+<li>程序执行陷入指令，并通过适当方式指明系统调用号</li>
+<li>通过系统陷阱机制进入系统调用处理程序，现场信息被保护到核心栈，按功能号实现跳转</li>
+<li>通过系统调用入口表找到相应系统调用服务历程的入口地址</li>
+<li>执行系统调用服务例程，结束后返回系统调用的下一条指令</li>
+</ol>
+<h4 id="4-I-x2F-O-中断事件"><a href="#4-I-x2F-O-中断事件" class="headerlink" title="4. I/O 中断事件"></a>4. I/O 中断事件</h4><p>来源于外围设备报告 I/O 状态的中断事件</p>
+<ul>
+<li>I/O 操作正常结束：本进程设置为就绪态，让等待传输的下一个进程占有设备或通道并启动数据传输</li>
+<li>I/O 操作发生故障：先向设备发送命令索取状态字，分析产生故障的确切原因，再执行复执或请求人工干预</li>
+<li>I/O 操作发生异常：分析情况，采取相应措施并向操作员报告，如通知操作员换卷、装纸等</li>
+</ul>
+<h4 id="5-外部中断事件"><a href="#5-外部中断事件" class="headerlink" title="5. 外部中断事件"></a>5. 外部中断事件</h4><p>此类中断事件来自 CPU 现场之外的信号</p>
+<ul>
+<li>时钟中断：计时</li>
+<li>间隔时钟中断：时间片到，被中断的进程就要让出处理器进入就绪队列</li>
+<li>设备报到与结束中断：调整设备表</li>
+<li>键盘/鼠标信号中断：根据信号作出相应反应</li>
+<li>关机/重启动中断：写回文件，停止设备与 CPU</li>
+</ul>
+<h3 id="2-2-3-中断系统"><a href="#2-2-3-中断系统" class="headerlink" title="2.2.3 中断系统"></a>2.2.3 中断系统</h3><ul>
+<li><p>中断系统是计算机系统中响应和处理中断的系统，包括硬件子系统和软件子系统两部分</p>
+<ul>
+<li>中断响应由硬件子系统完成</li>
+<li>中断处理由软件子系统完成</li>
+</ul>
+</li>
+<li><p>中断系统是操作系统的基础，中断系统也是软硬件协同系统的典型例子</p>
+</li>
+</ul>
+<h4 id="1-中断响应"><a href="#1-中断响应" class="headerlink" title="1. 中断响应"></a>1. 中断响应</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207301842090.png" alt="2.2.3.1" style="zoom:30%;">
+
+<blockquote>
+<p>在指令执行周期最后增加一个微操作，以响应中断</p>
+</blockquote>
+<p>计算机系统中发现并响应中断、异常的硬件装置称为中断装置。由于中断源的多样性，硬件实现的中断装置有多种，分别处理不同类型的中断：</p>
+<ul>
+<li><p>处理器外的中断：由中断控制器发现和响应</p>
+<ul>
+<li><p>中断控制器是 CPU 中的一个控制部件，包括中断控制逻辑电路和中断寄存器</p>
+<ul>
+<li><p>外部设备向其发出中断请求 IRQ，在中断寄存器中设置已发生的中断</p>
+</li>
+<li><p>指令处理结束前，会检查中断寄存器，若有不被屏蔽的中断产生，则改变处理器内操作的顺序，引出操作系统中的中断处理程序</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>处理器内的异常：由指令的控制逻辑和实现线路发现和响应，相应机制称为陷阱</p>
+<ul>
+<li>执行指令出现异常后，会根据异常情况转向操作系统的异常处理程序</li>
+<li>出现虚拟地址异常后，需要重新执行指令， 往往越过陷阱独立设置页面异常处理程序</li>
+</ul>
+</li>
+<li><p>请求操作系统服务的系统异常：处理器执行陷入指令时直接触发，相应机制称为系统陷阱</p>
+<ul>
+<li>执行陷入指令后，越过陷阱处理，触发系统陷阱，激活系统调用处理程序</li>
+</ul>
+</li>
+</ul>
+<p>中断/异常响应过程</p>
+<ul>
+<li><p>发现中断源，提出中断请求（选择响应哪一个程序）</p>
+<ul>
+<li><p>发现中断寄存器中记录的中断</p>
+</li>
+<li><p>决定这些中断是否被屏蔽</p>
+</li>
+<li><p>当有多个要响应的中断源时，根据规定的优先级选择一个</p>
+</li>
+</ul>
+</li>
+<li><p>中断当前程序的执行（保护现场）</p>
+<ul>
+<li>保存当前程序的 PSW/PC 到核心栈</li>
+</ul>
+</li>
+<li><p>转向操作系统的中断处理程序</p>
+<ul>
+<li>处理器状态已从用户态转换至内核态</li>
+</ul>
+</li>
+<li><p>恢复现场</p>
+<ul>
+<li>恢复原运行程序的 PSW，重新返回中断点，以便执行后续指令</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-中断处理程序"><a href="#2-中断处理程序" class="headerlink" title="2. 中断处理程序"></a>2. 中断处理程序</h4><p>中断处理程序是操作系统处理中断事件的控制程序，主要任务是处理中断事件和恢复正常操作</p>
+<p>处理中断包括以下 4 项主要内容：</p>
+<ol>
+<li><p>保护未被硬件保护的处理器状态</p>
+</li>
+<li><p>通过分析被中断进程的 PSW 中断码字段， 识别中断源</p>
+</li>
+<li><p>分别处理发生的中断事件</p>
+</li>
+<li><p>恢复正常操作</p>
+</li>
+</ol>
+<p>恢复正常操作包括两种情况：</p>
+<ul>
+<li>对于某些能够被快速处理的中断，在处理完毕后，直接返回刚刚被中断的进程</li>
+<li>对于其他一些中断，需要中断当前进程的运行，调整进程队列，启动进程调度，选择下一个执行的进程并恢复其执行</li>
+</ul>
+<h4 id="3-中断系统的总体处理流程"><a href="#3-中断系统的总体处理流程" class="headerlink" title="3. 中断系统的总体处理流程"></a>3. 中断系统的总体处理流程</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207310841546.png" alt="2.2.3.3" style="zoom:33%;">
+
+<h3 id="2-2-4-多中断的响应与处理"><a href="#2-2-4-多中断的响应与处理" class="headerlink" title="2.2.4 多中断的响应与处理"></a>2.2.4 多中断的响应与处理</h3><h4 id="1-中断屏蔽"><a href="#1-中断屏蔽" class="headerlink" title="1. 中断屏蔽"></a>1. 中断屏蔽</h4><p>中断屏蔽是指禁止 CPU 响应中断或者禁止产生中断</p>
+<ul>
+<li>前者指硬件产生中断请求后，CPU 暂时不予响应，一直等到中断开放后，被屏蔽的中断才能被响应并获得处理<ul>
+<li>常用在处理某个中断时，如处理一个 I/O 中断的关键时刻，防止其他中断干扰</li>
+</ul>
+</li>
+<li>后者指当引起中断的事件发生时，硬件不允许提出中断请求，故由于中断被禁止而不可能产生中断<ul>
+<li>通常设备中断、时钟中断等可以被暂时禁止</li>
+</ul>
+</li>
+</ul>
+<p>中断屏蔽有如下作用：</p>
+<ul>
+<li>延迟或禁止某些中断的响应，系统程序执行过程中不希望产生干扰事件，以免共享数据结构受到破坏</li>
+<li>协调中断响应与中断处理的关系，确保高优先级中断可以打断低优先级中断，反之却不能</li>
+<li>防止同级中断相互干扰，在处理某优先级中断事件时必须屏蔽该级中断，以免造成混乱</li>
+</ul>
+<h4 id="2-中断优先级"><a href="#2-中断优先级" class="headerlink" title="2. 中断优先级"></a>2. 中断优先级</h4><p>中断优先级指的是当计算机同时检测到多个中断时，中断装置响应中断的顺序</p>
+<ul>
+<li><p>有优先度的响应中断：将紧迫程度相当的中断源归为同一级别，将紧迫程度差距较大的中断源归为不同级别</p>
+</li>
+<li><p>一种可能的处理次序：</p>
+<ul>
+<li>处理机硬件故障中断事件</li>
+<li>自愿性中断事件</li>
+<li>程序性中断事件</li>
+<li>时钟中断等外部中断事件</li>
+<li>输入输出中断事件</li>
+<li>重启动和关机中断事件</li>
+</ul>
+</li>
+<li><p>不同类型的操作系统有不同的中断优先级</p>
+<ul>
+<li>PC 做出关机操作表示放弃当前的所有的操作，所以重启动和关机中断是优先级最高的中断</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-多重中断事件处理"><a href="#3-多重中断事件处理" class="headerlink" title="3. 多重中断事件处理"></a>3. 多重中断事件处理</h4><ul>
+<li><p>当计算机响应中断后，在中断处理过程中，可以再响应其他中断</p>
+</li>
+<li><p>操作系统是性能攸关的程序系统，且中断响应处理有硬件要求，考虑系统效率和实现代价问题，中断的嵌套处理应限制在一定层数内，一般以不超过三层为宜</p>
+</li>
+<li><p>中断的嵌套处理改变中断处理次序，先响应的有可能后处理</p>
+</li>
+<li><p>决定中断处理次序的因素</p>
+<ul>
+<li>中断屏蔽可以使中断装置不响应某些中断</li>
+<li>中断优先级决定了中断装置响应中断的次序</li>
+<li>中断可以嵌套处理，但嵌套的层数应有限制</li>
+<li>中断的嵌套处理改变了中断处理的次序</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207310935421.png" alt="2.2.4.3" style="zoom:20%;">
+
+<h2 id="2-3-进程管理"><a href="#2-3-进程管理" class="headerlink" title="2.3 进程管理"></a>2.3 进程管理</h2><h3 id="2-3-1-进程及其状态"><a href="#2-3-1-进程及其状态" class="headerlink" title="2.3.1 进程及其状态"></a>2.3.1 进程及其状态</h3><h4 id="1-进程的概念"><a href="#1-进程的概念" class="headerlink" title="1. 进程的概念"></a>1. 进程的概念</h4><blockquote>
+<p>操作系统必须全方位地管理计算机系统中运行的程序。因此，操作系统为正在运行程序建立一个管理实体：<strong>进程</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动</strong></p>
+<ul>
+<li>具有一定独立功能的程序：进程是相对独立的</li>
+<li>关于某个数据集合：对于不同数据集合的操作不是同一个进程。</li>
+<li>一次运行活动：有生命周期</li>
+</ul>
+</li>
+<li><p><strong>进程是操作系统进行资源分配和调度的一个独立单位</strong>：这只限于单线程单进程的情况下</p>
+<ul>
+<li>资源分配：除了 CPU 之外的资源的分配，比如内存和外设等</li>
+<li>单线程情况下，进程的资源分配和调度就是处理器的</li>
+<li>调度特指处理器的调度</li>
+</ul>
+</li>
+<li><p>进程可以看为可运行程序加载到内存，配合相应的数据集，在操作系统中的一个实例，程序可以多次被加载进入成为进程</p>
+</li>
+<li><p>进程的属性：</p>
+<ul>
+<li><strong>动态性</strong>：进程是程序在数据结合上的一次执行过程，是动态概念，同时它有生命周期，而程序是一组有序指令序列，是静态概念，所以程序作为系统中的一种资源是永久存在的</li>
+<li><strong>共享性</strong>：同一程序同时运行于不同数据集合上时都是不同的进程，即不同的进程可以运行相同的程序</li>
+<li><strong>独立性</strong>：每个进程是操作系统中的一个独立实体。有自己的虚存空间、程序计数器和内部状态</li>
+<li><strong>制约性</strong>：进程因共享资源或协同工作产生相互制约关系，造成进程执行速度的不可预测性，必须对进程的执行次序或相对执行速度予以协调</li>
+<li><strong>并发性</strong>：多个进程的执行在时间上可以重叠</li>
+</ul>
+</li>
+<li><p>一个进程包括五个实体部分，分别是：</p>
+<ul>
+<li>（操作系统管理运行程序的）数据结构 P</li>
+<li>（运行程序的）内存代码 C</li>
+<li>（运行程序的）内存数据 D</li>
+<li>（运行程序的）通用寄存器信息 R</li>
+<li>（OS控制程序执行的）程序状态字信息 PSW</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207311455740.png" alt="2.3.1"></p>
+<h4 id="2-进程的状态"><a href="#2-进程的状态" class="headerlink" title="2. 进程的状态"></a>2. 进程的状态</h4><p>在概念层次，进程在执行过程中要定义<strong>运行、就绪</strong>和<strong>等待</strong>三种进程状态</p>
+<ul>
+<li>运行（running）态：进程占有处理器正在运行的状态</li>
+<li>就绪（ready）态：进程具备运行条件，等待系统分配处理器以便运行的状态</li>
+<li>等待（waiting）态：又称阻塞（blocked）态或睡眠（sleep）态，指进程不具备运行条件等待某个事件完成的状态</li>
+</ul>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207311558140.png" alt="2.3.1.2.1"></p>
+<blockquote>
+<p>处于运行态的进程个数不能大于处理器个数，处于就绪态和等待态的进程可以有多个</p>
+</blockquote>
+<p>在操作系统实现层面，进程的创建和撤销都不是一蹴而就的，因而需要增加<strong>新建</strong>（new）态和<strong>终止</strong>（exit）态</p>
+<ul>
+<li>新建态对应于进程被创建时所处的状态，此时进程尚未进入就绪队列<ul>
+<li>创建进程包含两个步骤：为新进程分配所需资源及建立必要的管理信息，设置该进程为就绪态并等待被调度执行</li>
+</ul>
+</li>
+<li>终止态是指进程完成任务到达正常结束点，或出现无法克服的错误而异常终止，或被操作系统及有终止权的进程所终止时所处的状态<ul>
+<li>处于终止态的进程不再被调度执行，下一步将被系统撤销，最终从系统中消失</li>
+<li>终止进程也包含两个步骤：等待操作系统或相关进程进行后续处理，回收占用的资源并被系统删除</li>
+</ul>
+</li>
+</ul>
+<p>上述概念都是假设所有进程在主存中。事实上可能会出现这样一些情况：</p>
+<ul>
+<li>由于不断创建进程，系统资源特别如主存资源等已不能满足进程运行的要求，此时必须将某些进程<strong>挂起</strong>（suspend）并对换到磁盘对换区中，释放它占有的某些资源，暂时不参与低级调度，以此达到平滑系统负荷的目的</li>
+<li>系统出现故障，需要暂时挂起一些进程，以便故障消除后再解除挂起并恢复进程运行</li>
+<li>用户调试程序的过程中可以请求挂起该进程，以便进行某些检查和修改</li>
+</ul>
+<p>所以就引入了两个新状态：<strong>挂起就绪态</strong>（ready suspend）和<strong>挂起等待态</strong>（blocked suspend）</p>
+<ul>
+<li>挂起就绪态表明进程具备运行条件，但目前在外存中，只有当它被对换到主存才能被调度执行</li>
+<li>挂起等待态则表明进程正在等待某一个事件发生且在外存中</li>
+</ul>
+<blockquote>
+<p>挂起进程等同于不在主存的进程，因此，挂起进程将不参与处理器调度，直到它们被对换进主存</p>
+</blockquote>
+<p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207311625007.png" alt="2.3.1.2.2"></p>
+<h4 id="3-SVR4进程状态模型"><a href="#3-SVR4进程状态模型" class="headerlink" title="3. SVR4进程状态模型"></a>3. SVR4进程状态模型</h4><p><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207311458398.png" alt="2.3.1.3"></p>
+<h3 id="2-3-2-进程的数据描述"><a href="#2-3-2-进程的数据描述" class="headerlink" title="2.3.2 进程的数据描述"></a>2.3.2 进程的数据描述</h3><h4 id="1-进程控制块"><a href="#1-进程控制块" class="headerlink" title="1. 进程控制块"></a>1. 进程控制块</h4><p>操作系统程序为管理进程建立了一个管理数据结构——进程控制块（process control block, PCB）</p>
+<ul>
+<li><p>它是进程存在的唯一标识，是操作系统用于记录和刻画进程状态及环境信息的数据结构</p>
+</li>
+<li><p>进程控制块包括进程执行时的情况，以及进程让出处理器之后所处的状态、断点等信息进程控制块应包含以下三类信息：</p>
+<ul>
+<li><p>标识信息：用于存放唯一标识该进程的信息</p>
+<ul>
+<li>系统分配的标识号 </li>
+<li>系统分配的进程组标识号 </li>
+<li>用户定义的进程名 </li>
+<li>用户定义的进程组名</li>
+</ul>
+</li>
+<li><p>现场信息：用于存放该进程运行时的处理器现场信息</p>
+<ul>
+<li>用户可见寄存器内容：数据寄存器、地址寄存器</li>
+<li>控制与状态寄存器内容：PC、IR、PSW</li>
+<li>栈指针内容：核心栈与用户栈指针</li>
+</ul>
+</li>
+<li><p>控制信息：用于存放与管理、调度进程相关的信息</p>
+<ul>
+<li><p>调度相关信息：状态、等待事件/原因、优先级</p>
+</li>
+<li><p>进程组成信息：代码/数据地址、外存映像地址</p>
+</li>
+<li><p>队列指引元：进程队列指针、父子兄弟进程指针</p>
+</li>
+<li><p>通信相关信息：消息队列、信号量、锁</p>
+</li>
+<li><p>进程特权信息：如内存访问权限、处理器特权</p>
+</li>
+<li><p>处理理器使用信息：占用的处理器、时间片、处理器使用时间/已执行总时间、记账信息</p>
+</li>
+<li><p>资源清单信息：如正占有的资源、已使用的资源</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207312017283.png" alt="2.3.2.1" style="zoom:30%;">
+
+<h4 id="2-进程映像"><a href="#2-进程映像" class="headerlink" title="2. 进程映像"></a>2. 进程映像</h4><p>进程映像是某一时刻进程的内容及其执行状态集合</p>
+<ul>
+<li>进程控制块：每个进程捆绑一个，保存进程的标识信息、现场信息和控制信息。进程创建时创建进程控制块，进程撤销时回收进程控制块，与进程一一对应</li>
+<li>进程程序块：进程执行的程序空间，规定进程一次运行所应完成的功能</li>
+<li>进程数据块：进程处理的数据空间，是进程的私有地址空间，包括各类私有数据、处理函数的用户栈和可修改的程序</li>
+<li>进程核心栈：每个进程捆绑一个，进程在内核模式下运行时使用的堆栈，中断或系统过程使用，保存函数调用的参数、局部变量和返回地址等</li>
+</ul>
+<p>进程映像是内存级的物理实体，又称为进程的内存映像</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207312051099.png" alt="2.3.2.2" style="zoom:25%;">
+
+
+
+<h4 id="3-进程上下文"><a href="#3-进程上下文" class="headerlink" title="3. 进程上下文"></a>3. 进程上下文</h4><p>进程在系统中的存在和活动除了进程映像外，还需要环境的支撑，包括 CPU 现场和 Cache 中的执行信息</p>
+<p>操作系统中的进程物理实体和支持进程运行的环境合成进程上下文，由以下三部分组成：</p>
+<ul>
+<li><p>用户级上下文：</p>
+<ul>
+<li>用户程序块（可执行的机器指令序列）</li>
+<li>用户数据区（进程可访问的信息）</li>
+<li>用户栈（存放函数调用过程中的信息）</li>
+<li>用户共享内存（进程通信使用的内存区）</li>
+<li>对换至磁盘的分段或页面仍然是用户级上下文的组成部分</li>
+</ul>
+</li>
+<li><p>寄存器上下文：</p>
+<ul>
+<li>处理器状态寄存器（进程当前状态）</li>
+<li>指令计数器（下一条该执行的指令地址）</li>
+<li>PSW/栈指针（指向用户栈或核心栈当前地址）</li>
+<li>通用寄存器等</li>
+</ul>
+</li>
+<li><p>系统级上下文</p>
+<ul>
+<li>进程控制块（PCB，进程的状态）</li>
+<li>内存区管理信息（进程页表或段表）</li>
+<li>核心栈等（进程内核态运行时的工作区）</li>
+</ul>
+</li>
+</ul>
+<p>进程上下文刻画了进程的执行情况</p>
+<h3 id="2-3-3-进程管理的实现"><a href="#2-3-3-进程管理的实现" class="headerlink" title="2.3.3 进程管理的实现"></a>2.3.3 进程管理的实现</h3><p>关键的进程管理软件包括：</p>
+<ul>
+<li>系统调用/中断/异常处理程序</li>
+<li>队列管理模块</li>
+<li>进程控制程序</li>
+<li>进程调度程序（独立进程居多）</li>
+<li>进程通信程序（多个程序包）</li>
+<li>终端登录与作业控制程序、性能监控程序、审计程序等外围程序</li>
+</ul>
+<h4 id="1-队列管理程序"><a href="#1-队列管理程序" class="headerlink" title="1. 队列管理程序"></a>1. 队列管理程序</h4><p>队列管理模块是操作系统实现进程管理的核心模块</p>
+<ul>
+<li><p>操作系统将进程组织成若干个队列进行管理，新建的进程一般进入就绪队列</p>
+</li>
+<li><p>操作作系统根据调度需求可以有一个或几个就绪进程队列，当处理器空闲时，非空的最高优先级就绪队列中的进程就会占有处理器运行</p>
+</li>
+<li><p>当占有处理器运行的进程出现等待事件时，它就会进入等待事件队列；由于等待事件是多种多样的，所以操作系统必然维护有多个事件等待队列</p>
+</li>
+<li><p>等待事件结束后就会按照某种规则回到某一个就绪队列</p>
+</li>
+<li><p>当出现了更高优先级的抢占式进程，或者出现时间片到的现象时，操作系统会强迫处于运行态的进程让出处理器，进入就绪队列，然后让抢占进程或就绪进程队列中排队的进程去占有处理器运行</p>
+</li>
+<li><p>运行态的进程最终会在处理器上通过执行一条系统调用进入结束终止的完成状态</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207312212832.png" alt="2.3.3.1.1" style="zoom:25%;">
+
+<p>进程队列的组织分为链接方式和索引方式两种组织方式</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207312212403.png" alt="2.3.3.1.2" style="zoom:25%;">
+
+<h4 id="2-进程控制程序"><a href="#2-进程控制程序" class="headerlink" title="2. 进程控制程序"></a>2. 进程控制程序</h4><ul>
+<li><p>进程控制程序包括进程的创建、进程的撤销、进程的阻塞、进程的唤醒、进程的挂起、进程的激活，以及进程特权的修改等操作</p>
+</li>
+<li><p>它们往往被抽象成一组系统调用，在实现上是一个处理的流程</p>
+</li>
+<li><p>进程控制需要对操作系统的核心数据结构进行操作，应采用<strong>原语</strong>来实现进程控制中的核心操作</p>
+<ul>
+<li>原语是由若干条指令构成的完成某种特点功能的程序，执行上具有不可分割性，这样能保证对核心资源访问的正确性</li>
+<li>原语实现的具体办法是进入原语前关闭中断，在退出原语前开放中断</li>
+</ul>
+</li>
+</ul>
+<p>部分进程管理原语</p>
+<ul>
+<li><p><strong>进程创建</strong>：</p>
+<ul>
+<li>操作系统初始启动时会创建承担系统资源分配和控制管理的一些系统进程，同时会创建一个所有用户集成的祖先，其他用户进程实在用户程序被提价与选中运行时被创建的</li>
+<li>操作系统通常将创建关系通过父子进程的关系来表示</li>
+<li>创建原语：进程表加一项、申请 PCB 并初始化、生成唯一进程标识、建立进程映像、分配各种资源、移入就绪队列、通知操作系统某些模块</li>
+</ul>
+</li>
+<li><p><strong>进程撤销</strong>：</p>
+<ul>
+<li>完成特定工作或出现严重错误后需要撤销，分为正常撤销和非正常撤销</li>
+<li>产生原因：运行结束、执行非法指令、用户态执行特权指令、时间配额到、等待时间超时、越界错误、共享内存区非法使用、程序性故障等</li>
+<li>撤销原语：从队列中移除、归还资源、撤销标识、回收 PCB、移除进程表项</li>
+</ul>
+</li>
+<li><p><strong>进程阻塞</strong>：</p>
+<ul>
+<li>使得进程让出处理器转而等待一个事件，比如等待资源等，阻塞是同步时间</li>
+<li>阻塞原语：保存现场信息、修改 PCB、移入等待队列、调度其他进程执行</li>
+</ul>
+</li>
+<li><p><strong>进程唤醒</strong>：</p>
+<ul>
+<li>等待时间完成时产生一个中断，激活操作系统，在系统的控制下将被阻塞进程唤醒</li>
+<li>唤醒原语：等待队列中移出、修改 PCB、移入就绪队列（该进程优先级高于运行进程触发抢占）</li>
+</ul>
+</li>
+<li><p><strong>进程挂起</strong>：</p>
+<ul>
+<li>出现引起挂起的事件时，系统或进程会利用挂起原语把指定进程或处于等待态的进程挂起</li>
+<li>挂起原语：修改状态并出入相关队列、收回内存等资源送至对换区</li>
+<li>挂起原语可以由进程自己或其他进程调起</li>
+</ul>
+</li>
+<li><p><strong>进程激活</strong>：</p>
+<ul>
+<li>当系统资源尤其是内存资源充裕或请求激活进程时，系统或相关进程会调用激活原语将指定进程激活</li>
+<li>激活原语：分配内存，修改状态并出入相关队列</li>
+<li>激活原语只能由其他进程调用</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-4-进程切换与模式切换"><a href="#2-3-4-进程切换与模式切换" class="headerlink" title="2.3.4 进程切换与模式切换"></a>2.3.4 进程切换与模式切换</h3><h4 id="1-进程上下文切换"><a href="#1-进程上下文切换" class="headerlink" title="1. 进程上下文切换"></a>1. 进程上下文切换</h4><p>进程切换指从正在运行的进程中收回处理器，让待运行进程来占有处理器运行</p>
+<p>进程切换必然发生在内核态而非用户态</p>
+<p>进程切换实质上就是被中断运行进程与待运行进程的上下文切换，处理过程是：</p>
+<ul>
+<li>（中断/异常等触发）正向模式切换并压入 PSW/PC</li>
+<li>保存被中断进程的现场信息</li>
+<li>处理具体中断/异常</li>
+<li>把被中断进程的系统堆栈指针 SP 值保存到 PCB</li>
+<li>调整被中断进程的 PCB 信息，如进程状态</li>
+<li>把被中断进程的 PCB 加入相关队列</li>
+<li>选择下一个占用 CPU 运行的进程</li>
+<li>修改被选中进程的 PCB 信息，如进程状态</li>
+<li>设置被选中进程的地址空间，恢复存储管理信息</li>
+<li>恢复被选中进程的 SP 值到处理器寄存器 SP</li>
+<li>恢复被选中进程的现场信息进入处理器</li>
+<li>（中断返回指令触发）逆向模式转换并弹出 PSW/PC</li>
+</ul>
+<h4 id="2-进程上下文的切换时机"><a href="#2-进程上下文的切换时机" class="headerlink" title="2. 进程上下文的切换时机"></a>2. 进程上下文的切换时机</h4><p>进程切换一定发生在<strong>中断/异常/系统调用处理</strong>过程中，常见的情况是：</p>
+<ul>
+<li><p>阻塞式系统调用、虚拟地址异常导致被中断进程进入等待态</p>
+</li>
+<li><p>时间片中断、I/O 中断后发现更高优先级进程，导致被中断进程转入就绪态</p>
+</li>
+<li><p>终止用系统调用、不能继续执行的异常导致被中断进程进入终止态</p>
+</li>
+</ul>
+<p>内核不能执行调度和切换的情况：</p>
+<ul>
+<li><p>内核正在处理中断的过程中</p>
+</li>
+<li><p>进程运行在内核临界区</p>
+</li>
+<li><p>内核处在需要屏蔽中断的原子操作过程中</p>
+</li>
+</ul>
+<blockquote>
+<p>如果在上述过程中产生引起调度的条件，不能马上进行调度和切换，系统将采用置请求调度标志，延迟到敏感性操作完成后才进行</p>
+</blockquote>
+<h4 id="3-处理器模式切换"><a href="#3-处理器模式切换" class="headerlink" title="3. 处理器模式切换"></a>3. 处理器模式切换</h4><p>进程切换必须在操作系统内核模式下完成，这就需要模式切换</p>
+<p>模式切换又称处理器状态切换，包括：</p>
+<ul>
+<li><p>用户模式到内核模式（正向模式切换）</p>
+<ul>
+<li>由中断/异常/系统调用中断用户进程执行而触发</li>
+<li>中断装置完成正向模式切换，包括：<ul>
+<li>处理器模式转为内核模式 </li>
+<li>保存当前进程的 PC/PSW 值到核心栈 </li>
+<li>转向中断/异常/系统调用处理程序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>内核模式到用户模式（逆向模式切换）</p>
+<ul>
+<li>操作系统执行中断返回指令将控制权交还用户进程而触发</li>
+<li>中断返回指令完成逆向模式转换，包括：<ul>
+<li>从待运行进程核心栈中弹出 PSW/PC 值</li>
+<li>处理器模式转为用户模式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>一些中断/异常不会引起进程状态转换，不会引起进程切换，只是在处理完成后把控制权交回给被中断进程，处理流程是：</p>
+<ul>
+<li>（中断/异常触发）正向模式切换压入 PSW/PC</li>
+<li>保存被中断进程的现场信息</li>
+<li>处理中断/异常</li>
+<li>恢复被中断进程的现场信息</li>
+<li>（中断返回指令触发）逆向模式转换弹出 PSW/PC</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208011533935.png" alt="2.3.4.3" style="zoom:25%;">
+
+<h2 id="2-4-多线程技术"><a href="#2-4-多线程技术" class="headerlink" title="2.4 多线程技术"></a>2.4 多线程技术</h2><h3 id="2-4-1-多线程环境概述"><a href="#2-4-1-多线程环境概述" class="headerlink" title="2.4.1 多线程环境概述"></a>2.4.1 多线程环境概述</h3><h4 id="1-多线程技术的提出"><a href="#1-多线程技术的提出" class="headerlink" title="1. 多线程技术的提出"></a>1. 多线程技术的提出</h4><p>单线程结构进程在并发程序设计上存在的问题</p>
+<ul>
+<li>进程切换开销大</li>
+<li>进程通信开销大</li>
+<li>限制了进程并发的粒度</li>
+<li>降低了并行计算的效率</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208011611201.png" alt="2.4.1.1" style="zoom:25%;">
+
+<p>解决上述问题的思路</p>
+<ul>
+<li>把进程的两项功能，即“独立分配资源”与“被调度分派执行”分离开来</li>
+<li>进程作为系统资源分配和保护的独立单位，不需要频繁地切换</li>
+<li>线程作为系统调度和分派的基本单位，能轻装运行，会被频繁地调度和切换</li>
+<li>线程的出现会减少进程并发执行所付出的时空开销，使得并发粒度更细、并发性更好</li>
+</ul>
+<h4 id="2-多线程环境下的进程"><a href="#2-多线程环境下的进程" class="headerlink" title="2. 多线程环境下的进程"></a>2. 多线程环境下的进程</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208011611120.png" alt="2.4.1.2" style="zoom:25%;">
+
+<p>在多线程环境中，进程是操作系统中进行保护和资源分配的独立单位。具有：</p>
+<ul>
+<li><p>用来容纳进程映像的虚拟地址空间</p>
+</li>
+<li><p>对进程、文件和设备的存取保护机制</p>
+</li>
+</ul>
+<p>线程是进程的一条执行路径，是调度的基本单位，同一个进程中的所有线程共享进程获得的主存空间和资源。它具有：</p>
+<ul>
+<li>线程执行状态 </li>
+<li>受保护的线程上下文，当线程不运行时，用于存储现场信息</li>
+<li>独立的程序指令计数器</li>
+<li>执行堆栈</li>
+<li>容纳局部变量的静态存储器</li>
+</ul>
+<p>多线程环境下线程的状态与调度</p>
+<ul>
+<li><p>线程状态有运行、就绪和等待和终止</p>
+<ul>
+<li>没有挂起状态是因为挂起和资源有关，由于线程不是资源拥有单位，所以挂起对线程来说是没有意义的</li>
+</ul>
+</li>
+<li><p>与线程状态变化有关的线程操作有：孵化、封锁、活化、剥夺、指派、结束</p>
+</li>
+<li><p>操作系统感知线程环境下：</p>
+<ul>
+<li>处理器调度的对象是线程</li>
+<li>线程的存在、状态等都需要被操作系统内核感知到，进程没有三状态，或者说只有挂起状态</li>
+</ul>
+</li>
+<li><p>操作系统不感知线程环境下：</p>
+<ul>
+<li><p>处理器调度的单位仍然是进程</p>
+</li>
+<li><p>用户空间中的用户调度程序调度线程，内核不参加线程调度</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-多线程技术的优点与应用"><a href="#3-多线程技术的优点与应用" class="headerlink" title="3. 多线程技术的优点与应用"></a>3. 多线程技术的优点与应用</h4><p>并发多线程程序设计的优点</p>
+<ul>
+<li>快速线程切换</li>
+<li>减少（系统）管理开销</li>
+<li>（线程）通信易于实现</li>
+<li>并行程度提高</li>
+<li>节省内存空间</li>
+</ul>
+<p>多线程技术的应用</p>
+<ul>
+<li>前台和后台工作</li>
+<li>C/S 应用模式</li>
+<li>加快执行速度</li>
+<li>设计用户接口</li>
+</ul>
+<h3 id="2-4-2-内核级线程与用户级线程"><a href="#2-4-2-内核级线程与用户级线程" class="headerlink" title="2.4.2 内核级线程与用户级线程"></a>2.4.2 内核级线程与用户级线程</h3><p>多线程的实现分为三类</p>
+<ul>
+<li>内核级线程（kernel level thread, KLT），如 Windows 2003</li>
+<li>用户级线程（user level thread, ULT），如 Java 线程库</li>
+<li>混合方式，同时支持 ULT 和 KLT 两种线程，如 Solaris</li>
+</ul>
+<h4 id="1-内核级线程"><a href="#1-内核级线程" class="headerlink" title="1. 内核级线程"></a>1. 内核级线程</h4><p>内核级线程是指线程管理工作由操作系统内核完成，并提供线程应用程序接口来使用线程</p>
+<p>内核需要为进程及进程中的单个线程维护现场信息，所以应在内核空间中建立和维护进程控制块及线程控制块（TCB）</p>
+<p>处理器调度以线程为单位，即内核的处理器调度程序直接选中某个就绪的线程</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208031511376.png" alt="2.4.2.1" style="zoom:20%;">
+
+<p>内核级线程的特点：</p>
+<ul>
+<li>进程中的一个线程被阻塞了，内核能调度同一进程的其它线程占有处理器运行</li>
+<li>多处理器环境中，内核能同时调度同一进程中多个线程并行执行</li>
+<li>内核自身也可用多线程技术实现，能提高操作系统的执行速度和效率</li>
+<li>应用程序线程在用户态运行，线程调度和管理在内核实现，在同一进程中，控制权从一个线程传送到另一个线程时需要模式切换，系统开销较大</li>
+</ul>
+<h4 id="2-用户级线程"><a href="#2-用户级线程" class="headerlink" title="2. 用户级线程"></a>2. 用户级线程</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208031511088.png" alt="2.4.2.2" style="zoom:20%;">
+
+<h4 id="3-用户级线程和内核级线程的比较"><a href="#3-用户级线程和内核级线程的比较" class="headerlink" title="3. 用户级线程和内核级线程的比较"></a>3. 用户级线程和内核级线程的比较</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208031639765.png" alt="2.4.2.3" style="zoom:25%;">
+
+<ul>
+<li><p>ULT适用于解决逻辑并行性问题</p>
+</li>
+<li><p>KLT适用于解决物理并行性问题</p>
+</li>
+</ul>
+<h3 id="2-4-3-多线程实现的混合策略"><a href="#2-4-3-多线程实现的混合策略" class="headerlink" title="2.4.3 多线程实现的混合策略"></a>2.4.3 多线程实现的混合策略</h3><h4 id="3-Solaris多线程技术"><a href="#3-Solaris多线程技术" class="headerlink" title="3. Solaris多线程技术"></a>3. Solaris多线程技术</h4><table>
+<thead>
+<tr>
+<th><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208031535791.png" alt="2.4.3.3.1"></th>
+<th><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208031535582.png" alt="2.4.3.3.2"></th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>包含了多种情况，上图引入了轻量级线程，将轻量级线程与内核级线程映射，原来的多线程设计是Process2，只有一个处理进程，允许给一个进程配置超过一个处理器。</p>
+</blockquote>
+<ul>
+<li><p>进程一：单进程单线程，内核级多线程</p>
+</li>
+<li><p>进程二：单进程双线程，进程映射到两个轻量级线程，相当于用户级多线程</p>
+</li>
+<li><p>进程三：两进程三线程，内核级多线程</p>
+</li>
+<li><p>进程四：两进程两线程，内核级多线程</p>
+</li>
+<li><p>进程五：三进程四线程，混合级线程，直接做指派意味着线程非常重要，需要单独指派。</p>
+</li>
+</ul>
+<blockquote>
+<p>一个进程的线程可以被分发到各个位置上并行完成，处理器只能感知进程，不能感知线程，并且只会将一个处理器分配给线程，然后用户空间将得到的处理器分配给线程。</p>
+</blockquote>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/07/26/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第一章 操作系统概论</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拔丝地瓜</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86"><span class="nav-text">第二章 处理器管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">2.1 处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">2.1.1 处理器与寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%A4%84%E7%90%86%E5%99%A8%E5%8F%8A%E5%85%B6%E9%83%A8%E4%BB%B6"><span class="nav-text">1. 处理器及其部件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">2. 寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97"><span class="nav-text">3. 程序状态字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-%E6%8C%87%E4%BB%A4%E4%B8%8E%E5%A4%84%E7%90%86%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">2.1.2 指令与处理器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%9C%BA%E5%99%A8%E6%8C%87%E4%BB%A4%E5%8F%8A%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-text">1. 机器指令及流水线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%89%B9%E6%9D%83%E6%8C%87%E4%BB%A4%E5%92%8C%E9%9D%9E%E7%89%B9%E6%9D%83%E6%8C%87%E4%BB%A4"><span class="nav-text">2. 特权指令和非特权指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81"><span class="nav-text">3. 用户态和内核态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%A4%84%E7%90%86%E5%99%A8%E7%8A%B6%E6%80%81%E5%88%87%E6%8D%A2"><span class="nav-text">4. 处理器状态切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E7%94%A8%E6%88%B7%E6%A0%88%E5%92%8C%E6%A0%B8%E5%BF%83%E6%A0%88"><span class="nav-text">5. 用户栈和核心栈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E4%B8%AD%E6%96%AD"><span class="nav-text">2.2 中断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-%E4%B8%AD%E6%96%AD%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">2.2.1 中断的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-%E4%B8%AD%E6%96%AD%E6%BA%90"><span class="nav-text">2.2.2 中断源</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%A1%AC%E4%BB%B6%E6%95%85%E9%9A%9C%E4%B8%AD%E6%96%AD%E4%BA%8B%E4%BB%B6"><span class="nav-text">1. 硬件故障中断事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A8%8B%E5%BA%8F%E6%80%A7%E4%B8%AD%E6%96%AD%E4%BA%8B%E4%BB%B6"><span class="nav-text">2. 程序性中断事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%87%AA%E6%84%BF%E6%80%A7%E4%B8%AD%E6%96%AD%E4%BA%8B%E4%BB%B6"><span class="nav-text">3. 自愿性中断事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-I-x2F-O-%E4%B8%AD%E6%96%AD%E4%BA%8B%E4%BB%B6"><span class="nav-text">4. I&#x2F;O 中断事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD%E4%BA%8B%E4%BB%B6"><span class="nav-text">5. 外部中断事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F"><span class="nav-text">2.2.3 中断系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%AD%E6%96%AD%E5%93%8D%E5%BA%94"><span class="nav-text">1. 中断响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="nav-text">2. 中断处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%80%BB%E4%BD%93%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-text">3. 中断系统的总体处理流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-%E5%A4%9A%E4%B8%AD%E6%96%AD%E7%9A%84%E5%93%8D%E5%BA%94%E4%B8%8E%E5%A4%84%E7%90%86"><span class="nav-text">2.2.4 多中断的响应与处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD"><span class="nav-text">1. 中断屏蔽</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%AD%E6%96%AD%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-text">2. 中断优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%9A%E9%87%8D%E4%B8%AD%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="nav-text">3. 多重中断事件处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-text">2.3 进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-%E8%BF%9B%E7%A8%8B%E5%8F%8A%E5%85%B6%E7%8A%B6%E6%80%81"><span class="nav-text">2.3.1 进程及其状态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">1. 进程的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-text">2. 进程的状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-SVR4%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="nav-text">3. SVR4进程状态模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">2.3.2 进程的数据描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97"><span class="nav-text">1. 进程控制块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%BF%9B%E7%A8%8B%E6%98%A0%E5%83%8F"><span class="nav-text">2. 进程映像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-text">3. 进程上下文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">2.3.3 进程管理的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%98%9F%E5%88%97%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="nav-text">1. 队列管理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E7%A8%8B%E5%BA%8F"><span class="nav-text">2. 进程控制程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2%E4%B8%8E%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2"><span class="nav-text">2.3.4 进程切换与模式切换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="nav-text">1. 进程上下文切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E5%88%87%E6%8D%A2%E6%97%B6%E6%9C%BA"><span class="nav-text">2. 进程上下文的切换时机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%84%E7%90%86%E5%99%A8%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2"><span class="nav-text">3. 处理器模式切换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF"><span class="nav-text">2.4 多线程技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%8E%AF%E5%A2%83%E6%A6%82%E8%BF%B0"><span class="nav-text">2.4.1 多线程环境概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-text">1. 多线程技术的提出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%BF%9B%E7%A8%8B"><span class="nav-text">2. 多线程环境下的进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E4%BC%98%E7%82%B9%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="nav-text">3. 多线程技术的优点与应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="nav-text">2.4.2 内核级线程与用户级线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="nav-text">1. 内核级线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="nav-text">2. 用户级线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">3. 用户级线程和内核级线程的比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-3-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B7%B7%E5%90%88%E7%AD%96%E7%95%A5"><span class="nav-text">2.4.3 多线程实现的混合策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Solaris%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF"><span class="nav-text">3. Solaris多线程技术</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
