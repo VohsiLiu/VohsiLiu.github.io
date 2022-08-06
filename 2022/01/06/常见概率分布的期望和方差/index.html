@@ -1,17 +1,11 @@
 <script type="text/javascript">
-function SetCwinHeight(){
-  var iframeid = document.getElementById("iframeid"); //iframe id
-  if (document.getElementById) {
-    if (iframeid && !window.opera) {
-      if (iframeid.contentDocument && iframeid.contentDocument.body.offsetHeight) {
-        iframeid.height = iframeid.contentDocument.body.offsetHeight + 50;
-      } else if (iframeid.Document && iframeid.Document.body.scrollHeight) {
-        frameid.height = iframeid.Document.body.scrollHeight + 50;
-      }
+function changeFrameHeight(){
+        var ifm= document.getElementById("mainiframe");
+        ifm.height=document.documentElement.clientHeight-56;
     }
-  }
-}
+    window.onresize=function(){ changeFrameHeight();}
+    $(function(){changeFrameHeight();});
 </script>
 
-<iframe width="100%" id="iframeid" onload="Javascript:SetCwinHeight()" scrolling=no height="1000" frameborder="0" src="https://vohsiliu.gitee.io/pdf_blog/常见概率分布的期望和方差.html"></iframe>
+<iframe width="100%" id="iframeid" onload="Javascript:changeFrameHeight()" scrolling=no height="1000" frameborder="0" src="https://vohsiliu.gitee.io/pdf_blog/常见概率分布的期望和方差.html"></iframe>
 
