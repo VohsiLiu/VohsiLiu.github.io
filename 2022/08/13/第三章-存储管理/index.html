@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="拔丝地瓜">
+    
+    <title>
+        
+            第三章 存储管理 |
+        
+        拔丝地瓜
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207121124025.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202207121124025.svg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                拔丝地瓜
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">第三章 存储管理</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拔丝地瓜</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-08-13 20:01:56</span>
+        <span class="mobile">2022-08-13 20:01</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="第三章-存储管理"><a href="#第三章-存储管理" class="headerlink" title="第三章 存储管理"></a>第三章 存储管理</h1><h2 id="3-1-存储管理基础"><a href="#3-1-存储管理基础" class="headerlink" title="3.1 存储管理基础"></a>3.1 存储管理基础</h2><h3 id="3-1-1-存储管理的主要模式"><a href="#3-1-1-存储管理的主要模式" class="headerlink" title="3.1.1 存储管理的主要模式"></a>3.1.1 存储管理的主要模式</h3><h4 id="1-逻辑地址与物理地址"><a href="#1-逻辑地址与物理地址" class="headerlink" title="1. 逻辑地址与物理地址"></a>1. 逻辑地址与物理地址</h4><p>逻辑地址，又称相对地址。目标代码程序存放在磁盘文件中，由于程序在主存中的位置不可预知，程序地址空间中的地址总是相对于某个基准（通常为 0）开始连续编号</p>
+<p>逻辑地址有两种形式</p>
+<ul>
+<li>一维逻辑地址：所有程序和数据组成一维的逻辑地址</li>
+<li>二维逻辑地址：一个用户程序可以设计成多个段，每个段都从 0 开始编址<ul>
+<li>二维逻辑地址引入段式程序设计的概念<ul>
+<li>一个程序可以包含若干代码段、数据段、堆栈段</li>
+<li>用户可以自己应用段覆盖技术扩充内存空间使用量<ul>
+<li>用户在程序设计时包括主程序段、堆栈段、多个子程序段和数据段，而执行程序时只调入主程序段、堆栈段和需要的子程序段和数据段</li>
+<li>由程序设计者预先设计的代码动态决定哪些段调入主存</li>
+<li>这一技术是程序设计技术，不是程序设计存储管理的功能</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>物理地址，又称绝对地址，即程序执行所使用的地址空间</p>
+<ul>
+<li>处理器执行指令时按照物理地址进行</li>
+</ul>
+<h4 id="2-主存的复用方式"><a href="#2-主存的复用方式" class="headerlink" title="2. 主存的复用方式"></a>2. 主存的复用方式</h4><p>多道程序设计需要多个进程来划分使用主存</p>
+<p>主存复用有分区复用和页框服用两种方式</p>
+<ul>
+<li>分区复用是指将主存划分为多个固定或可变尺寸的分区<ul>
+<li>一个程序或一个程序段占用一个分区</li>
+</ul>
+</li>
+<li>页框复用是指将主存划分成多个固定大小的页框（页架或主存物理块）<ul>
+<li>一个程序或一个程序段根据页框大小自动划分为页面，进而占用多个页框</li>
+</ul>
+</li>
+</ul>
+<p>存储管理的基本模式</p>
+<ul>
+<li><p>单连续存储管理：一维逻辑地址空间的程序占用一个主存固定分区或可变分区</p>
+</li>
+<li><p>段式存储管理：段式二维逻辑地址空间的程序占用多个主存可变分区</p>
+</li>
+<li><p>页式存储管理：一维逻辑地址空间的程序占用多个主存页架区</p>
+</li>
+<li><p>段页式存储管理：段式二维逻辑地址空间的程序占用多个主存页架区</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208062014244.png" alt="3.1.1.2" style="zoom:33%;">
+
+<h3 id="3-1-2-存储管理的功能"><a href="#3-1-2-存储管理的功能" class="headerlink" title="3.1.2 存储管理的功能"></a>3.1.2 存储管理的功能</h3><h4 id="1-地址转换"><a href="#1-地址转换" class="headerlink" title="1. 地址转换"></a>1. 地址转换</h4><p>地址转换又称重定位，即把逻辑地址转换成绝对地址</p>
+<ul>
+<li>静态重定位：在程序装入内存时进行地址转换<ul>
+<li>由装入程序执行，早期小型操作系统使用</li>
+</ul>
+</li>
+<li>动态重地位（主流）：在 CPU 执行程序时进行地址转换<ul>
+<li>从效率出发，依赖硬件地址转换机制</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-主存空间的分配与去配"><a href="#2-主存空间的分配与去配" class="headerlink" title="2. 主存空间的分配与去配"></a>2. 主存空间的分配与去配</h4><ul>
+<li><p>分配：进程装入主存时，存储管理软件进行具体的主存分配操作，并设置一个表格记录主存空间的分配情况</p>
+</li>
+<li><p>去配：当某个进程撤离或主动归还主存资源时，存储管理软件要收回它所占用的全部或者部分存储空间，调整主存分配表信息</p>
+</li>
+</ul>
+<h4 id="3-主存空间的共享"><a href="#3-主存空间的共享" class="headerlink" title="3. 主存空间的共享"></a>3. 主存空间的共享</h4><p>多个进程共享主存包括两个层次的概念：</p>
+<ul>
+<li><p>多个进程共享主存储器资源</p>
+<ul>
+<li>多道程序设计技术使若干个程序同时进入主存储器，各自占用一定数量的存储空间，共同使用一个主存储器</li>
+</ul>
+</li>
+<li><p>多个进程共享主存储器的某些区域</p>
+<ul>
+<li>若干个协作进程有共同的主存程序块或者主存数据块</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-存储保护"><a href="#4-存储保护" class="headerlink" title="4. 存储保护"></a>4. 存储保护</h4><p>为避免主存中的多个进程相互干扰，必须对主存中的程序和数据进行保护</p>
+<ul>
+<li><p>私有主存区中的信息：可读可写</p>
+</li>
+<li><p>公共区中的共享信息：根据授权</p>
+</li>
+<li><p>非本进程信息：不可读写</p>
+</li>
+</ul>
+<p>存储保护需要软硬件协同完成</p>
+<ul>
+<li><p>CPU 检查是否允许访问，不允许则产生地址保护异常</p>
+</li>
+<li><p>由操作系统进行相应处理</p>
+</li>
+</ul>
+<h4 id="5-主存空间的扩充"><a href="#5-主存空间的扩充" class="headerlink" title="5. 主存空间的扩充"></a>5. 主存空间的扩充</h4><p>存储扩充：把磁盘作为主存扩充，只把部分进程或进程的部分内容装入内存</p>
+<ul>
+<li><p>对换技术：把部分不运行的进程调出</p>
+</li>
+<li><p>虚拟技术：只调入进程的部分内容</p>
+</li>
+</ul>
+<p>这一工作需要软硬件协作完成</p>
+<ul>
+<li><p>对换进程决定对换，硬件结构调入</p>
+</li>
+<li><p>CPU 处理到不在主存的地址，发出虚拟地址异常，操作系统将其调入，重新执行指令</p>
+</li>
+</ul>
+<h3 id="3-1-3-虚拟存储器概述"><a href="#3-1-3-虚拟存储器概述" class="headerlink" title="3.1.3 虚拟存储器概述"></a>3.1.3 虚拟存储器概述</h3><h4 id="1-虚拟存储器思想的提出"><a href="#1-虚拟存储器思想的提出" class="headerlink" title="1. 虚拟存储器思想的提出"></a>1. 虚拟存储器思想的提出</h4><ul>
+<li><p>主存容量限制带来诸多不便</p>
+<ul>
+<li><p>用户编写程序必须考虑主存容量限制</p>
+</li>
+<li><p>多道程序设计的道数受到限制</p>
+</li>
+</ul>
+</li>
+<li><p>用户编程行为分析</p>
+<ul>
+<li>全面考虑各种情况，执行时有互斥性</li>
+<li>顺序性和循环性等空间局部性行为</li>
+<li>某一阶段执行的时间局部性行为</li>
+</ul>
+</li>
+<li><p>因此可以考虑部分调入进程内容</p>
+</li>
+</ul>
+<h4 id="2-虚拟存储器的基本思想"><a href="#2-虚拟存储器的基本思想" class="headerlink" title="2. 虚拟存储器的基本思想"></a>2. 虚拟存储器的基本思想</h4><p>存储管理把进程全部信息放在辅存中，执行时先将其中一部分装入主存，以后根据执行行为<strong>随用随调入</strong></p>
+<p>如主存中没有足够的空闲空间，存储管理需要根据执行行为把主存中暂时不用的信息<strong>调出</strong>到辅存上去</p>
+<h4 id="3-虚拟存储器的实现思路"><a href="#3-虚拟存储器的实现思路" class="headerlink" title="3. 虚拟存储器的实现思路"></a>3. 虚拟存储器的实现思路</h4><p>需要建立与自动管理两个地址空间</p>
+<ul>
+<li><p>（辅存）虚拟地址空间：容纳进程装入</p>
+</li>
+<li><p>（主存）实际地址空间：承载进程执行</p>
+</li>
+</ul>
+<p>对于用户，计算机系统具有一个容量大得多的主存空间，即<strong>虚拟存储器</strong></p>
+<p>虚拟存储器是一种地址空间扩展技术，通常意义上对用户编程是透明的，除非用户需要进行高性能的程序设计</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208071542938.png" alt="3.1.3.3" style="zoom: 25%;">
+
+<h3 id="3-1-4-存储管理的硬件支撑"><a href="#3-1-4-存储管理的硬件支撑" class="headerlink" title="3.1.4 存储管理的硬件支撑"></a>3.1.4 存储管理的硬件支撑</h3><h4 id="1-存储器层次"><a href="#1-存储器层次" class="headerlink" title="1. 存储器层次"></a>1. 存储器层次</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208071602791.png" alt="3.1.4.1.1" style="zoom:25%;">
+
+<ul>
+<li><p>越处于顶端，访问速度越快，容量越小，单位字节价格会越高。我们根据实际情况，选择使用什么样子的存储器</p>
+<ul>
+<li><p>寄存器、缓存和内存属于操作系统存储管理的范畴，掉电后信息丢失</p>
+</li>
+<li><p>磁盘和磁带属于稳健管理和设备管理的管辖对象，信息永久保存</p>
+</li>
+</ul>
+</li>
+<li><p>可执行程序必须被保存在内存中，与设备交换的信息也依托于内存地址空间</p>
+</li>
+<li><p>由于程序处理数据时存在顺序性和局部性，故执行时仅需调入当前运行使用的一部分，其他部分待需要时再逐步调入</p>
+</li>
+</ul>
+<h4 id="2-存储管理涉及的存储对象"><a href="#2-存储管理涉及的存储对象" class="headerlink" title="2. 存储管理涉及的存储对象"></a>2. 存储管理涉及的存储对象</h4><ul>
+<li><p>存储管理是操作系统管理主存储器的软件部分</p>
+</li>
+<li><p>为获得更好的处理性能，部分主存程序与数据（特别是关键性能数据）被调入 Cache，存储管理需要对其进行管理， 甚至包括对联想存储器的管理</p>
+</li>
+<li><p>为获得更大的虚拟地址空间，存储管理需要对存放在硬盘、固态硬盘、甚至网 络硬盘上的虚拟存储器文件进行管理</p>
+</li>
+</ul>
+<h4 id="3-高速缓存存储器Cache"><a href="#3-高速缓存存储器Cache" class="headerlink" title="3. 高速缓存存储器Cache"></a>3. 高速缓存存储器Cache</h4><p>Cache 是介于 CPU 和主存储器间的高速小容量存储器，由静态存储芯片 SRAM 组成，容量较小但比主存 DRAM 技术更加昂贵而快速， 接近于 CPU 的速度</p>
+<p>CPU 往往需要重复读取同样的数据块，Cache 的引入与缓存容量的增大，可以大幅提升 CPU 内部读取数据的命中率， 从而提高系统性能</p>
+<p>高速缓冲存储器通常由高速存储器、联想存储器、地址转换部件、替换逻辑等组成 </p>
+<ul>
+<li><p>联想存储器：根据内容进行寻址的存储器</p>
+</li>
+<li><p>地址转换部件：通过联想存储器建立目录表以实现快速地址转换，命中时直接访问 Cache，未命中时从内存读取放入 Cache</p>
+</li>
+<li><p>替换逻辑部件：在缓存已满时按一定策略进行数据块替换，并修改地址转换部件</p>
+</li>
+</ul>
+<p>高速缓存存储器的组织</p>
+<ul>
+<li>由于 CPU 芯片面积和成本，Cache 很小</li>
+<li>根据成本控制，划分为 L1、L2、L3三级<ul>
+<li>L1 Cache：分为数据缓存和指令缓存，内置，成本最高，对 CPU 的性能影响最大，通常在 32KB-256K 之间</li>
+<li>L2 Cache：分内置和外置两种，后者性能低一些，通常在 512KB-8MB 之间</li>
+<li>L3 Cache：多为外置，在游戏和服务器领域有效，但对很多应用来说，总线改善比设置 L3 更加有利于提升系统性能</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208071641780.png" alt="3.1.4.3" style="zoom: 20%;">
+
+<h4 id="4-存储管理的硬件支持"><a href="#4-存储管理的硬件支持" class="headerlink" title="4. 存储管理的硬件支持"></a>4. 存储管理的硬件支持</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208071646033.png" alt="3.1.4.4" style="zoom:30%;">
+
+<ul>
+<li><p>鉴于程序执行与数据访问的局部性原理，存储管理软件使用 Cache 可以大幅度提升程序执行效率</p>
+</li>
+<li><p>动态重定位、存储保护等，若无硬件支撑在效率上是无意义的，即无实现价值</p>
+</li>
+<li><p>无虚拟地址中断，虚拟存储器无法实现</p>
+</li>
+<li><p>无页面替换等硬件支撑机制，虚拟存储器在效率上是无意义的</p>
+</li>
+</ul>
+<h2 id="3-2-单连续分区存储管理"><a href="#3-2-单连续分区存储管理" class="headerlink" title="3.2 单连续分区存储管理"></a>3.2 单连续分区存储管理</h2><p>单连续分区存储管理是指每个进程占用物理上完全连续的存储空间，它可以细分为三种：</p>
+<ul>
+<li>单用户连续分区存储管理</li>
+<li>固定分区存储管理</li>
+<li>可变分区存储管理</li>
+</ul>
+<h3 id="3-2-1-单用户连续分区存储管理"><a href="#3-2-1-单用户连续分区存储管理" class="headerlink" title="3.2.1 单用户连续分区存储管理"></a>3.2.1 单用户连续分区存储管理</h3><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208071945569.png" alt="3.2.1" style="zoom:30%;">
+
+<ul>
+<li><p>主存区域划分为<strong>系统区</strong>与<strong>用户区</strong></p>
+</li>
+<li><p>设置一个<strong>栅栏寄存器</strong>界分两个区域，硬件用它在执行时进行存储保护</p>
+</li>
+<li><p>一般采用静态重定位进行地址转换</p>
+<ul>
+<li>静态重定位：在装入一个作业时，把该作业中程序的指令地址和数据地址全部转换成绝对地址</li>
+</ul>
+</li>
+<li><p>硬件实现代价低，适用于单用户单任务操作系统，如 DOS</p>
+</li>
+</ul>
+<h3 id="3-2-2-固定分区存储管理"><a href="#3-2-2-固定分区存储管理" class="headerlink" title="3.2.2 固定分区存储管理"></a>3.2.2 固定分区存储管理</h3><p>固定分区的基本思想是：内存空间被划分为数目固定不变的分区，各分区大小不等，每个分区只装入一个作业，若多个分区中都装有作业，则它们都可以并发执行</p>
+<p>为了管理各分区的分配和使用情况，需要设置一张主存分配表，记录主存中划分的分区及其使用情况</p>
+<ul>
+<li>主存分配表指出各分区的起始地址和长度</li>
+<li>利用占位标志符指示此分区是否被使用<ul>
+<li>当其值为 0 时表明此分区尚未被使用</li>
+</ul>
+</li>
+<li>主存分配时选择那些未被占用但是容量足够的分区，填入占用此分区的作业名</li>
+<li>当分区中的程序执行结束归还主存区时，相应分区的占用标志被置为 0，其占用的分区又可被重新分配使用</li>
+</ul>
+<blockquote>
+<p>例：如下主存分配表中，第 2、5 分区分别被作业 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.339ex;" xmlns="http://www.w3.org/2000/svg" width="4.488ex" height="1.91ex" role="img" focusable="false" viewBox="0 -694 1983.6 844"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43D" d="M447 625Q447 637 354 637H329Q323 642 323 645T325 664Q329 677 335 683H352Q393 681 498 681Q541 681 568 681T605 682T619 682Q633 682 633 672Q633 670 630 658Q626 642 623 640T604 637Q552 637 545 623Q541 610 483 376Q420 128 419 127Q397 64 333 21T195 -22Q137 -22 97 8T57 88Q57 130 80 152T132 174Q177 174 182 130Q182 98 164 80T123 56Q115 54 115 53T122 44Q148 15 197 15Q235 15 271 47T324 130Q328 142 387 380T447 625Z"></path></g><g data-mml-node="mi" transform="translate(633,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="msub" transform="translate(1118,0)"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mn" transform="translate(462,-150) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></g></svg></mjx-container> 和 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.339ex;" xmlns="http://www.w3.org/2000/svg" width="4.488ex" height="1.91ex" role="img" focusable="false" viewBox="0 -694 1983.6 844"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43D" d="M447 625Q447 637 354 637H329Q323 642 323 645T325 664Q329 677 335 683H352Q393 681 498 681Q541 681 568 681T605 682T619 682Q633 682 633 672Q633 670 630 658Q626 642 623 640T604 637Q552 637 545 623Q541 610 483 376Q420 128 419 127Q397 64 333 21T195 -22Q137 -22 97 8T57 88Q57 130 80 152T132 174Q177 174 182 130Q182 98 164 80T123 56Q115 54 115 53T122 44Q148 15 197 15Q235 15 271 47T324 130Q328 142 387 380T447 625Z"></path></g><g data-mml-node="mi" transform="translate(633,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="msub" transform="translate(1118,0)"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mn" transform="translate(462,-150) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g></g></svg></mjx-container> 占用，其余分区空闲</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">分区号</th>
+<th align="center">起始地址</th>
+<th align="center">长度</th>
+<th align="center">占用标志</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">8 KB</td>
+<td align="center">8 KB</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">16 KB</td>
+<td align="center">16 KB</td>
+<td align="center"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.339ex;" xmlns="http://www.w3.org/2000/svg" width="4.488ex" height="1.91ex" role="img" focusable="false" viewBox="0 -694 1983.6 844"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43D" d="M447 625Q447 637 354 637H329Q323 642 323 645T325 664Q329 677 335 683H352Q393 681 498 681Q541 681 568 681T605 682T619 682Q633 682 633 672Q633 670 630 658Q626 642 623 640T604 637Q552 637 545 623Q541 610 483 376Q420 128 419 127Q397 64 333 21T195 -22Q137 -22 97 8T57 88Q57 130 80 152T132 174Q177 174 182 130Q182 98 164 80T123 56Q115 54 115 53T122 44Q148 15 197 15Q235 15 271 47T324 130Q328 142 387 380T447 625Z"></path></g><g data-mml-node="mi" transform="translate(633,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="msub" transform="translate(1118,0)"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mn" transform="translate(462,-150) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></g></svg></mjx-container></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">32 KB</td>
+<td align="center">16 KB</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">48 KB</td>
+<td align="center">16 KB</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">64 KB</td>
+<td align="center">32 KB</td>
+<td align="center"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.339ex;" xmlns="http://www.w3.org/2000/svg" width="4.488ex" height="1.91ex" role="img" focusable="false" viewBox="0 -694 1983.6 844"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43D" d="M447 625Q447 637 354 637H329Q323 642 323 645T325 664Q329 677 335 683H352Q393 681 498 681Q541 681 568 681T605 682T619 682Q633 682 633 672Q633 670 630 658Q626 642 623 640T604 637Q552 637 545 623Q541 610 483 376Q420 128 419 127Q397 64 333 21T195 -22Q137 -22 97 8T57 88Q57 130 80 152T132 174Q177 174 182 130Q182 98 164 80T123 56Q115 54 115 53T122 44Q148 15 197 15Q235 15 271 47T324 130Q328 142 387 380T447 625Z"></path></g><g data-mml-node="mi" transform="translate(633,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="msub" transform="translate(1118,0)"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mn" transform="translate(462,-150) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g></g></svg></mjx-container></td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">96 KB</td>
+<td align="center">32 KB</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<p>固定分区存储管理一般采用动态地址重定位</p>
+<p>下图给出了固定分区的地址转换与存储保护机制，图中所示为一种上限/下限寄存器实现方案</p>
+<ul>
+<li>每个分区有上限和下限，分别界定了分区的结束地址和起始地址</li>
+<li>当进程占有 CPU 运行时，它就占有了 CPU 现场的上限/下限奇存器</li>
+<li>把下限地址与逻辑地址相加得到绝对地址，将绝对地址与上限地址进行比较<ul>
+<li>如果超越了这个范围则产生越界中断进行存储保护</li>
+<li>否则就根据该绝对地址访问具体的进程用户空问的存储单元</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208072038372.png" alt="3.2.2" style="zoom:33%;">
+
+<p>固定分区存储管理的缺点</p>
+<ul>
+<li>由于预先规定分区大小，大作业可能无法装入，用户程序设计不方便</li>
+<li>主存空间利用率不高，作业很少能恰好填满分区，从而出现分区内的碎片，称为主存内零头，也称为内部碎片</li>
+<li>如果一个进程在运行过程中要求动态扩充主存空间，采用固定分区相当困难</li>
+<li>分区数目是在系统初启时确定的，这就会限制允许加载的多道运行程序的道数，特别不适合分时系统交互型用户及主存需求变化很大的情形</li>
+</ul>
+<h3 id="3-2-3-可变分区存储管理"><a href="#3-2-3-可变分区存储管理" class="headerlink" title="3.2.3 可变分区存储管理"></a>3.2.3 可变分区存储管理</h3><p>可变分区存储管理按进程的内存需求来动态划分分区</p>
+<ul>
+<li><p>创建一个进程时，根据进程所需主存量查看主存中是否有足够的空闲空间</p>
+<ul>
+<li><p>若有，则按需要量分割一个分区</p>
+</li>
+<li><p>若无，则令该进程等待主存资源</p>
+</li>
+</ul>
+</li>
+<li><p>由于分区大小按照进程实际需要量来确定，因此分区个数是随机变化的</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208081428837.png" alt="3.2.2" style="zoom:25%;">
+
+<h4 id="1-主存空间的分配和去配"><a href="#1-主存空间的分配和去配" class="headerlink" title="1. 主存空间的分配和去配"></a>1. 主存空间的分配和去配</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208081441934.png" alt="3.2.3.1" style="zoom:23%;">
+
+<blockquote>
+<p>可变分区方式的内存回收会导致内存空间的转换</p>
+<p>作业 X 撤离后有且仅有如上 4 种情况</p>
+</blockquote>
+<p>常用的可变分区主存分配算法有以下几种：</p>
+<ul>
+<li><p>最先适应分配算法：</p>
+<ul>
+<li><p>最先适应就是从上向下查找，找到第一块区域放进去，将剩下的区域分割后仍作为空闲区</p>
+</li>
+<li><p>有利于大作业装入，但也使得内存低地址和高地址两端的分区利用不均衡，回收分区麻烦</p>
+</li>
+</ul>
+</li>
+<li><p>邻近适应分配算法：</p>
+<ul>
+<li><p>从上次查找结束的地方开始执行最先适应分配算法</p>
+</li>
+<li><p>缩短平均查找时间，且存储空间利用率更均衡，不会使得小空闲区集中在内存一侧</p>
+</li>
+</ul>
+</li>
+<li><p>最优适应分配算法：</p>
+<ul>
+<li><p>每次都是分配最接近需要使用大小的部分，会生成很多很小的内存内零头</p>
+</li>
+<li><p>通常会将空闲区按照长度递增顺序排列，等同于最先适应分配算法，查找时间最长</p>
+</li>
+</ul>
+</li>
+<li><p>最坏适应分配算法：</p>
+<ul>
+<li><p>每次都是挑选最大的一块区域进行分配</p>
+</li>
+<li><p>有利于中小型作业</p>
+</li>
+<li><p>可把空闲区按长度递减顺序排列，等同于最先适应分配算法</p>
+</li>
+</ul>
+</li>
+<li><p>快速适应分配算法：</p>
+<ul>
+<li><p>为经常用到的长度的空闲区设立单独的空闲区链表，查找非常快速</p>
+</li>
+<li><p>归还内存空间时和邻近空闲区的合并复杂且耗时</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-地址转换与存储保护"><a href="#2-地址转换与存储保护" class="headerlink" title="2. 地址转换与存储保护"></a>2. 地址转换与存储保护</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208081458756.png" alt="3.2.3.2" style="zoom:25%;">
+
+<p>硬件实现机制与动态重定位</p>
+<p>进程的程序和数据的地址由硬件完成</p>
+<ul>
+<li><p>基址寄存器：分配进程的起始地址</p>
+</li>
+<li><p>限长寄存器：进程占用的连续存储空间的长度</p>
+</li>
+</ul>
+<h4 id="3-可变分区的主存外零头"><a href="#3-可变分区的主存外零头" class="headerlink" title="3. 可变分区的主存外零头"></a>3. 可变分区的主存外零头</h4><p>固定分区方式会产生内存内零头</p>
+<p>可变分区方式也会随着进程的内存分配产生一些小的不可用的内存分区，称为内存外零头</p>
+<ul>
+<li>最优适配算法最容易产生外零头</li>
+<li>任何适配算法都不能避免产生外零头</li>
+</ul>
+<p>当在未分配区表中找不到足够大的空闲区来装入新的进程时，可以把已在主存中的进程分区连接到一起，使分散的空闲区汇集成片，这就是<strong>移动技术</strong>，也称<strong>主存紧凑</strong></p>
+<ul>
+<li>需要动态地址重定位技术的支撑</li>
+<li>移动技术有极大的系统开销，而且并不是任何时间下都可以进行的，当一道程序正在与设备交换数据时往往不能移动</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208081503319.png" alt="3.2.3.3.1" style="zoom:25%;">
+
+<p>支持移动技术的可变分区存储管理的主存分配算法</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208081504327.png" alt="3.2.3.3.2" style="zoom:30%;">
+
+<h3 id="3-2-4-伙伴系统"><a href="#3-2-4-伙伴系统" class="headerlink" title="3.2.4 伙伴系统"></a>3.2.4 伙伴系统</h3><h4 id="1-伙伴系统的实现原理"><a href="#1-伙伴系统的实现原理" class="headerlink" title="1.伙伴系统的实现原理"></a>1.伙伴系统的实现原理</h4><ul>
+<li><p>伙伴系统，又称 buddy 算法，是一种固定分区和可变分区折中的主存管理算法</p>
+</li>
+<li><p>基本原理是：任何尺寸为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.871ex" height="1.879ex" role="img" focusable="false" viewBox="0 -830.4 827 830.4"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg></mjx-container> 的空闲块都可被分为两个尺寸为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="3.915ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1730.6 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(345,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(1123,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></g></g></svg></mjx-container> 的空闲块，这两个空闲块称作伙伴，它们可以被合并成尺寸为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.871ex" height="1.879ex" role="img" focusable="false" viewBox="0 -830.4 827 830.4"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg></mjx-container> 的原先空闲块</p>
+</li>
+<li><p>伙伴通过对大块的物理主存划分而获得</p>
+<ul>
+<li>假如从第 0 个页面开始到第 3 个页面结束的主存</li>
+<li>每次都对半划分，那么第一次划分获得大小为 2 页的伙伴，如 0、 1 和 2、3</li>
+<li>进一步划分，可以获得大小为 1 页的伙伴，例如 0 和 1，2 和 3</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208121530780.png" alt="3.2.4.2" style="zoom:45%;">
+
+<p>类似二叉树的形式进行分配</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208121531527.png" alt="3.2.4.3" style="zoom:33%;">
+
+<h4 id="2-Linux伙伴系统"><a href="#2-Linux伙伴系统" class="headerlink" title="2. Linux伙伴系统"></a>2. Linux伙伴系统</h4><ul>
+<li><p>以 <code>page</code> 结构为数组元素的 <code>mem_map[ ]</code> 数组</p>
+</li>
+<li><p>以 <code>free_area_struct</code> 结构为数组元素的 <code>free_area</code> 数组</p>
+</li>
+<li><p>位图数组（bitmap）</p>
+</li>
+</ul>
+<p>伙伴系统以页框为基本分配单位，内核在很多情况下，需要的主存量远远小于页框大小，为了更经济地使用内核主存资源，引入 SunOS 操作系统中首创的基于伙伴系统的 <strong>slab分配器</strong></p>
+<ul>
+<li><p>其基本思想是：为经常使用的小对象建立缓存，小对象的申请与释放都通过 slab 分配器来管理，仅当缓存不够用时才向伙伴系统申请更多空间</p>
+</li>
+<li><p>优点：充分利用主存，减少内部碎片，对象管理局部化， 尽可能少地与伙伴系统打交道，从而提高效率</p>
+</li>
+</ul>
+<p>slab 的结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">slab</span>{</span><br><span class="line">   <span class="keyword">struct</span> <span class="title class_">list_head</span>;          <span class="comment">//slab满、半满或空闲链表</span></span><br><span class="line">   <span class="type">unsigned</span> <span class="type">long</span> colouoff;    <span class="comment">//slab着色偏移量</span></span><br><span class="line">   <span class="type">void</span> * s_mem;              <span class="comment">//slab的第一个对象</span></span><br><span class="line">   <span class="type">unsigned</span> <span class="type">int</span> inuse;        <span class="comment">//已分配的对象数</span></span><br><span class="line">   <span class="type">kmem_bufctl_t</span> free;        <span class="comment">//第一个空闲对象</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208121628883.png" alt="3.2.4.3" style="zoom: 20%;">
+
+<p>slab 分配器主要操作</p>
+<ul>
+<li><p><code>kmem_cache_create()</code> 函数：创建专用 cache，规定对象的大小和 slab 的构成，并加入 cache 管理队列</p>
+</li>
+<li><p><code>kmem_cache_alloc()</code> 与 <code>kmem_cache_free()</code> 函数：分别用于分配和释放一个拥有专用 slab 队列的对象</p>
+</li>
+<li><p><code>kmem_cache_grow()</code> 与 <code>kmem_cache_reap()</code> 函数：</p>
+<ul>
+<li><p><code>kmem_cache_grow()</code> 它向伙伴系统申请向 cache 增加一个 slab</p>
+</li>
+<li><p><code>kmem_cache_reap()</code> 用于定时回收空闲 slab</p>
+</li>
+</ul>
+</li>
+<li><p><code>kmem_cache_destroy()</code> 与 <code>kmem_cache_shrink()</code>：用于 cache 的销毁和收缩</p>
+</li>
+<li><p><code>kmalloc()</code> 与 <code>kfree()</code> 函数：用来从通用的缓冲区队列中申请和释放空间</p>
+</li>
+<li><p><code>kmem_getpages()</code> 与 <code>kmem_freepages()</code> 函数：slab 与页框级分配器的接口，当 slab 分配器要创建新的slab 或 cache 时，通过 <code>kmem_getpages()</code> 向内核提供的伙伴算法来获得一组连续页框。如果释放分配给 slab 分配器的页框，则调用 <code>kmem_freepages()</code> 函数</p>
+</li>
+</ul>
+<h2 id="3-3-页式存储管理"><a href="#3-3-页式存储管理" class="headerlink" title="3.3 页式存储管理"></a>3.3 页式存储管理</h2><h3 id="3-3-1-页式存储管理的基本原理"><a href="#3-3-1-页式存储管理的基本原理" class="headerlink" title="3.3.1 页式存储管理的基本原理"></a>3.3.1 页式存储管理的基本原理</h3><h4 id="1-页式存储管理的基本思想"><a href="#1-页式存储管理的基本思想" class="headerlink" title="1. 页式存储管理的基本思想"></a>1. 页式存储管理的基本思想</h4><p>分页存储器将主存划分成多个大小相等的页架</p>
+<p>受页架尺寸限制，程序的逻辑地址也自然分成<strong>页</strong></p>
+<p>不同的页可以放在不同页架中，不需要连续</p>
+<p><strong>页表</strong>用于维系进程的主存完整性</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208100847354.png" alt="3.3.1.1" style="zoom:25%;">
+
+<p>页式存储管理中的地址</p>
+<ul>
+<li>页式存储管理的逻辑地址由两部分组成，<strong>页号和单元号</strong>，逻辑地址形式：</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208100849322.png" alt="3.3.1.1.1" style="zoom:15%;">
+
+<ul>
+<li>页式存储管理的物理地址也有两部分组成，<strong>页架号和单元号</strong>，物理地址形式：</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208100849521.png" alt="3.3.1.1.2" style="zoom:15%;">
+
+<ul>
+<li>地址转换可以通过查页表完成</li>
+</ul>
+<p>页式存储管理的地址转换思路</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208100851446.png" alt="3.3.1.1.3" style="zoom:25%;">
+
+<blockquote>
+<p>例：页式存储管理中物理地址和逻辑地址之间的转换</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208131958717.png" alt="3.3.1.1.5" style="zoom: 33%;"></th>
+<th><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208131951680.png" alt="3.3.1.1.1" style="zoom: 33%;"></th>
+</tr>
+</thead>
+</table>
+<h4 id="2-页式存储管理的主存分配"><a href="#2-页式存储管理的主存分配" class="headerlink" title="2. 页式存储管理的主存分配"></a>2. 页式存储管理的主存分配</h4><p>对于页式存储管理，系统要建立一张内存物理块表，用来记录页框状态，管理物理内存的而分配，所包含的信息包含内存总块数、哪些为空闲块、哪些已经分配以及分配给哪个进程等</p>
+<p>最简单方法是用<strong>位示图</strong>来记录主存分配情况，使用一位来标记一个页框的使用或空闲的状态</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208102121203.png" alt="3.3.1.2" style="zoom:25%;">
+
+<p>页式存储管理的页框分配/去配算法：</p>
+<ul>
+<li>进行主存分配时，先检查空闲页框数能否满足用户进程的要求<ul>
+<li>若不能，则令进程等待</li>
+<li>若能，则查找位示图，找出为 0 的那些位，置占用标志，从空闲页框数减去本次占用块数，按所找到的位的位置计算对应页框号，填入此进程的页表</li>
+</ul>
+</li>
+<li>进程执行结束归还主存时，根据归还的页框号计算出对应位在位示图中的位置，将占用标志清 0，并将归还块数加入空闲页框数中</li>
+</ul>
+<h4 id="3-页式存储管理的主存共享"><a href="#3-页式存储管理的主存共享" class="headerlink" title="3. 页式存储管理的主存共享"></a>3. 页式存储管理的主存共享</h4><p>页式存储管理能够实现多个进程共享程序和数据</p>
+<ul>
+<li>数据共享：不同进程可以使用<strong>不同</strong>页号共享数据页，<ul>
+<li>必须解决共享信息保护问题，常用的方法是在页表中添加标记位</li>
+</ul>
+</li>
+<li>程序共享：不同进程必须使用<strong>相同</strong>页号共享代码页</li>
+</ul>
+<blockquote>
+<p>例如，一旦该进程中有一条跳转本共享页的 JMP 指令，如果该地址是不同页就无法用程序写出来，但是访问共享数据页则没有这个问题</p>
+</blockquote>
+<h3 id="3-3-2-页式存储管理的地址转换"><a href="#3-3-2-页式存储管理的地址转换" class="headerlink" title="3.3.2 页式存储管理的地址转换"></a>3.3.2 页式存储管理的地址转换</h3><h4 id="1-页式存储管理的地址转换代价"><a href="#1-页式存储管理的地址转换代价" class="headerlink" title="1. 页式存储管理的地址转换代价"></a>1. 页式存储管理的地址转换代价</h4><ul>
+<li><p>页表放在主存：每次地址转换必须访问两次主存</p>
+<ul>
+<li>按页号读出页表中的相应页架号</li>
+<li>按计算出来的绝对地址进行读写</li>
+</ul>
+</li>
+<li><p>存在问题：降低了存取速度</p>
+</li>
+<li><p>解决办法：利用 Cache 存放部分页表</p>
+</li>
+</ul>
+<h4 id="2-页式存储管理的快表"><a href="#2-页式存储管理的快表" class="headerlink" title="2. 页式存储管理的快表"></a>2. 页式存储管理的快表</h4><p>为提高地址转换速度，设置一个专用的高速存储器，用来存放页表的一部分</p>
+<p>快表是存放在高速存储器中的页表部分</p>
+<ul>
+<li><p>快表表项：<strong>页号</strong>，<strong>页架号</strong></p>
+</li>
+<li><p>这种高速存储器是<strong>联想存储器</strong>，即<strong>按照内容寻址</strong>，而非按照地址访问</p>
+</li>
+</ul>
+<p>采用快表后，可以加快地址转换速度</p>
+<ul>
+<li>假定主存访问时间为 200 毫微秒，快表访问时间为 40 毫微秒，查快表的命中率是 90%，平均地址转换代价为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="15.21ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 6722.9 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(389,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g><g data-mml-node="mo" transform="translate(2111.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(3111.4,0)"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mo" transform="translate(4111.4,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(4722.7,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(5722.9,0)"><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></svg></mjx-container> 毫微秒</li>
+<li>比两次访问主存的时间（400 毫微秒）下降了 36%</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208111608478.png" alt="Direct versus Associative Lookup for Page Table Entries" style="zoom:33%;">
+
+<p>基于快表的地址转换流程：</p>
+<ul>
+<li>按逻辑地址中的页号查快表</li>
+<li>若该页<strong>已在快表</strong>中，则由页架号和单元号形成绝对地址</li>
+<li>若该页<strong>不在快表</strong>中，则再查主存页表形成绝对地址，同时将该页登记到快表中</li>
+<li>当<strong>快表填满</strong>后，又要登记新页时，则需在快表中按一定策略<strong>淘汰</strong>一个旧登记项</li>
+</ul>
+<h4 id="3-多道程序环境下的地址转换"><a href="#3-多道程序环境下的地址转换" class="headerlink" title="3. 多道程序环境下的地址转换"></a>3. 多道程序环境下的地址转换</h4><p>操作系统建立进程表，其中登记了每一个进程的<strong>页表起始地址和长度</strong></p>
+<table>
+<thead>
+<tr>
+<th>用户作业名</th>
+<th>页表起始地址</th>
+<th>页表长度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AB</td>
+<td>0010</td>
+<td>4</td>
+</tr>
+<tr>
+<td>CD</td>
+<td>0014</td>
+<td>3</td>
+</tr>
+<tr>
+<td>EF</td>
+<td>0017</td>
+<td>7</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<p>当进程占有 CPU 运行，其页表基址/页表长度将从进程表中被送入页表控制寄存器</p>
+<p>基于页表控制寄存器，硬件存储机制就能够实现地址转换和存储保护</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208110900478.png" alt="3.3.2.3" style="zoom:30%;">
+
+<h3 id="3-3-3-多级页表"><a href="#3-3-3-多级页表" class="headerlink" title="3.3.3 多级页表"></a>3.3.3 多级页表</h3><h4 id="1-多级页表的概念"><a href="#1-多级页表的概念" class="headerlink" title="1. 多级页表的概念"></a>1. 多级页表的概念</h4><p>现代计算机普遍支持 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="8.855ex" height="1.904ex" role="img" focusable="false" viewBox="0 -841.7 3913.8 841.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g><g data-mml-node="mo" transform="translate(1567.9,0)"><path data-c="223C" d="M55 166Q55 241 101 304T222 367Q260 367 296 349T362 304T421 252T484 208T554 189Q616 189 655 236T694 338Q694 350 698 358T708 367Q722 367 722 334Q722 260 677 197T562 134H554Q517 134 481 152T414 196T355 248T292 293T223 311Q179 311 145 286Q109 257 96 218T80 156T69 133Q55 133 55 166Z"></path></g><g data-mml-node="msup" transform="translate(2623.7,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container> 容量的逻辑地址空间，采用分页存储管理时，页表相当大</p>
+<ul>
+<li>以 Windows 为例，其运行的 Intel x86 平台具有 32 位地址，规定页面 4KB (<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container>) 时，那么 4GB (<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container>) 的逻辑地址空间由 1MB (<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container>) 个页组成，若每个页表项占用 4 个字节，则需要占用 4MB (<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container>) 连续主存空间存放页表。系统中有许多进程，因此页表存储开销很大</li>
+</ul>
+<p>把整个页表分割成许多小页表，每个称为<strong>页表页</strong>，它的大小与页框长度相同，于是每个页表页含有若干页表表项。</p>
+<ul>
+<li><p>页表项从0开始编号，允许放到不连续的页框中，为了找到页表页，建立页表索引，称为<strong>页目录表</strong></p>
+</li>
+<li><p>系统为每一个进程建立一张页目录表，每一个表项指出一个页表页，而页表页的每个表项给出页面和页框的对应关系</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208111128083.png" alt="3.3.3.1.1" style="zoom:35%;">
+
+<h4 id="2-多级页表的地址转换"><a href="#2-多级页表的地址转换" class="headerlink" title="2. 多级页表的地址转换"></a>2. 多级页表的地址转换</h4><p>逻辑地址结构由三部分组成：页目录、页表页和位移</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208111129647.png" alt="3.3.3.2.1" style="zoom:40%;">
+
+<p>二级页表地址转换实例</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208111154621.png" alt="3.3.3.2.2" style="zoom:25%;">
+
+<p>SUN SPARC 计算机三级分页结构</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208111517815.png" alt="3.3.3.2.3" style="zoom:23%;">
+
+<h4 id="3-多级页表结构的本质"><a href="#3-多级页表结构的本质" class="headerlink" title="3. 多级页表结构的本质"></a>3. 多级页表结构的本质</h4><ul>
+<li><p>多级不连续导致多级索引</p>
+</li>
+<li><p>以二级页表为例，用户程序的页面不连续存放，要有页面地址索引，该索引是进程页表；进程页表又是不连续存放的多个页表页，故页表页也要页表页地址索引，该索引就是页目录</p>
+</li>
+<li><p>页目录项是页表页的索引，而页表页项是进程程序的页面索引</p>
+</li>
+</ul>
+<h3 id="3-3-4-页式虚拟存储管理"><a href="#3-3-4-页式虚拟存储管理" class="headerlink" title="3.3.4 页式虚拟存储管理"></a>3.3.4 页式虚拟存储管理</h3><p>基本思想：将进程信息副本存放在外存中，当它被调度投入运行时，程序和数据没有全部装入内存，仅装入当前使用页面，进程执行过程中访问到不在内存的页面时，再由系统自动调入</p>
+<ul>
+<li><p>页式虚拟存储是现代操作系统的主流存储管理技术</p>
+</li>
+<li><p>页式存储管理中有一个非常常用的模式，也就是第一次只把进程的第一页装入主存，称为请求页式存储管理</p>
+</li>
+</ul>
+<p>页式虚拟存储管理需要对进程的页表进行扩充，需要引入如下标志</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208111612041.png" alt="3.3.4.1" style="zoom:25%;">
+
+<ul>
+<li>主存驻留标志：记录该页是否驻存在主存中</li>
+<li>写回标志：记录该页在主存中有无被修改，当该页需要从主存淘汰，且如果该页被修改，则需要写回磁盘</li>
+<li>保护标志：记录该页的保护属性，供共享保护使用</li>
+<li>引用标志：记录该页的引用情况，供页面淘汰算法使用</li>
+<li>可移动标志：记录该页是否可以移动，正在与外设交换的页面是不能被移动的</li>
+</ul>
+<p>页式虚拟存储管理的地址转换</p>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208110951853.svg" alt="3.3.4" style="zoom:85%;">
+
+<p>TLB、page、cache 的缺失组合情况</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>TLB</th>
+<th>page</th>
+<th>cache</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>hit</td>
+<td>hit</td>
+<td>hit</td>
+<td>可能，TLB 命中则页一定命中，信息在主存，就可能在 cache 中</td>
+</tr>
+<tr>
+<td>2</td>
+<td>hit</td>
+<td>hit</td>
+<td>miss</td>
+<td>可能，TLB 命中则页一定命中，信息在主存，但可能不在 cache 中</td>
+</tr>
+<tr>
+<td>3</td>
+<td>miss</td>
+<td>hit</td>
+<td>hit</td>
+<td>可能，TLB 缺失但页可能命中，信息在主存，就可能在 cache 中</td>
+</tr>
+<tr>
+<td>4</td>
+<td>miss</td>
+<td>hit</td>
+<td>miss</td>
+<td>可能，TLB 缺失但页可能命中，信息在主存，但可能不在 cache 中</td>
+</tr>
+<tr>
+<td>5</td>
+<td>miss</td>
+<td>miss</td>
+<td>miss</td>
+<td>可能，TLB 缺失，则页也可能缺失，信息不在主存，一定也不在 cache</td>
+</tr>
+<tr>
+<td>6</td>
+<td>hit</td>
+<td>miss</td>
+<td>miss</td>
+<td>不可能，页缺失，说明信息不在主存，TLB 中一定没有该页表项</td>
+</tr>
+<tr>
+<td>7</td>
+<td>hit</td>
+<td>miss</td>
+<td>hit</td>
+<td>不可能，页缺失，说明信息不在主存，TLB 中一定没有该页表项</td>
+</tr>
+<tr>
+<td>8</td>
+<td>miss</td>
+<td>miss</td>
+<td>hit</td>
+<td>不可能，页缺失，说明信息不在主存，cache 中一定也没有该信息</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-5-页面调度"><a href="#3-3-5-页面调度" class="headerlink" title="3.3.5 页面调度"></a>3.3.5 页面调度</h3><p>页面调度是指当主存空间已满而又需要装入新页时，页式虚拟存储管理必须按照一定的算法把已在主存的一些页调出去</p>
+<ul>
+<li>选择淘汰页的工作称为页面调度，选择淘汰页的算法称为页面调度算法</li>
+<li>页面调度算法设计不当，会出现频繁的调入/调出，这种现象称为抖动或颠簸</li>
+</ul>
+<p>衡量存储管理性能和用户编程水平的重要依据——缺页中断率</p>
+<ul>
+<li>假定进程 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.699ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 751 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g></g></g></svg></mjx-container> 共 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.357ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 600 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 页，此进程分得页框 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.986ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 878 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 个</li>
+<li>进程 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.699ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 751 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g></g></g></svg></mjx-container> 运行中成功访问次数为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.459ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 645 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g></g></g></svg></mjx-container>，不成功访问次数为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.695ex" height="1.538ex" role="img" focusable="false" viewBox="0 -680 749 680"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"></path></g></g></g></svg></mjx-container>，总访问次数 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="10.633ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 4700 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(1027.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(2083.6,0)"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g><g data-mml-node="mo" transform="translate(2950.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(3951,0)"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"></path></g></g></g></svg></mjx-container></li>
+<li>定义缺页中断率  <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="8.784ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 3882.6 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path></g><g data-mml-node="mo" transform="translate(827.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(1883.6,0)"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(2632.6,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mi" transform="translate(3132.6,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g></g></g></svg></mjx-container></li>
+<li>影响缺页中断率的因素：<ul>
+<li>分配给进程的页框数：可用页框数越多，则缺页中断率就越低</li>
+<li>页面的大小：页面尺寸越大，则缺页中断率就越低</li>
+<li>页面替换算法：算法的优劣影响缺页异常次数</li>
+<li>程序特性：程序局部性要好，它对缺页中断率有很大影响</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>例：与程序设计有关的缺页中断率</p>
+</blockquote>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208121029957.png" alt="3.3.5" style="zoom: 30%;">
+
+<p>下面讨论页面调度算法</p>
+<h4 id="1-最佳置换OPT页面调度算法"><a href="#1-最佳置换OPT页面调度算法" class="headerlink" title="1. 最佳置换OPT页面调度算法"></a>1. 最佳置换OPT页面调度算法</h4><ul>
+<li><p>算法描述：当要调入新页面时，首先淘汰以后不再访问的页，如果没有这样的页，就选择<strong>距现在最长时间后再访问</strong>的页</p>
+</li>
+<li><p>该方法由 Belady 提出，又称为 BeLady 算法</p>
+</li>
+<li><p>OPT 只可以<strong>模拟</strong>，不可以实现，因为永远无法预知之后的事情</p>
+</li>
+<li><p>这种算法可以用作衡量其他各种算法的标准</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208112145783.png" alt="OPT" style="zoom:33%;">
+
+<h4 id="2-先进先出FIFO页面调度算法"><a href="#2-先进先出FIFO页面调度算法" class="headerlink" title="2. 先进先出FIFO页面调度算法"></a>2. 先进先出FIFO页面调度算法</h4><ul>
+<li>算法描述：首先淘汰最先调入主存的那一页，或者说主存驻留时间最长的那一页（常驻的除外）</li>
+<li>模拟的是程序执行的顺序性，有一定合理性，并不能很好模拟程序的循环性</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208112152642.png" alt="FIFO" style="zoom:33%;">
+
+<ul>
+<li>FIFO 算法的 Belady 异常：更多的页框导致了更高的缺页率</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208112200214.png" alt="Belady异常" style="zoom:33%;">
+
+<h4 id="3-最近最少使用LRU页面调度算法"><a href="#3-最近最少使用LRU页面调度算法" class="headerlink" title="3. 最近最少使用LRU页面调度算法"></a>3. 最近最少使用LRU页面调度算法</h4><ul>
+<li>算法描述：淘汰<strong>最近一段时间较久未被访问</strong>的那一页，即那些刚被使用过的页面，可能马上还要被使用到</li>
+<li>模拟了程序执行的局部属性，既考虑了<strong>循环性</strong>，又兼顾了<strong>顺序性</strong></li>
+<li>严格实现的代价大，需要维护页面淘汰队列，实现起来相当困难，所以只能模拟</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208112230084.png" alt="LRU" style="zoom:33%;">
+
+<p>LRU 算法的模拟实现</p>
+<ul>
+<li>为每个主存驻留页建一个引用标志位供硬件使用</li>
+<li>设置一个时间间隔中断，中断发生时，所有驻留页的引用标志位置为 0，而地址转换时，引用标志位置为 1</li>
+<li>在淘汰页面时只需要从引用标志位为 0 的页面中随机淘汰一个即可</li>
+<li>该算法的难点是时间间隔的长度如何设置，太短则全是 0，太长则全是 1，就退化为随机调度了</li>
+</ul>
+<blockquote>
+<p>该模拟相当不严谨，它并未模拟出一个淘汰的序列，而是简单地将页面分为两类，所以只是一个非常粗糙的模拟</p>
+</blockquote>
+<h4 id="4-最不常使用LFU页面调度算法"><a href="#4-最不常使用LFU页面调度算法" class="headerlink" title="4. 最不常使用LFU页面调度算法"></a>4. 最不常使用LFU页面调度算法</h4><ul>
+<li>算法描述：淘汰最近一段时间内<strong>访问次数较少</strong>的页面</li>
+<li>对 OPT 的模拟性比 LRU 更好</li>
+<li>基于时间间隔中断，并给每一页设置一个计数器，时间间隔中断发生后，所有计数器清 0，每访问页一次就给计数器加 1，选择计数最小的页面淘汰</li>
+</ul>
+<h4 id="5-时钟CLOCK页面调度算法"><a href="#5-时钟CLOCK页面调度算法" class="headerlink" title="5. 时钟CLOCK页面调度算法"></a>5. 时钟CLOCK页面调度算法</h4><p>采用循环队列机制构造页面队列，形成了一个类似于钟表面的环形表</p>
+<ul>
+<li><p>队列指针则相当于钟表面上的表针，指向可能要淘汰的页面</p>
+</li>
+<li><p>使用页引用标志位</p>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208112221935.png" alt="CLOCK" style="zoom:33%;">
+
+<p>CLOCK 算法的工作流程</p>
+<ul>
+<li><p>页面调入主存时，其引用标志位置为 1</p>
+</li>
+<li><p>访问主存页面时，其引用标志位置为 1</p>
+</li>
+<li><p>淘汰页面时，从指针当前指向的页面开始扫描循环队列</p>
+<ul>
+<li><p>把所遇到的引用标志位是 1 的页面的引用标志位清 0 并跳过</p>
+</li>
+<li><p>把所遇到的引用标志位是 0 的页面淘汰，指针推进一步</p>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208121007889.png" alt="3.3.5.5" style="zoom: 30%;">
+
+<h4 id="6-不同算法性能比较"><a href="#6-不同算法性能比较" class="headerlink" title="6. 不同算法性能比较"></a>6. 不同算法性能比较</h4><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208121007107.png" alt="3.3.5.6" style="zoom:33%;">
+
+<blockquote>
+<p>这是一个整体性能的比较，对于个例，有可能 CLOCK 优于 LRU</p>
+</blockquote>
+<h3 id="3-3-6-反置页表"><a href="#3-3-6-反置页表" class="headerlink" title="3.3.6 反置页表"></a>3.3.6 反置页表</h3><p>一些计算机系统使用反置页表来实现页式虚拟存储管理的地址管理，为此专门设置了<strong>主存管理单元</strong>（memory management unit, MMU）</p>
+<ul>
+<li>它是处理器管理虚拟/物理存储器的控制电路，完成把虚拟地址映射为物理地址的任务，并提供存储保护，必要时确定淘汰页面</li>
+<li>主存管理单元要用到一个关键性的数据结构——反置页表 （inverted page table, IPT）</li>
+</ul>
+<p>反置页表是针对主存页框建立的一个页表，它的页表项按照页框号排序</p>
+<ul>
+<li>其表项包括正占有该页框的进程号/页号、特征位和哈希链指针等</li>
+<li>用来完成内存页架到访问进程页号的对应，即物理地址到逻辑地址的转换</li>
+</ul>
+<p>反置页表的页表项</p>
+<ul>
+<li>页号：虚拟地址页号</li>
+<li>进程标志符：使用该页的进程号（页号和进程标志符结合起来标志一个特定进程的虚拟地址空间的一页）</li>
+<li>标志位：有效、引用、修改、保护和锁定等标志信息</li>
+<li>链指针：哈希链，如果某个项没有链项，则该域为空（允许用一个单独的位来表示）</li>
+</ul>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208131830113.png" alt="3.3.6" style="zoom: 23%;">
+
+<blockquote>
+<p>上图未显示选择淘汰页面，该功能同样由 MMU 完成</p>
+</blockquote>
+<p>基于反置页表的地址转换过程</p>
+<ul>
+<li><p>MMU 通过哈希表把进程标识和虚页号转换成一个哈希值，指向 IPT 的一个表目</p>
+</li>
+<li><p>MMU 遍历哈希链找到所需进程的虚页号，该项的索引就是页架号，通过拼接位移便可生成物理地址</p>
+</li>
+<li><p>若遍历整个反置页表中未能找到匹配页表项，说明该页不在内存，产生缺页中断，请求操作系统调入</p>
+</li>
+</ul>
+<blockquote>
+<p>例：线性反置页表和哈希线性反置页表</p>
+</blockquote>
+<img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208131830432.png" alt="3.3.6.1" style="zoom:33%;">
+
+<h2 id="3-4-段式存储管理"><a href="#3-4-段式存储管理" class="headerlink" title="3.4 段式存储管理"></a>3.4 段式存储管理</h2><h3 id="3-4-1-段式存储管理"><a href="#3-4-1-段式存储管理" class="headerlink" title="3.4.1 段式存储管理"></a>3.4.1 段式存储管理</h3><blockquote>
+<p>例：段式存储管理中物理地址和逻辑地址之间的转换</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208132000022.png" alt="3.4.1.2.1" style="zoom:33%;"></th>
+<th><img src="https://typora-vohsiliu.oss-cn-hangzhou.aliyuncs.com/202208132000573.png" alt="3.4.1.2.2" style="zoom:33%;"></th>
+</tr>
+</thead>
+</table>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/08/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">第二章 处理器管理</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拔丝地瓜</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">第三章 存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80"><span class="nav-text">3.1 存储管理基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%BB%E8%A6%81%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.1.1 存储管理的主要模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E4%B8%8E%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="nav-text">1. 逻辑地址与物理地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%BB%E5%AD%98%E7%9A%84%E5%A4%8D%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">2. 主存的复用方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-text">3.1.2 存储管理的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-text">1. 地址转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%BB%E5%AD%98%E7%A9%BA%E9%97%B4%E7%9A%84%E5%88%86%E9%85%8D%E4%B8%8E%E5%8E%BB%E9%85%8D"><span class="nav-text">2. 主存空间的分配与去配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%BB%E5%AD%98%E7%A9%BA%E9%97%B4%E7%9A%84%E5%85%B1%E4%BA%AB"><span class="nav-text">3. 主存空间的共享</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AD%98%E5%82%A8%E4%BF%9D%E6%8A%A4"><span class="nav-text">4. 存储保护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E4%B8%BB%E5%AD%98%E7%A9%BA%E9%97%B4%E7%9A%84%E6%89%A9%E5%85%85"><span class="nav-text">5. 主存空间的扩充</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="nav-text">3.1.3 虚拟存储器概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E6%80%9D%E6%83%B3%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-text">1. 虚拟存储器思想的提出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-text">2. 虚拟存储器的基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-text">3. 虚拟存储器的实现思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%92%91"><span class="nav-text">3.1.4 存储管理的硬件支撑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1"><span class="nav-text">1. 存储器层次</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%B6%89%E5%8F%8A%E7%9A%84%E5%AD%98%E5%82%A8%E5%AF%B9%E8%B1%A1"><span class="nav-text">2. 存储管理涉及的存储对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%AD%98%E5%82%A8%E5%99%A8Cache"><span class="nav-text">3. 高速缓存存储器Cache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81"><span class="nav-text">4. 存储管理的硬件支持</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%8D%95%E8%BF%9E%E7%BB%AD%E5%88%86%E5%8C%BA%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">3.2 单连续分区存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-%E5%8D%95%E7%94%A8%E6%88%B7%E8%BF%9E%E7%BB%AD%E5%88%86%E5%8C%BA%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">3.2.1 单用户连续分区存储管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-%E5%9B%BA%E5%AE%9A%E5%88%86%E5%8C%BA%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">3.2.2 固定分区存储管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-%E5%8F%AF%E5%8F%98%E5%88%86%E5%8C%BA%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">3.2.3 可变分区存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BB%E5%AD%98%E7%A9%BA%E9%97%B4%E7%9A%84%E5%88%86%E9%85%8D%E5%92%8C%E5%8E%BB%E9%85%8D"><span class="nav-text">1. 主存空间的分配和去配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%AD%98%E5%82%A8%E4%BF%9D%E6%8A%A4"><span class="nav-text">2. 地址转换与存储保护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%AF%E5%8F%98%E5%88%86%E5%8C%BA%E7%9A%84%E4%B8%BB%E5%AD%98%E5%A4%96%E9%9B%B6%E5%A4%B4"><span class="nav-text">3. 可变分区的主存外零头</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F"><span class="nav-text">3.2.4 伙伴系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">1.伙伴系统的实现原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Linux%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F"><span class="nav-text">2. Linux伙伴系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">3.3 页式存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">3.3.1 页式存储管理的基本原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-text">1. 页式存储管理的基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%BB%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-text">2. 页式存储管理的主存分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%BB%E5%AD%98%E5%85%B1%E4%BA%AB"><span class="nav-text">3. 页式存储管理的主存共享</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-text">3.3.2 页式存储管理的地址转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E4%BB%A3%E4%BB%B7"><span class="nav-text">1. 页式存储管理的地址转换代价</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E5%BF%AB%E8%A1%A8"><span class="nav-text">2. 页式存储管理的快表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-text">3. 多道程序环境下的地址转换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8"><span class="nav-text">3.3.3 多级页表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">1. 多级页表的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-text">2. 多级页表的地址转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8%E7%BB%93%E6%9E%84%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-text">3. 多级页表结构的本质</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-4-%E9%A1%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">3.3.4 页式虚拟存储管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-5-%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6"><span class="nav-text">3.3.5 页面调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%9C%80%E4%BD%B3%E7%BD%AE%E6%8D%A2OPT%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-text">1. 最佳置换OPT页面调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BAFIFO%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-text">2. 先进先出FIFO页面调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9C%80%E8%BF%91%E6%9C%80%E5%B0%91%E4%BD%BF%E7%94%A8LRU%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-text">3. 最近最少使用LRU页面调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%9C%80%E4%B8%8D%E5%B8%B8%E4%BD%BF%E7%94%A8LFU%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-text">4. 最不常使用LFU页面调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%97%B6%E9%92%9FCLOCK%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-text">5. 时钟CLOCK页面调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E4%B8%8D%E5%90%8C%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83"><span class="nav-text">6. 不同算法性能比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-6-%E5%8F%8D%E7%BD%AE%E9%A1%B5%E8%A1%A8"><span class="nav-text">3.3.6 反置页表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%AE%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">3.4 段式存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-%E6%AE%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">3.4.1 段式存储管理</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
